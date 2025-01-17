@@ -3,7 +3,7 @@ export function App() {
     <>
       <h1>Hello Word!</h1>
 
-      <h2>olaaaaaa</h2>
+      <h2>teste</h2>
     </>
   )
 }
