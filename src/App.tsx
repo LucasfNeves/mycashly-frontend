@@ -1,9 +1,5 @@
-export function App() {
-  return (
-    <>
-      <h1 className="text-green-500">Hello Word!</h1>
+import { Router } from './router'
 
-      <h2>teste</h2>
-    </>
-  )
+export function App() {
+  return <Router />
 }
