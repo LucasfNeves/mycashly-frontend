@@ -1,5 +1,7 @@
+import { useAuth } from '@/hooks/useAuth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -13,7 +15,15 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
+interface RegisterParams {
+  name: string
+  email: string
+  password: string
+}
+
 export function useRegisterController() {
+  const { signUp, isPendingSignUp } = useAuth()
+
   const {
     handleSubmit,
     register,
@@ -22,13 +32,20 @@ export function useRegisterController() {
     resolver: zodResolver(schema),
   })
 
-  const handleFormSubmit = handleSubmit(async (data) => {
-    console.log(data)
-  })
+  const handleFormSubmit = handleSubmit(
+    async ({ email, password, name }: RegisterParams) => {
+      try {
+        await signUp(email, password, name)
+      } catch {
+        toast.error('Erro ao criar conta')
+      }
+    },
+  )
 
   return {
     handleFormSubmit,
     register,
     errors,
+    isPendingSignUp,
   }
 }
