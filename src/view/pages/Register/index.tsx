@@ -5,7 +5,8 @@ import { useRegisterController } from './useRegister'
 import { PasswordInput } from '../../components/PasswordInput'
 
 export function Register() {
-  const { handleFormSubmit, register, errors } = useRegisterController()
+  const { handleFormSubmit, register, errors, isPendingSignUp } =
+    useRegisterController()
 
   return (
     <div className="flex w-full flex-col items-center justify-center space-y-10">
@@ -44,7 +45,7 @@ export function Register() {
           error={errors.password?.message}
           {...register('password')}
         />
-        <Button disabled={false}>Cadastrar</Button>
+        <Button isLoading={isPendingSignUp}>Cadastrar</Button>
       </form>
     </div>
   )
