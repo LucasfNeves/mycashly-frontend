@@ -5,7 +5,8 @@ import { useLoginController } from './useLoginController'
 import { PasswordInput } from '../../components/PasswordInput'
 
 export function Login() {
-  const { handleFormSubmit, register, errors } = useLoginController()
+  const { handleFormSubmit, register, errors, isPendingSignIn } =
+    useLoginController()
 
   return (
     <div className="flex w-full flex-col items-center justify-center space-y-10">
@@ -37,7 +38,7 @@ export function Login() {
           error={errors.password?.message}
           {...register('password')}
         />
-        <Button disabled={false}>Acessar</Button>
+        <Button isLoading={isPendingSignIn}>Acessar</Button>
       </form>
     </div>
   )
