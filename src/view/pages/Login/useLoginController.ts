@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { z } from 'zod'
+import { useAuth } from '../../../hooks/useAuth'
+import { toast } from 'sonner'
 
 const schema = z.object({
   email: z
@@ -14,6 +16,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 export function useLoginController() {
+  const { signIn, isPendingSignIn } = useAuth()
+
   const {
     handleSubmit,
     register,
@@ -22,13 +26,18 @@ export function useLoginController() {
     resolver: zodResolver(schema),
   })
 
-  const handleFormSubmit = handleSubmit(async (data) => {
-    console.log(data)
+  const handleFormSubmit = handleSubmit(async ({ email, password }) => {
+    try {
+      await signIn(email, password)
+    } catch {
+      toast.error('Credenciais inválidas')
+    }
   })
 
   return {
     handleFormSubmit,
     register,
     errors,
+    isPendingSignIn,
   }
 }
