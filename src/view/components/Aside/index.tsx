@@ -19,7 +19,7 @@ export function Sidebar() {
               <span>Dashboard</span>
             </ButtonNavigate>
 
-            <ButtonNavigate to={'/trasactions'}>
+            <ButtonNavigate to={'/transactions'}>
               <Table className="h-4" />
               <span>Transações</span>
             </ButtonNavigate>
