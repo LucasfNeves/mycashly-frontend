@@ -1,10 +1,10 @@
 import { Header } from '@/view/pages/Dashboard/components/header'
-import { Aside } from './components/Aside'
+import { Sidebar } from './components/Aside'
 
 export function Dashboard() {
   return (
     <div className="grid grid-cols-[13rem_auto] bg-darkBlue-900">
-      <Aside />
+      <Sidebar />
 
       <div className="bg-darkBlue-900 px-6">
         <Header />
