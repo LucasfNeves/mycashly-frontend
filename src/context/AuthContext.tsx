@@ -158,6 +158,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }}
     >
       {children}
+      {/*<LaunchScreen isLoading={isPendingSignIn || isPendingSignUp} />*/}
     </AuthContext.Provider>
   )
 }

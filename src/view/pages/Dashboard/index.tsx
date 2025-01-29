@@ -1,7 +1,16 @@
+import { Header } from '@/view/pages/Dashboard/components/header'
+import { Aside } from './components/Aside'
+
 export function Dashboard() {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="grid grid-cols-[13rem_auto] bg-darkBlue-900">
+      <Aside />
+
+      <div className="bg-darkBlue-900 px-6">
+        <Header />
+
+        <main>Conteúdo</main>
+      </div>
     </div>
   )
 }

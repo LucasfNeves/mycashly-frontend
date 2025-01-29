@@ -22,7 +22,11 @@ export default {
           900: '#102B57',
         },
         darkBlue: {
-          DEFAULT: '#0E192C'
+          DEFAULT: '#0E192C',
+          700: '#0D172A',
+          800: '#0A1220',
+          900: '#080E19',
+
         },
       },
     },
