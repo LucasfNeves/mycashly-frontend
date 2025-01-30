@@ -49,7 +49,8 @@ export function ExpenseChart() {
         data={chartData}
         layout="vertical"
         margin={{
-          left: 0,
+          left: 30,
+          right: 30,
         }}
       >
         <YAxis
@@ -61,7 +62,7 @@ export function ExpenseChart() {
           tickFormatter={(value) =>
             chartConfig[value as keyof typeof chartConfig]?.label
           }
-          tick={{ fill: '#A3ABB2', fontSize: 12 }}
+          tick={{ fill: '#A3ABB2', fontSize: 10 }}
         />
         <XAxis dataKey="valor" type="number" hide />
         <ChartTooltip

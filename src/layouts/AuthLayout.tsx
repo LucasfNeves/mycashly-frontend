@@ -11,7 +11,7 @@ export function AuthLayout() {
         <Outlet />
       </section>
 
-      <div className="bg-darkBlue-dark/90 h-screen w-full lg:relative">
+      <div className="bg-darkBlue-dark/90 h-full w-full lg:relative">
         <img
           src={authenticationBackgroundImage}
           alt="Imagem de fundo"
