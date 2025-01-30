@@ -15,7 +15,7 @@ export function Dashboard() {
         <section className="flex flex-col gap-4">
           <h2 className="text:base text-neutral-300 lg:text-xl">Resultados</h2>
 
-          <div className="flex w-full flex-col gap-8 lg:flex-row lg:justify-between">
+          <div className="flex w-full flex-col gap-8 md:flex-row lg:justify-between">
             <BalanceCard />
 
             <SummaryCard

@@ -6,7 +6,7 @@ interface SummaryCardProps {
 
 export function SummaryCard({ icon, value, description }: SummaryCardProps) {
   return (
-    <section className="flex min-h-48 w-full min-w-64 flex-1 flex-col justify-between rounded-md bg-darkBlue-700 p-5 lg:px-9 lg:py-5">
+    <section className="flex min-h-48 w-full min-w-56 flex-1 flex-col justify-between rounded-md bg-darkBlue-700 p-5 lg:px-9 lg:py-5">
       <header className="flex flex-col gap-4">
         <div>{icon}</div>
 
