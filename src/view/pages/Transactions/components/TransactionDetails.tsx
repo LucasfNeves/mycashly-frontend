@@ -1,9 +1,11 @@
+import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/lib/utils'
 
-interface TransactionDetailsProps {
+export interface TransactionDetailsProps {
+  id: number
   category: string
   date: string
-  value: string
+  value: number
   type: 'income' | 'investment' | 'expense'
 }
 
@@ -12,32 +14,36 @@ export function TransactionDetails({
   date,
   type,
   value,
+  id,
 }: TransactionDetailsProps) {
   return (
-    <section className="flex w-full items-center justify-between rounded-md bg-darkBlue-600 p-3">
-      <div className="flex flex-col items-center gap-1">
+    <section
+      key={id}
+      className="flex w-full items-center justify-between gap-8 rounded-md bg-darkBlue-600 p-3"
+    >
+      <div className="flex flex-col items-start gap-1">
         <p
-          className="w-full text-start text-sm font-bold text-white"
+          className="text-start text-sm font-bold text-white"
           aria-label="Salário"
         >
           {category}
         </p>
         <small
-          className="w-full text-start text-[12px] text-neutral-300"
+          className="text-start text-[12px] text-neutral-300"
           aria-label="Data do pagamento"
         >
           {date}
         </small>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 overflow-x-auto whitespace-nowrap">
         <p
           className={cn(
             'text-base',
             type === 'expense' ? 'text-red-500' : 'text-green-500',
           )}
         >
-          {value}
+          {formatCurrency(Number(value))}
         </p>
       </div>
     </section>

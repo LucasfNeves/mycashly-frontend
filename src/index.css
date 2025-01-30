@@ -23,11 +23,31 @@ button {
     }
 
     .dark {
-    --chart-1: 210 100% 60%; /* Azul vibrante claro */
-    --chart-2: 200 100% 55%; /* Azul mais profundo e saturado */
-    --chart-3: 180 80% 50%; /* Azul royal mais intenso */
-    --chart-4: 190 70% 40%; /* Azul mais escuro e saturado */
-    --chart-5: 170 50% 60%; /* Azul esverdeado suave (verde água) */
+      --chart-1: 210 100% 60%; /* Azul vibrante claro */
+      --chart-2: 200 100% 55%; /* Azul mais profundo e saturado */
+      --chart-3: 180 80% 50%; /* Azul royal mais intenso */
+      --chart-4: 190 70% 40%; /* Azul mais escuro e saturado */
+      --chart-5: 170 50% 60%; /* Azul esverdeado suave (verde água) */
     }
   }
 }
+
+/* Barra de rolagem */
+::-webkit-scrollbar {
+  width: 5px; /* Largura da barra de rolagem */
+  height: 5px; /* Largura da barra horizontal */
+}
+
+/* Trilha da barra de rolagem (a parte que fica no fundo) */
+::-webkit-scrollbar-track {
+  background-color: #111e36; /* Cor de fundo da trilha */
+  border-radius: 10px; /* Cantos arredondados */
+}
+
+/* A "manopla" da barra de rolagem (a parte que você arrasta) */
+::-webkit-scrollbar-thumb {
+  background-color: #616a7c; /* Cor da manopla */
+  border-radius: 10px; /* Cantos arredondados */
+}
+
+
