@@ -5,7 +5,7 @@ import { Spinner } from './Spinner'
 interface ButtonProps extends ComponentProps<'button'> {
   className?: string
   disabled?: boolean
-  children: string
+  children: string | React.ReactNode
   isLoading?: boolean
 }
 

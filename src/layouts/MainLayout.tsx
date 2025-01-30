@@ -1,12 +1,15 @@
-import { Sidebar } from '@/view/components/Aside'
+import { useIsMobile } from '@/hooks/useIsMobile'
+import { Sidebar } from '@/view/components/Sidebar'
+import { ToggleMenu } from '@/view/components/ToggleMenu'
 import { Outlet } from 'react-router-dom'
 
 export function MainLayout() {
+  const isMobile = useIsMobile()
   return (
-    <div className="grid grid-cols-[13rem_auto] bg-darkBlue-900">
-      <Sidebar />
+    <div className="grid grid-cols-1 bg-darkBlue-900 lg:grid-cols-[13rem_auto]">
+      {isMobile ? <ToggleMenu /> : <Sidebar />}
 
-      <div className="bg-darkBlue-900 px-6">
+      <div className="overflow-x-hidden bg-darkBlue-900 p-4 lg:p-6">
         <Outlet />
       </div>
     </div>

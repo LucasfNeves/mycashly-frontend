@@ -2,7 +2,7 @@ import { Settings2 } from 'lucide-react'
 
 export function UserSettingsButton() {
   return (
-    <button className="flex min-w-32 max-w-52 items-center gap-3 rounded-full bg-darkBlue-800 p-2 text-white transition-all hover:bg-darkBlue-700 hover:duration-300">
+    <button className="flex min-w-32 max-w-52 items-center gap-3 rounded-full bg-darkBlue-700 p-2 text-white transition-all hover:bg-darkBlue-600 hover:duration-300">
       <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primaryBlue-500">
         LF
       </div>

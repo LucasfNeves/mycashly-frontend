@@ -23,10 +23,16 @@ export default {
         },
         darkBlue: {
           DEFAULT: '#0E192C',
+          50: '#e7e9eb',
+          100: '#b6bac2',
+          200: '#9299a5',
+          300: '#616a7c',
+          400: '#424d62',
+          500: '#13213b',
+          600: '#111e36',
           700: '#0D172A',
           800: '#0A1220',
           900: '#080E19',
-
         },
         red: {
           50: '#fcedf0',
@@ -39,7 +45,22 @@ export default {
           700: '#a33548',
           800: '#7e2938',
           900: '#60202a',
-        }
+        },
+      },
+
+      keyframes: {
+        slideInRightToLeft: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        slideOutRight: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        slideInRightToLeft: 'slideInRightToLeft 0.3s ease-out',
+        slideOutRight: 'slideOutRight 0.3s ease-in',
       },
     },
   },

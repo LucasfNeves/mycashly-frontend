@@ -10,7 +10,7 @@ export function ThemeToggleButton() {
 
   return (
     <button
-      className="flex h-9 w-9 items-center justify-center rounded-md bg-darkBlue-800 transition-all hover:bg-darkBlue-700 hover:duration-300"
+      className="flex h-9 w-9 items-center justify-center rounded-md bg-darkBlue-700 transition-all hover:bg-darkBlue-600 hover:duration-300"
       onClick={toggleTheme}
     >
       {currentTheme === 'light' ? (

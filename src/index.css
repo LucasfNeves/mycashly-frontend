@@ -11,3 +11,23 @@ button {
   font-size: 1rem;
   webkit-font-smoothing: antialiased;
 }
+
+@layer base {
+  @layer base {
+    :root {
+      --chart-1: 200 100% 40%; /* Azul vibrante claro (modo dark) */
+      --chart-2: 190 100% 40%; /* Azul profundo mais saturado (modo dark) */
+      --chart-3: 180 80% 45%; /* Azul royal escuro (modo dark) */
+      --chart-4: 190 70% 45%; /* Azul escuro e saturado (modo dark) */
+      --chart-5: 170 50% 55%; /* Azul esverdeado suave (verde água) - mais vibrante */
+    }
+
+    .dark {
+    --chart-1: 210 100% 60%; /* Azul vibrante claro */
+    --chart-2: 200 100% 55%; /* Azul mais profundo e saturado */
+    --chart-3: 180 80% 50%; /* Azul royal mais intenso */
+    --chart-4: 190 70% 40%; /* Azul mais escuro e saturado */
+    --chart-5: 170 50% 60%; /* Azul esverdeado suave (verde água) */
+    }
+  }
+}
