@@ -38,7 +38,7 @@ export function Dashboard() {
           <SliderMonths />
         </div>
 
-        <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-8">
+        <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-4">
           <h2 className="w-full text-start text-xl text-neutral-300">
             Top 5 Gastos do Mês
           </h2>

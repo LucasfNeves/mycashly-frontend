@@ -49,8 +49,8 @@ export function ExpenseChart() {
         data={chartData}
         layout="vertical"
         margin={{
-          left: 30,
-          right: 30,
+          left: 50,
+          right: 50,
         }}
       >
         <YAxis
