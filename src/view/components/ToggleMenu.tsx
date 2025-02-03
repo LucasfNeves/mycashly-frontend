@@ -18,7 +18,7 @@ export function ToggleMenu() {
     <Collapsible.Root
       open={open}
       onOpenChange={setOpen}
-      className="items-between sticky inset-0 z-40 flex h-16 flex-col justify-center bg-darkBlue-800 p-4"
+      className="items-between z-40 flex h-16 flex-col justify-center bg-darkBlue-800 p-4"
     >
       <header className="relative flex h-full w-full items-center justify-between">
         <figure>
