@@ -5,7 +5,7 @@ import { UserSettingsButton } from '../../../../components/UserSettingsButton'
 export function Header() {
   return (
     <header className="flex items-center justify-start lg:justify-between">
-      <div className="flex flex-col gap-1 py-4 lg:py-6">
+      <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2 text-white">
           <h1 className="text-xl lg:text-2xl">Olá, Lucas Farias</h1>
           <span>
