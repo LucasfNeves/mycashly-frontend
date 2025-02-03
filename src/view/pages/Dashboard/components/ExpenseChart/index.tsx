@@ -43,14 +43,17 @@ export const chartConfig = {
 
 export function ExpenseChart() {
   return (
-    <ChartContainer config={chartConfig} className="h-full w-full">
+    <ChartContainer
+      config={chartConfig}
+      className="relative h-[90%] w-[90%] p-4"
+    >
       <BarChart
         accessibilityLayer
         data={chartData}
         layout="vertical"
         margin={{
-          left: 50,
-          right: 50,
+          left: 30,
+          right: 30,
         }}
       >
         <YAxis
@@ -67,7 +70,12 @@ export function ExpenseChart() {
         <XAxis dataKey="valor" type="number" hide />
         <ChartTooltip
           cursor={false}
-          content={<ChartTooltipContent hideLabel />}
+          content={
+            <ChartTooltipContent
+              hideLabel
+              className="border border-gray-300 bg-white text-black shadow-lg"
+            />
+          }
         />
         <Bar dataKey="valor" layout="vertical" radius={5} />
       </BarChart>

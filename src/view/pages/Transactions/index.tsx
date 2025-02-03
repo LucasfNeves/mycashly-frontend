@@ -5,44 +5,55 @@ import {
   TransactionDetails,
   TransactionDetailsProps,
 } from './components/TransactionDetails'
+import { NewTransactionModal } from '../Dashboard/components/NewTransationModal'
+import { useState } from 'react'
 
+const transactions = [
+  {
+    id: 1,
+    category: 'Alimentação',
+    date: '04/02/2025',
+    type: 'expense',
+    value: 110,
+  } as TransactionDetailsProps,
+  {
+    id: 2,
+    category: 'Salário',
+    date: '04/02/2025',
+    type: 'income',
+    value: 1.5,
+  } as TransactionDetailsProps,
+  {
+    id: 3,
+    category: 'Investimento',
+    date: '04/02/2025',
+    type: 'investment',
+    value: 500,
+  } as TransactionDetailsProps,
+  {
+    id: 4,
+    category: 'Alimentação',
+    date: '04/02/2025',
+    type: 'expense',
+    value: 110,
+  } as TransactionDetailsProps,
+]
 export function Transactions() {
-  const transactions = [
-    {
-      id: 1,
-      category: 'Alimentação',
-      date: '04/02/2025',
-      type: 'expense',
-      value: 110,
-    } as TransactionDetailsProps,
-    {
-      id: 2,
-      category: 'Salário',
-      date: '04/02/2025',
-      type: 'income',
-      value: 1.5,
-    } as TransactionDetailsProps,
-    {
-      id: 3,
-      category: 'Investimento',
-      date: '04/02/2025',
-      type: 'investment',
-      value: 500,
-    } as TransactionDetailsProps,
-    {
-      id: 4,
-      category: 'Alimentação',
-      date: '04/02/2025',
-      type: 'expense',
-      value: 110,
-    } as TransactionDetailsProps,
-  ]
+  const [newTransationModalOpen, setNewTransationModalOpen] = useState(false)
+
+  const handleFilterModalClose = () => {
+    setNewTransationModalOpen(false)
+  }
+
+  const handleFilterModalOpen = () => {
+    setNewTransationModalOpen(true)
+  }
 
   return (
     <div className="flex min-h-screen flex-col gap-8 lg:gap-16">
       <header className="flex flex-col items-center justify-between gap-8 lg:gap-16">
         <div className="flex w-full items-center justify-end">
-          <Button className="flex gap-2 px-6">
+          <Button onClick={handleFilterModalOpen} className="flex gap-2 px-6">
             Adicionar Transação <PlusCircleIcon />
           </Button>
         </div>
@@ -69,6 +80,10 @@ export function Transactions() {
           ))}
         </main>
       </section>
+      <NewTransactionModal
+        open={newTransationModalOpen}
+        onClose={handleFilterModalClose}
+      />
     </div>
   )
 }
