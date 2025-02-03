@@ -22,7 +22,7 @@ export function Register() {
 
       <form
         onSubmit={handleFormSubmit}
-        className="flex w-full flex-col gap-5 px-5"
+        className="flex w-full max-w-[37.5rem] flex-col gap-5 px-5"
       >
         <Input
           placeholder={'Nome'}
