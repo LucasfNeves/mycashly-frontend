@@ -7,6 +7,7 @@ interface InputSelectProps {
   className?: string
   error?: string
   placeholder?: string
+  placeholderColor?: 'dark' | 'light'
   options: {
     value: string
     label: string
@@ -17,6 +18,7 @@ export function InputSelect({
   placeholder,
   className,
   options,
+  placeholderColor = 'light',
 }: InputSelectProps) {
   const [selectedValue, setSelectedValue] = useState('')
 
@@ -29,9 +31,9 @@ export function InputSelect({
       <label
         className={cn(
           'pointer-events-none absolute left-4 top-1/2 z-[50] -translate-y-1/2 text-gray-700',
-          className,
           selectedValue &&
             'left-[13px] top-2 translate-y-0 text-xs transition-all',
+          placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
         )}
       >
         {placeholder}
@@ -41,11 +43,19 @@ export function InputSelect({
         <RdxSelect.Trigger
           className={cn(
             'relative h-[3.25rem] w-full rounded-lg border border-gray-300 bg-white p-4 text-left text-gray-700 outline-none transition-all focus:border-gray-500',
+            className || '',
           )}
         >
           <RdxSelect.Value />
           <RdxSelect.Icon className="absolute right-3 top-1/2 -translate-y-1/2">
-            <ChevronDownIcon className="h-6 w-6 text-gray-800" />
+            <ChevronDownIcon
+              className={cn(
+                'h-6 w-6 text-gray-800',
+                placeholderColor === 'light'
+                  ? 'text-gray-700'
+                  : 'text-gray-200',
+              )}
+            />
           </RdxSelect.Icon>
         </RdxSelect.Trigger>
 

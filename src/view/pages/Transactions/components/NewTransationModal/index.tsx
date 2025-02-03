@@ -14,10 +14,18 @@ export function NewTransactionModal({
   return (
     <Modal open={open} onClose={onClose} title="Nova Transação">
       <form className="flex w-full flex-col gap-4" action="">
-        <Input placeholder="Categoria" name="category" type="text" />
+        <Input
+          placeholder="Categoria"
+          name="category"
+          type="text"
+          className="border-2 border-neutral-200 bg-transparent text-neutral-200"
+          placeholderColor="dark"
+        />
 
         <InputSelect
+          className="border-2 border-neutral-200 bg-transparent text-neutral-200"
           placeholder="Teste"
+          placeholderColor="dark"
           options={[
             { value: 'income', label: 'Receita' },
             { value: 'expense', label: 'Despesa' },

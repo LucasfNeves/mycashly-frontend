@@ -5,7 +5,7 @@ import {
   TransactionDetails,
   TransactionDetailsProps,
 } from './components/TransactionDetails'
-import { NewTransactionModal } from '../Dashboard/components/NewTransationModal'
+import { NewTransactionModal } from './components/NewTransationModal'
 import { useState } from 'react'
 
 const transactions = [
