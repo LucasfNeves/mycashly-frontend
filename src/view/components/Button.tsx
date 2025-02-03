@@ -18,9 +18,9 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      disabled={disabled || isLoading}
+      disabled={isLoading || disabled}
       className={cn(
-        'className={`flex hover:disabled:transition-none`} h-[3.25rem] items-center justify-center rounded-md bg-primaryBlue-500 font-medium text-white hover:bg-primaryBlue-600 hover:opacity-70 hover:transition-all hover:duration-300 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400 hover:disabled:bg-gray-200 hover:disabled:opacity-100',
+        'flex h-[3.25rem] items-center justify-center rounded-md bg-primaryBlue-500 font-medium text-white hover:bg-primaryBlue-400 hover:transition-all hover:duration-300 disabled:cursor-not-allowed disabled:text-gray-400 hover:disabled:bg-primaryBlue-500 hover:disabled:opacity-100 hover:disabled:transition-none',
         className,
       )}
       {...props}
