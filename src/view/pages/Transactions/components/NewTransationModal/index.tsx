@@ -42,6 +42,7 @@ export function NewTransactionModal({
           />
 
           <Input
+            maxLength={20}
             placeholder="Nome"
             name="name"
             type="text"

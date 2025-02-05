@@ -16,9 +16,9 @@ export function TransactionDetails({
     <button
       onClick={onClick}
       key={id}
-      className="flex w-full items-center justify-between gap-8 rounded-md bg-darkBlue-600 p-3 transition-all hover:bg-darkBlue-500 hover:duration-300"
+      className="flex w-full items-end justify-between gap-8 rounded-md bg-darkBlue-600 p-3 transition-all hover:bg-darkBlue-500 hover:duration-300"
     >
-      <div className="flex flex-col items-start gap-2">
+      <div className="flex flex-col items-start gap-2 overflow-x-auto whitespace-nowrap">
         <div className="flex flex-col gap-1">
           <small className="text-start text-[12px] text-neutral-200">
             {name}

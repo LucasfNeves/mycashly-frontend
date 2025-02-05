@@ -50,6 +50,7 @@ export function EditTransactionModal({
           />
 
           <Input
+            maxLength={20}
             value={selectedTransaction?.name}
             placeholder="Nome"
             name="name"

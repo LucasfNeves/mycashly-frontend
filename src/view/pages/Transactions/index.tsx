@@ -11,7 +11,7 @@ export const transactions = [
   {
     id: '1',
     name: 'Restaurante',
-    category: 'Alimentação',
+    category: 'salário da lusianaaa',
     date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
     value: 110,
