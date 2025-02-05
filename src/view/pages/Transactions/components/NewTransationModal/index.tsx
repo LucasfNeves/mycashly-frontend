@@ -1,3 +1,4 @@
+import { Button } from '@/view/components/Button'
 import { Input } from '@/view/components/Input'
 import { InputSelect } from '@/view/components/InputSelect'
 import { Modal } from '@/view/components/Modal'
@@ -24,7 +25,7 @@ export function NewTransactionModal({
 
         <InputSelect
           className="border-2 border-neutral-200 bg-transparent text-neutral-200"
-          placeholder="Teste"
+          placeholder="Nome"
           placeholderColor="dark"
           options={[
             { value: 'income', label: 'Receita' },
@@ -32,6 +33,19 @@ export function NewTransactionModal({
             { value: 'investment', label: 'Investimento' },
           ]}
         />
+
+        <InputSelect
+          className="border-2 border-neutral-200 bg-transparent text-neutral-200"
+          placeholder="Tipo"
+          placeholderColor="dark"
+          options={[
+            { value: 'income', label: 'Receita' },
+            { value: 'expense', label: 'Despesa' },
+            { value: 'investment', label: 'Investimento' },
+          ]}
+        />
+
+        <Button>Adicionar</Button>
       </form>
     </Modal>
   )

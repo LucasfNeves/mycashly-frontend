@@ -5,7 +5,7 @@ import {
   ChartTooltipContent,
 } from '@/shadCnComponents/ui/chart'
 
-import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, XAxis, YAxis, LabelList } from 'recharts'
 
 export const chartData = [
   { browser: 'Aluguel', valor: 275, fill: 'var(--color-Aluguel)' },
@@ -20,53 +20,35 @@ export const chartConfig = {
     label: 'Total em R$',
   },
   Aluguel: {
-    label: 'aluguel',
+    label: 'Aluguel',
     color: 'hsl(var(--chart-1))',
   },
   Carro: {
-    label: 'carro',
+    label: 'Carro',
     color: 'hsl(var(--chart-2))',
   },
   Financiamento: {
-    label: 'financiamento',
+    label: 'Financ.',
     color: 'hsl(var(--chart-3))',
   },
   Alimentação: {
-    label: 'alimentação',
+    label: 'Alim.',
     color: 'hsl(var(--chart-4))',
   },
   Passeio: {
-    label: 'passeio',
+    label: 'Passeio',
     color: 'hsl(var(--chart-5))',
   },
 } satisfies ChartConfig
 
 export function ExpenseChart() {
+  const truncateLabel = (label: string, maxLength: number) => {
+    return label.length > maxLength ? `${label.slice(0, maxLength)}...` : label
+  }
   return (
-    <ChartContainer
-      config={chartConfig}
-      className="relative h-[90%] w-[90%] p-4"
-    >
-      <BarChart
-        accessibilityLayer
-        data={chartData}
-        layout="vertical"
-        margin={{
-          left: 30,
-          right: 30,
-        }}
-      >
-        <YAxis
-          dataKey="browser"
-          type="category"
-          tickLine={false}
-          tickMargin={10}
-          axisLine={false}
-          tickFormatter={(value) =>
-            chartConfig[value as keyof typeof chartConfig]?.label
-          }
-          tick={{ fill: '#A3ABB2', fontSize: 10 }}
-        />
+    <ChartContainer config={chartConfig} className="h-[90%] w-full">
+      <BarChart accessibilityLayer data={chartData} layout="vertical">
+        <YAxis dataKey="browser" type="category" hide />
         <XAxis dataKey="valor" type="number" hide />
         <ChartTooltip
           cursor={false}
@@ -77,7 +59,16 @@ export function ExpenseChart() {
             />
           }
         />
-        <Bar dataKey="valor" layout="vertical" radius={5} />
+        <Bar dataKey="valor" layout="vertical" radius={5}>
+          <LabelList
+            dataKey="browser"
+            position="insideLeft"
+            offset={8}
+            fill="white"
+            fontSize={12}
+            formatter={(value: string) => truncateLabel(value, 8)}
+          />
+        </Bar>
       </BarChart>
     </ChartContainer>
   )
