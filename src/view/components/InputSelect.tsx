@@ -12,6 +12,7 @@ interface InputSelectProps {
     value: string
     label: string
   }[]
+  selectedTransactionValue?: string
 }
 
 export function InputSelect({
@@ -19,8 +20,11 @@ export function InputSelect({
   className,
   options,
   placeholderColor = 'light',
+  selectedTransactionValue,
 }: InputSelectProps) {
-  const [selectedValue, setSelectedValue] = useState('')
+  const [selectedValue, setSelectedValue] = useState(
+    selectedTransactionValue || '',
+  )
 
   function handleSelected(value: string) {
     setSelectedValue(value)
@@ -46,7 +50,7 @@ export function InputSelect({
             className || '',
           )}
         >
-          <RdxSelect.Value />
+          <RdxSelect.Value>{selectedValue}</RdxSelect.Value>
           <RdxSelect.Icon className="absolute right-3 top-1/2 -translate-y-1/2">
             <ChevronDownIcon
               className={cn(

@@ -4,18 +4,25 @@ import { Input } from '@/view/components/Input'
 import { InputCurrency } from '@/view/components/InputCurrency'
 import { InputSelect } from '@/view/components/InputSelect'
 import { Modal } from '@/view/components/Modal'
+import { useEditTransactionModalController } from './useEditTransactionModalController'
 
 interface NewTransactionModalProps {
   open: boolean
   onClose: () => void
+  transactionId?: string
 }
 
-export function NewTransactionModal({
+export function EditTransactionModal({
   open,
   onClose,
+  transactionId,
 }: NewTransactionModalProps) {
+  const { selectedTransaction } = useEditTransactionModalController(
+    transactionId!,
+  )
+
   return (
-    <Modal open={open} onClose={onClose} title="Nova Transação">
+    <Modal open={open} onClose={onClose} rigthAction title="Nova Transação">
       <form>
         <div className="flex flex-col items-center gap-2">
           <span className="w-full text-base font-medium tracking-[-0.5px] text-neutral-200">
@@ -25,7 +32,7 @@ export function NewTransactionModal({
             <span className="text-lg font-medium tracking-[-0.5px] text-neutral-300">
               R$
             </span>
-            <InputCurrency />
+            <InputCurrency value={selectedTransaction?.value} />
           </div>
         </div>
 
@@ -39,9 +46,11 @@ export function NewTransactionModal({
               { value: 'expense', label: 'Despesa' },
               { value: 'investment', label: 'Investimento' },
             ]}
+            selectedTransactionValue={selectedTransaction?.category}
           />
 
           <Input
+            value={selectedTransaction?.name}
             placeholder="Nome"
             name="name"
             type="text"
@@ -58,13 +67,14 @@ export function NewTransactionModal({
               { value: 'expense', label: 'Despesa' },
               { value: 'investment', label: 'Investimento' },
             ]}
+            selectedTransactionValue={selectedTransaction?.type}
           />
 
-          <DatePickerInput />
+          <DatePickerInput date={selectedTransaction?.date} />
         </div>
 
         <div className="mt-8 flex w-full justify-center">
-          <Button>Adicionar</Button>
+          <Button>Salvar</Button>
         </div>
       </form>
     </Modal>

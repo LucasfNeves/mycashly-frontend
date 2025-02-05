@@ -7,8 +7,14 @@ import { DatePicker } from './DatePicker'
 import { useState } from 'react'
 import { formatDate } from '@/app/utils/formatDate'
 
-export function DatePickerInput() {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+interface DatePickerInputProps {
+  date?: string
+}
+
+export function DatePickerInput({ date }: DatePickerInputProps) {
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    date ? new Date(date) : new Date(),
+  )
 
   return (
     <Popover>

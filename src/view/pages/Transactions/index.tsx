@@ -1,59 +1,65 @@
 import { Button } from '@/view/components/Button'
 import { SliderMonths } from '@/view/components/SliderMonths'
 import { PlusCircleIcon } from 'lucide-react'
-import {
-  TransactionDetails,
-  TransactionDetailsProps,
-} from './components/TransactionDetails'
 import { NewTransactionModal } from './components/NewTransationModal'
-import { useState } from 'react'
+import { EditTransactionModal } from './components/EditTransctionModal'
+import { TransactionDetailsProps } from '@/app/types/transaction-details'
+import { useTransactionController } from './useTransactionController'
+import { TransactionDetails } from './components/TransactionDetails'
 
-const transactions = [
+export const transactions = [
   {
-    id: 1,
+    id: '1',
+    name: 'Restaurante',
     category: 'Alimentação',
-    date: '04/02/2025',
+    date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
     value: 110,
   } as TransactionDetailsProps,
   {
-    id: 2,
+    id: '2',
+    name: 'Salário',
     category: 'Salário',
-    date: '04/02/2025',
+    date: '2025-01-04T23:11:01.677Z',
     type: 'income',
     value: 1.5,
   } as TransactionDetailsProps,
   {
-    id: 3,
+    id: '3',
+    name: 'Investimento',
     category: 'Investimento',
-    date: '04/02/2025',
+    date: '2025-01-04T23:11:01.677Z',
     type: 'investment',
     value: 500,
   } as TransactionDetailsProps,
   {
-    id: 4,
+    id: '4',
+    name: 'Restaurante',
     category: 'Alimentação',
-    date: '04/02/2025',
+    date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
     value: 110,
   } as TransactionDetailsProps,
 ]
 export function Transactions() {
-  const [newTransationModalOpen, setNewTransationModalOpen] = useState(false)
-
-  const handleFilterModalClose = () => {
-    setNewTransationModalOpen(false)
-  }
-
-  const handleFilterModalOpen = () => {
-    setNewTransationModalOpen(true)
-  }
+  const {
+    handleCreateTransactionClose,
+    handleCreateTransactionOpen,
+    handleEditTransationModalOpen,
+    handleEditTransationModalClose,
+    newTransactionModalOpen,
+    editTransactionModalOpen,
+    selectedTransaction,
+  } = useTransactionController()
 
   return (
     <div className="flex min-h-screen flex-col gap-8 lg:gap-16">
       <header className="flex flex-col items-center justify-between gap-8 lg:gap-16">
         <div className="flex w-full items-center justify-end">
-          <Button onClick={handleFilterModalOpen} className="flex gap-2 px-6">
+          <Button
+            onClick={handleCreateTransactionOpen}
+            className="flex w-fit gap-2 px-6"
+          >
             Adicionar Transação <PlusCircleIcon />
           </Button>
         </div>
@@ -70,7 +76,9 @@ export function Transactions() {
         <main className="flex w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
           {transactions.map((transaction) => (
             <TransactionDetails
+              onClick={() => handleEditTransationModalOpen(transaction)}
               key={transaction.id}
+              name={transaction.name}
               category={transaction.category}
               date={transaction.date}
               type={transaction.type}
@@ -80,9 +88,15 @@ export function Transactions() {
           ))}
         </main>
       </section>
+
       <NewTransactionModal
-        open={newTransationModalOpen}
-        onClose={handleFilterModalClose}
+        open={newTransactionModalOpen}
+        onClose={handleCreateTransactionClose}
+      />
+      <EditTransactionModal
+        transactionId={selectedTransaction?.id}
+        open={editTransactionModalOpen}
+        onClose={handleEditTransationModalClose}
       />
     </div>
   )

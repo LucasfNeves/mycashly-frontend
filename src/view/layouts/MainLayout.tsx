@@ -11,7 +11,7 @@ export function MainLayout() {
         {isMobile ? <ToggleMenu /> : <Sidebar />}
       </div>
 
-      <div className="overflow-x-hidden bg-darkBlue-900 p-4 lg:p-6">
+      <div className="mx-auto max-w-full overflow-x-hidden bg-darkBlue-900 p-4 lg:p-6">
         <Outlet />
       </div>
     </div>
