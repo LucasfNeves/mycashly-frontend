@@ -36,10 +36,14 @@ export function Modal({
               <RdxDialog.Title className="text-md w-full flex-1 text-center text-white">
                 {title}
               </RdxDialog.Title>
-              <button className="flex h-12 w-12 items-center justify-center text-red-500 transition-all hover:text-red-400 hover:duration-300">
-                {/*<Trash2Icon className="h-6 w-6" />*/}
-                {rigthAction}
-              </button>
+              {rigthAction ? (
+                <button className="flex h-12 w-12 items-center justify-center text-red-500 transition-all hover:text-red-400 hover:duration-300">
+                  {/*<Trash2Icon className="h-6 w-6" />*/}
+                  {rigthAction}
+                </button>
+              ) : (
+                <div className="w-12" />
+              )}
             </header>
 
             <main>{children}</main>

@@ -22,7 +22,7 @@ export function NewTransactionModal({
             Valor da transação
           </span>
           <div className="flex items-center justify-center gap-2">
-            <span className="text-lg font-medium tracking-[-0.5px] text-neutral-400">
+            <span className="text-lg font-medium tracking-[-0.5px] text-neutral-300">
               R$
             </span>
             <InputCurrency />
