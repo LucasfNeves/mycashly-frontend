@@ -1,4 +1,5 @@
 import { Button } from '@/view/components/Button'
+import { DatePickerInput } from '@/view/components/DatePickerInput'
 import { Input } from '@/view/components/Input'
 import { InputCurrency } from '@/view/components/InputCurrency'
 import { InputSelect } from '@/view/components/InputSelect'
@@ -59,6 +60,7 @@ export function NewTransactionModal({
             ]}
           />
 
+          <DatePickerInput />
           <Button>Adicionar</Button>
         </div>
       </form>
