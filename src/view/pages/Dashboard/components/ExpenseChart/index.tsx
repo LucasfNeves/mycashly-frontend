@@ -3,7 +3,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/view/shadcn/ui/chart'
+} from '@/components/ui/chart'
 
 import { Bar, BarChart, XAxis, YAxis, LabelList } from 'recharts'
 
