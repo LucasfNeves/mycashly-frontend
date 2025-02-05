@@ -1,4 +1,4 @@
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth } from '@/app/hooks/useAuth'
 import { RxExit } from 'react-icons/rx'
 
 export function ExitButton() {

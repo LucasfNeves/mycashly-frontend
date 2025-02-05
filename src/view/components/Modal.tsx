@@ -1,5 +1,5 @@
 import * as RdxDialog from '@radix-ui/react-dialog'
-import { cn } from '@/lib/utils'
+import { cn } from '@/app/lib/utils'
 import { X } from 'lucide-react'
 
 interface ModalProps {

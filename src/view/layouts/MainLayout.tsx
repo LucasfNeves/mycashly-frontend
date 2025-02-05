@@ -1,4 +1,4 @@
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { useIsMobile } from '@/app/hooks/useIsMobile'
 import { Sidebar } from '@/view/components/Sidebar'
 import { ToggleMenu } from '@/view/components/ToggleMenu'
 import { Outlet } from 'react-router-dom'

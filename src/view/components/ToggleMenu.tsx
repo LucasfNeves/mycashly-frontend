@@ -3,7 +3,7 @@ import { User2Icon } from 'lucide-react'
 import { useState } from 'react'
 import { Logo } from './Logo'
 import { ButtonNavigate } from './ButtonNavigate'
-import { cn } from '@/lib/utils'
+import { cn } from '@/app/lib/utils'
 import { ExitButton } from './ExitButton'
 import { ButtonMenu } from './ButtonMenu'
 

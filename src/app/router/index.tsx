@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AuthGuard } from './AuthGuard'
-import { Login } from '../view/pages/Login'
-import { Register } from '../view/pages/Register'
-import { AuthLayout } from '../layouts/AuthLayout'
-import { Dashboard } from '../view/pages/Dashboard'
+import { Login } from '../../view/pages/Login'
+import { Register } from '../../view/pages/Register'
+import { AuthLayout } from '../../view/layouts/AuthLayout'
+import { Dashboard } from '../../view/pages/Dashboard'
 import { Transactions } from '@/view/pages/Transactions'
-import { MainLayout } from '@/layouts/MainLayout'
+import { MainLayout } from '@/view/layouts/MainLayout'
 
 export function Router() {
   return (

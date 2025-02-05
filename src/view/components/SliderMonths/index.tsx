@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import { MONTHS } from '@/config/constants'
+import { MONTHS } from '@/app/config/constants'
 import { SliderOption } from './SliderOption'
 import { SliderNavigation } from './SliderNavigation'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { useIsMobile } from '@/app/hooks/useIsMobile'
 
 export function SliderMonths() {
   const isMobile = useIsMobile()

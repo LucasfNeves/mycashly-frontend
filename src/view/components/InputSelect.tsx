@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from 'lucide-react'
 import * as RdxSelect from '@radix-ui/react-select'
-import { cn } from '@/lib/utils'
+import { cn } from '@/app/lib/utils'
 import { useState } from 'react'
 
 interface InputSelectProps {

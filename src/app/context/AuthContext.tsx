@@ -1,9 +1,9 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react'
 import { signInService } from '../services/authService/signIn'
-import { storageKeys } from '@/config/storageKeys'
-import { httpClient } from '@/services/httpClient'
-import { refreshTokenService } from '@/services/authService/refreshToken'
-import { signUpService } from '@/services/authService/signUp'
+import { storageKeys } from '@/app/config/storageKeys'
+import { httpClient } from '@/app/services/httpClient'
+import { refreshTokenService } from '@/app/services/authService/refreshToken'
+import { signUpService } from '@/app/services/authService/signUp'
 import { useMutation } from '@tanstack/react-query'
 
 interface AuthContextType {
