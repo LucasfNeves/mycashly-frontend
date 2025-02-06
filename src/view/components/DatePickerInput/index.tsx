@@ -3,9 +3,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { DatePicker } from './DatePicker'
-import { forwardRef, useEffect, useState } from 'react'
+import { DatePicker } from '../DatePicker'
+import { forwardRef } from 'react'
 import { formatDate } from '@/app/utils/formatDate'
+import { useDataPickerInputController } from './useDatePickerInputController'
 
 interface DatePickerInputProps {
   className?: string
@@ -17,21 +18,10 @@ export const DatePickerInput = forwardRef<
   HTMLButtonElement,
   DatePickerInputProps
 >(({ value, onChange }, ref) => {
-  const [selectedDate, setSelectedDate] = useState<string>(
-    value || new Date().toISOString(),
-  )
-
-  useEffect(() => {
-    if (value !== selectedDate) {
-      setSelectedDate(value)
-    }
-  }, [value, selectedDate])
-
-  const handleDateChange = (date: Date) => {
-    const dateString = date.toISOString()
-    setSelectedDate(dateString)
-    onChange(dateString)
-  }
+  const { handleDateChange, selectedDate } = useDataPickerInputController({
+    value,
+    onChange,
+  })
 
   return (
     <Popover>
