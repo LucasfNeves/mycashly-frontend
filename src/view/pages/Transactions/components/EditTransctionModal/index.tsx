@@ -96,7 +96,11 @@ export function EditTransactionModal({
             render={({ field }) => (
               <DatePickerInput
                 {...field}
-                value={field.value ? new Date(field.value) : new Date()}
+                value={
+                  field.value
+                    ? new Date(field.value).toISOString()
+                    : new Date().toISOString()
+                }
               />
             )}
           />

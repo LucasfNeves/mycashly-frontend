@@ -48,7 +48,7 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
           <RdxSelect.Trigger
             ref={ref}
             className={cn(
-              'relative h-[3.25rem] w-full rounded-lg border border-gray-300 bg-white px-2.5 py-5 text-left text-gray-700 outline-none transition-all focus:border-gray-500',
+              'relative h-[3.25rem] w-full overflow-hidden rounded-lg border border-gray-300 bg-white px-2.5 py-5 text-left text-gray-700 outline-none transition-all focus:border-gray-500',
               className || '',
             )}
           >
