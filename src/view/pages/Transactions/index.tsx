@@ -3,44 +3,10 @@ import { SliderMonths } from '@/view/components/SliderMonths'
 import { PlusCircleIcon } from 'lucide-react'
 import { NewTransactionModal } from './components/NewTransationModal'
 import { EditTransactionModal } from './components/EditTransctionModal'
-import { TransactionDetailsProps } from '@/app/types/transaction-details'
 import { useTransactionController } from './useTransactionController'
 import { TransactionDetails } from './components/TransactionDetails'
+import { transactionsMocked } from '@/app/config/constants'
 
-export const transactions = [
-  {
-    id: '1',
-    name: 'Restaurante',
-    category: 'salário da lusianaaa',
-    date: '2025-01-04T23:11:01.677Z',
-    type: 'expense',
-    value: 110,
-  } as TransactionDetailsProps,
-  {
-    id: '2',
-    name: 'Salário',
-    category: 'Salário',
-    date: '2025-01-04T23:11:01.677Z',
-    type: 'income',
-    value: 1.5,
-  } as TransactionDetailsProps,
-  {
-    id: '3',
-    name: 'Investimento',
-    category: 'Investimento',
-    date: '2025-01-04T23:11:01.677Z',
-    type: 'investment',
-    value: 500,
-  } as TransactionDetailsProps,
-  {
-    id: '4',
-    name: 'Restaurante',
-    category: 'Alimentação',
-    date: '2025-01-04T23:11:01.677Z',
-    type: 'expense',
-    value: 110,
-  } as TransactionDetailsProps,
-]
 export function Transactions() {
   const {
     handleCreateTransactionClose,
@@ -74,7 +40,7 @@ export function Transactions() {
           <h1 className="text:base text-neutral-300 lg:text-xl">Transações</h1>
         </header>
         <main className="flex w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
-          {transactions.map((transaction) => (
+          {transactionsMocked.map((transaction) => (
             <TransactionDetails
               onClick={() => handleEditTransationModalOpen(transaction)}
               key={transaction.id}

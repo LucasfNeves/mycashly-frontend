@@ -1,9 +1,10 @@
 import { z } from 'zod'
 import validator from 'validator'
-import { transactions } from '../..'
+
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
+import { transactionsMocked } from '@/app/config/constants'
 
 export const updateTransactionSchema = z
   .object({
@@ -59,7 +60,7 @@ export const updateTransactionSchema = z
 type FormData = z.infer<typeof updateTransactionSchema>
 
 export function useEditTransactionModalController(transactionId: string) {
-  const selectedTransaction = transactions.find(
+  const selectedTransaction = transactionsMocked.find(
     (transaction) => transaction.id === transactionId,
   )
 
