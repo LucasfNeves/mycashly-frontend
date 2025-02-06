@@ -51,8 +51,12 @@ export function useUpdateTransactionModalController(transactionId: string) {
   }, [selectedTransaction, reset])
 
   const handleFormSubmit = handleSubmit((data) => {
-    toast.success('Transação atualizada com sucesso!')
-    console.log(data)
+    try {
+      console.log(data)
+      toast.success('Transação atualizada com sucesso')
+    } catch {
+      toast.error('Erro ao atualizar transação')
+    }
   })
 
   return {

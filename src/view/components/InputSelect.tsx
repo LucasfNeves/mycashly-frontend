@@ -2,6 +2,7 @@ import { ChevronDownIcon } from 'lucide-react'
 import * as RdxSelect from '@radix-ui/react-select'
 import { cn } from '@/app/lib/utils'
 import { forwardRef } from 'react'
+import { InputMensagerError } from './inputMensagerError'
 
 interface InputSelectProps {
   className?: string
@@ -25,6 +26,7 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
       value,
       onChange,
       className,
+      error,
     }: InputSelectProps,
     ref,
   ) => {
@@ -33,7 +35,7 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
     }
 
     return (
-      <div className="relative w-full">
+      <div className="relative flex w-full flex-col gap-2">
         <label
           className={cn(
             'pointer-events-none absolute left-4 top-1/2 z-[50] -translate-y-1/2 text-gray-700',
@@ -84,6 +86,8 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
             </RdxSelect.Content>
           </RdxSelect.Portal>
         </RdxSelect.Root>
+
+        {error && <InputMensagerError error={error} />}
       </div>
     )
   },

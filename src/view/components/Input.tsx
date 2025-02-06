@@ -1,6 +1,6 @@
 import { ComponentProps, forwardRef } from 'react'
 import { cn } from '../../app/utils/cn'
-import { RxCrossCircled } from 'react-icons/rx'
+import { InputMensagerError } from './inputMensagerError'
 
 interface InputProps extends ComponentProps<'input'> {
   name: string
@@ -53,12 +53,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {placeholder}
         </label>
 
-        {error && (
-          <span className="flex items-center justify-start gap-2 text-xs text-red-400">
-            <RxCrossCircled className="inline h-4 w-4" />
-            <p>{error}</p>
-          </span>
-        )}
+        {error && <InputMensagerError error={error} />}
       </div>
     )
   },

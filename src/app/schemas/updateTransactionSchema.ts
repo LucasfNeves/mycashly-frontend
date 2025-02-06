@@ -13,37 +13,32 @@ export const updateTransactionSchema = z
       .string()
       .trim()
       .min(1, {
-        message: 'Name must not be empty.',
+        message: 'Nome é obrigatório.',
       })
       .optional(),
     date: z
       .string()
       .datetime({
-        message: 'Date must be a valid date.',
+        message: 'Data inválida.',
       })
       .optional(),
     type: z
       .enum(['INCOME', 'EXPENSE', 'INVESTMENT'], {
         errorMap: () => ({
-          message: 'Type must be INCOME, EXPENSE, or INVESTMENT.',
+          message: 'Tipo inválido.',
         }),
       })
       .optional(),
     value: z
       .number()
       .min(1, {
-        message: 'Amount must be greater than 0.',
+        message: 'Valor é obrigatório.',
       })
       .refine(
         (value) =>
-          validator.isCurrency(value.toFixed(2), {
-            digits_after_decimal: [2],
-            allow_negatives: false,
-            decimal_separator: '.',
-          }),
+          validator.isDecimal(value.toString(), { decimal_digits: '0,2' }),
         {
-          message:
-            'Amount must be a valid currency format with 2 decimal places.',
+          message: 'Use até duas casas decimais.',
         },
       )
       .optional(),

@@ -30,8 +30,6 @@ export function DatePicker({ value, onChange }: CalendarModalProps) {
             'bg-primaryBlue-500 text-white hover:bg-primaryBlue-700 ',
         }}
       />
-
-      <div className=""></div>
     </>
   )
 }

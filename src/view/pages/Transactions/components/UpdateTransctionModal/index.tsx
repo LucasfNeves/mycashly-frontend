@@ -36,7 +36,14 @@ export function UpdateTransactionModal({
             <Controller
               name="value"
               control={control}
-              render={({ field }) => <InputCurrency {...field} />}
+              render={({ field }) => (
+                <InputCurrency
+                  {...field}
+                  value={field.value || 0}
+                  onChange={(value) => field.onChange(value)}
+                  error={errors.value?.message}
+                />
+              )}
             />
           </div>
         </div>
@@ -57,6 +64,7 @@ export function UpdateTransactionModal({
                 ]}
                 {...field}
                 value={field.value || ''}
+                error={errors.categoryId?.message}
               />
             )}
           />
@@ -86,6 +94,7 @@ export function UpdateTransactionModal({
                 ]}
                 {...field}
                 value={field.value || ''}
+                error={errors.type?.message}
               />
             )}
           />
@@ -101,6 +110,7 @@ export function UpdateTransactionModal({
                     ? new Date(field.value).toISOString()
                     : new Date().toISOString()
                 }
+                error={errors.date?.message}
               />
             )}
           />
