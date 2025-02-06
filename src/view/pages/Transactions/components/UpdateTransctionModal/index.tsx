@@ -6,6 +6,7 @@ import { InputSelect } from '@/view/components/InputSelect'
 import { Modal } from '@/view/components/Modal'
 import { Controller } from 'react-hook-form'
 import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
+import { TYPES } from '@/app/config/constants'
 
 interface NewTransactionModalProps {
   open: boolean
@@ -87,11 +88,7 @@ export function UpdateTransactionModal({
                 className="border-2 border-neutral-200 bg-transparent text-neutral-200"
                 placeholder="Tipo"
                 placeholderColor="dark"
-                options={[
-                  { value: 'income', label: 'Receita' },
-                  { value: 'expense', label: 'Despesa' },
-                  { value: 'investment', label: 'Investimento' },
-                ]}
+                options={TYPES}
                 {...field}
                 value={field.value || ''}
                 error={errors.type?.message}

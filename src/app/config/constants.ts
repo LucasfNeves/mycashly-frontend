@@ -25,7 +25,7 @@ export const transactionsMocked = [
   {
     id: '1',
     name: 'Restaurante',
-    category: 'salário da lusianaaa',
+    category: 'investment',
     date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
     value: 110,
@@ -33,7 +33,7 @@ export const transactionsMocked = [
   {
     id: '2',
     name: 'Salário',
-    category: 'Salário',
+    category: 'investment',
     date: '2025-01-04T23:11:01.677Z',
     type: 'income',
     value: 1.5,
@@ -41,14 +41,14 @@ export const transactionsMocked = [
   {
     id: '3',
     name: 'Investimento',
-    category: 'Investimento',
+    category: 'investment',
     date: '2025-01-04T23:11:01.677Z',
     type: 'investment',
     value: 500,
   } as TransactionDetailsProps,
   {
     id: '4',
-    name: 'Restaurante',
+    name: 'investment',
     category: 'Alimentação',
     date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
