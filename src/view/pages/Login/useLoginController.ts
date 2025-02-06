@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { z } from 'zod'
 import { useAuth } from '../../../app/hooks/useAuth'
-import { toast } from 'sonner'
+import { toast } from 'react-toastify'
 
 const schema = z.object({
   email: z

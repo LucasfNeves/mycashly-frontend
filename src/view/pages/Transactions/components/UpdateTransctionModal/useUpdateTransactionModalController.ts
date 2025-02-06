@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { transactionsMocked } from '@/app/config/constants'
 import { updateTransactionSchema } from '@/app/schemas/updateTransactionSchema'
+import { toast } from 'react-toastify'
 
 type FormData = z.infer<typeof updateTransactionSchema>
 
@@ -50,6 +51,7 @@ export function useUpdateTransactionModalController(transactionId: string) {
   }, [selectedTransaction, reset])
 
   const handleFormSubmit = handleSubmit((data) => {
+    toast.success('Transação atualizada com sucesso!')
     console.log(data)
   })
 
