@@ -4,8 +4,8 @@ import { Input } from '@/view/components/Input'
 import { InputCurrency } from '@/view/components/InputCurrency'
 import { InputSelect } from '@/view/components/InputSelect'
 import { Modal } from '@/view/components/Modal'
-import { useEditTransactionModalController } from './useEditTransactionModalController'
 import { Controller } from 'react-hook-form'
+import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
 
 interface NewTransactionModalProps {
   open: boolean
@@ -13,13 +13,13 @@ interface NewTransactionModalProps {
   transactionId?: string
 }
 
-export function EditTransactionModal({
+export function UpdateTransactionModal({
   open,
   onClose,
   transactionId,
 }: NewTransactionModalProps) {
   const { register, errors, handleFormSubmit, control } =
-    useEditTransactionModalController(transactionId!)
+    useUpdateTransactionModalController(transactionId!)
 
   return (
     <Modal open={open} onClose={onClose} rigthAction title="Nova Transação">

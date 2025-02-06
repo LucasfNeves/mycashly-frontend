@@ -2,10 +2,10 @@ import { Button } from '@/view/components/Button'
 import { SliderMonths } from '@/view/components/SliderMonths'
 import { PlusCircleIcon } from 'lucide-react'
 import { NewTransactionModal } from './components/NewTransationModal'
-import { EditTransactionModal } from './components/EditTransctionModal'
 import { useTransactionController } from './useTransactionController'
 import { TransactionDetails } from './components/TransactionDetails'
 import { transactionsMocked } from '@/app/config/constants'
+import { UpdateTransactionModal } from './components/UpdateTransctionModal'
 
 export function Transactions() {
   const {
@@ -59,7 +59,7 @@ export function Transactions() {
         open={newTransactionModalOpen}
         onClose={handleCreateTransactionClose}
       />
-      <EditTransactionModal
+      <UpdateTransactionModal
         transactionId={selectedTransaction?.id}
         open={editTransactionModalOpen}
         onClose={handleEditTransationModalClose}
