@@ -1,9 +1,11 @@
 import { Button } from '@/view/components/Button'
-// import { DatePickerInput } from '@/view/components/DatePickerInput'
 import { Input } from '@/view/components/Input'
-// import { InputCurrency } from '@/view/components/InputCurrency'
-// import { InputSelect } from '@/view/components/InputSelect'
 import { Modal } from '@/view/components/Modal'
+import { useNewTransactionModalController } from './useNewTransactionModalController'
+import { Controller } from 'react-hook-form'
+import { InputSelect } from '@/view/components/InputSelect'
+import { InputCurrency } from '@/view/components/InputCurrency'
+import { DatePickerInput } from '@/view/components/DatePickerInput'
 
 interface NewTransactionModalProps {
   open: boolean
@@ -14,9 +16,12 @@ export function NewTransactionModal({
   open,
   onClose,
 }: NewTransactionModalProps) {
+  const { control, errors, handleFormSubmit, register } =
+    useNewTransactionModalController()
+
   return (
     <Modal open={open} onClose={onClose} title="Nova Transação">
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col items-center gap-2">
           <span className="w-full text-base font-medium tracking-[-0.5px] text-neutral-200">
             Valor da transação
@@ -25,44 +30,73 @@ export function NewTransactionModal({
             <span className="text-lg font-medium tracking-[-0.5px] text-neutral-300">
               R$
             </span>
-            {/*<InputCurrency   />*/}
+            <Controller
+              name="value"
+              control={control}
+              render={({ field }) => (
+                <InputCurrency {...field} error={errors.value?.message} />
+              )}
+            />
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-4">
-          {/* <InputSelect
-            className="border-2 border-neutral-200 bg-transparent text-neutral-200"
-            placeholder="Categoria"
-            placeholderColor="dark"
-            options={[
-              { value: 'income', label: 'Receita' },
-              { value: 'expense', label: 'Despesa' },
-              { value: 'investment', label: 'Investimento' },
-            ]} value={''} onChange={function (value: string): void {
-              throw new Error('Function not implemented.')
-            } }          /> */}
+          <Controller
+            name="categoryId"
+            control={control}
+            render={({ field }) => (
+              <InputSelect
+                className="border-2 border-neutral-200 bg-transparent text-neutral-200"
+                placeholder="Categoria"
+                placeholderColor="dark"
+                options={[
+                  { value: 'income', label: 'Receita' },
+                  { value: 'expense', label: 'Despesa' },
+                  { value: 'investment', label: 'Investimento' },
+                ]}
+                {...field}
+                error={errors.categoryId?.message}
+              />
+            )}
+          />
 
           <Input
             maxLength={20}
             placeholder="Nome"
-            name="name"
             type="text"
             className="border-2 border-neutral-200 bg-transparent text-neutral-200"
             placeholderColor="dark"
+            {...register('name')}
+            error={errors.name?.message}
           />
 
-          {/* <InputSelect
-            className="border-2 border-neutral-200 bg-transparent text-neutral-200"
-            placeholder="Tipo"
-            placeholderColor="dark"
-            options={[
-              { value: 'income', label: 'Receita' },
-              { value: 'expense', label: 'Despesa' },
-              { value: 'investment', label: 'Investimento' },
-            ]}
-          /> */}
+          <Controller
+            name="type"
+            control={control}
+            render={({ field }) => (
+              <InputSelect
+                className="border-2 border-neutral-200 bg-transparent text-neutral-200"
+                placeholder="Tipo"
+                placeholderColor="dark"
+                options={[
+                  { value: 'income', label: 'Receita' },
+                  { value: 'expense', label: 'Despesa' },
+                  { value: 'investment', label: 'Investimento' },
+                ]}
+                {...field}
+                error={errors.type?.message}
+              />
+            )}
+          />
 
-          {/* <DatePickerInput /> */}
+          <Controller
+            name="date"
+            control={control}
+            defaultValue={new Date().toISOString()}
+            render={({ field }) => (
+              <DatePickerInput {...field} error={errors.date?.message} />
+            )}
+          />
         </div>
 
         <div className="mt-8 flex w-full justify-center">
