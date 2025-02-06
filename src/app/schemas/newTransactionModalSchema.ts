@@ -2,13 +2,12 @@ import { z } from 'zod'
 import validator from 'validator'
 
 export const newTransactionModalSchema = z.object({
-  categoryId: z
-    .string({
-      required_error: 'A categoria é obrigatória.',
-    })
-    .uuid({
-      message: 'A categoria deve ser um UUID válido.',
-    }),
+  categoryId: z.string({
+    required_error: 'A categoria é obrigatória.',
+  }),
+  // .uuid({
+  //   message: 'A categoria deve ser um UUID válido.',
+  // }),
   name: z
     .string({
       required_error: 'Nome é obrigatório.',

@@ -30,10 +30,6 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
     }: InputSelectProps,
     ref,
   ) => {
-    function handleSelected(value: string) {
-      onChange(value)
-    }
-
     return (
       <div className="relative flex w-full flex-col gap-2">
         <label
@@ -46,7 +42,7 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
           {placeholder}
         </label>
 
-        <RdxSelect.Root value={value} onValueChange={handleSelected}>
+        <RdxSelect.Root value={value} onValueChange={onChange}>
           <RdxSelect.Trigger
             ref={ref}
             className={cn(
@@ -54,7 +50,9 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
               className || '',
             )}
           >
-            <RdxSelect.Value>{value}</RdxSelect.Value>
+            <RdxSelect.Value>
+              {options.find((option) => option.value === value)?.label || ''}
+            </RdxSelect.Value>
             <RdxSelect.Icon className="absolute right-3 top-1/2 -translate-y-1/2">
               <ChevronDownIcon
                 className={cn(

@@ -13,6 +13,7 @@ export function useNewTransactionModalController() {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(newTransactionModalSchema),
+    shouldUnregister: true,
   })
 
   const handleFormSubmit = handleSubmit((data) => {

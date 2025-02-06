@@ -15,6 +15,12 @@ export const MONTHS = [
   'Dez',
 ]
 
+export const TYPES = [
+  { value: 'INCOME', label: 'Receita' },
+  { value: 'EXPENSE', label: 'Despesa' },
+  { value: 'INVESTMENT', label: 'Investimento' },
+]
+
 export const transactionsMocked = [
   {
     id: '1',
