@@ -38,7 +38,7 @@ export function PopupAlert({
       >
         {triggerText} {triggerIcon}
       </AlertDialogTrigger>
-      <AlertDialogContent className="border-none bg-darkBlue-500 text-neutral-200">
+      <AlertDialogContent className="w-[90%] rounded-md border-none bg-darkBlue-500 text-neutral-200 lg:w-full">
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
