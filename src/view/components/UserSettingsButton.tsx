@@ -1,10 +1,11 @@
-import { Settings2, Trash2Icon, X } from 'lucide-react'
+import { Settings2, X } from 'lucide-react'
 import * as RdxDialog from '@radix-ui/react-dialog'
 import { cn } from '@/app/utils/cn'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from './Input'
 import { Button } from './Button'
 import { PasswordInput } from './PasswordInput'
+import { PopupAlert } from './PopupAlert'
 
 export function UserSettingsButton() {
   return (
@@ -39,9 +40,14 @@ export function UserSettingsButton() {
                   <X className="h-6" />
                 </button>
               </RdxDialog.Close>
-              <button className="flex h-12 w-12 items-center justify-center text-red-500 transition-all hover:text-red-400 hover:duration-300">
-                <Trash2Icon className="h-6 w-6" />
-              </button>
+              <PopupAlert
+                actionText={'Deletar conta'}
+                description={
+                  'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá seus dados de nossos servidores.'
+                }
+                title={'Tem certeza que deseja deletar sua conta?'}
+                triggerText={'Deletar conta'}
+              />
             </header>
             <Tabs defaultValue="account" className="flex w-full flex-col">
               <TabsList className="mb-6 flex w-full bg-darkBlue-500">

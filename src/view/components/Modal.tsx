@@ -1,6 +1,7 @@
 import * as RdxDialog from '@radix-ui/react-dialog'
 import { cn } from '@/app/lib/utils'
 import { Trash2Icon, X } from 'lucide-react'
+import { PopupAlert } from './PopupAlert'
 
 interface ModalProps {
   title: string
@@ -36,10 +37,16 @@ export function Modal({
               <RdxDialog.Title className="text-md w-full flex-1 text-center text-white">
                 {title}
               </RdxDialog.Title>
+
               {rigthAction ? (
-                <button className="flex h-12 w-12 items-center justify-center text-red-500 transition-all hover:text-red-400 hover:duration-300">
-                  <Trash2Icon className="h-6 w-6" />
-                </button>
+                <PopupAlert
+                  triggerIcon={<Trash2Icon className="h-6 w-6" />}
+                  title={'Tem certeza que deseja deletar esta transação?'}
+                  description={
+                    'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua transação.'
+                  }
+                  actionText={'Deletar'}
+                />
               ) : (
                 <div className="w-12" />
               )}
