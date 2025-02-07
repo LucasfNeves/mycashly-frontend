@@ -35,19 +35,18 @@ button {
 /* Barra de rolagem */
 ::-webkit-scrollbar {
   width: 5px; /* Largura da barra de rolagem */
-  height: 5px; /* Largura da barra horizontal */
+  height: 3px; /* Largura da barra horizontal */
 }
 
 /* Trilha da barra de rolagem (a parte que fica no fundo) */
 ::-webkit-scrollbar-track {
-  background-color: #111e36; /* Cor de fundo da trilha */
+  background-color: #080E19; /* Cor de fundo da trilha */
   border-radius: 10px; /* Cantos arredondados */
 }
 
 /* A "manopla" da barra de rolagem (a parte que você arrasta) */
 ::-webkit-scrollbar-thumb {
   background-color: #616a7c; /* Cor da manopla */
-  border-radius: 10px; /* Cantos arredondados */
 }
 
 

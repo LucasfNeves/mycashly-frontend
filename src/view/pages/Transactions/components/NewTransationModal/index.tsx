@@ -65,7 +65,6 @@ export function NewTransactionModal({
             maxLength={20}
             placeholder="Nome"
             type="text"
-            className="border-2 border-neutral-200 bg-transparent text-neutral-200"
             placeholderColor="dark"
             {...register('name')}
             error={errors.name?.message}

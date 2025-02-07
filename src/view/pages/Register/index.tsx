@@ -41,7 +41,6 @@ export function Register() {
         <PasswordInput
           placeholder={'Senha'}
           id={'password'}
-          type={'password'}
           error={errors.password?.message}
           {...register('password')}
         />

@@ -38,6 +38,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             'peer relative h-[3.25rem] w-full rounded-lg px-[12px] pb-[2px] pt-4 text-black outline-none placeholder-shown:pt-0',
             className || '',
+            placeholderColor === 'dark' &&
+              'border-2 border-neutral-200 bg-transparent text-neutral-200',
           )}
           type={type}
           {...props}
