@@ -7,6 +7,7 @@ import { Modal } from '@/view/components/Modal'
 import { Controller } from 'react-hook-form'
 import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
 import { TYPES } from '@/app/config/constants'
+import { Trash2Icon } from 'lucide-react'
 
 interface NewTransactionModalProps {
   open: boolean
@@ -23,7 +24,18 @@ export function UpdateTransactionModal({
     useUpdateTransactionModalController(transactionId!)
 
   return (
-    <Modal open={open} onClose={onClose} rigthAction title="Nova Transação">
+    <Modal
+      open={open}
+      onClose={onClose}
+      rigthAction={{
+        triggerIcon: <Trash2Icon className="h-6 w-6" />,
+        actionText: 'Deletar transação',
+        description:
+          'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua transação.',
+        title: 'Tem certeza que deseja deletar esta transação?',
+      }}
+      title="Nova Transação"
+    >
       <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col items-center gap-2">
           <span className="w-full text-base font-medium tracking-[-0.5px] text-neutral-200">

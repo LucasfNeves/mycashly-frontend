@@ -1,8 +1,16 @@
 import { Hand } from 'lucide-react'
 import { ThemeToggleButton } from '../../../../components/ThemeToggleButton'
 import { UserSettingsButton } from '../../../../components/UserSettingsButton'
+import { UserSettingsModal } from '@/view/components/UserSettingsModal'
+import { useHeaderController } from './useHeaderController'
 
 export function Header() {
+  const {
+    handleUserSettingsModalClose,
+    handleUserSettingsModalOpen,
+    userSettingsModalOpen,
+  } = useHeaderController()
+
   return (
     <header className="flex items-center justify-start lg:justify-between">
       <div className="flex flex-col gap-1">
@@ -19,8 +27,13 @@ export function Header() {
 
       <div className="hidden items-center gap-6 lg:flex">
         <ThemeToggleButton />
-        <UserSettingsButton />
+        <UserSettingsButton onClick={handleUserSettingsModalOpen} />
       </div>
+
+      <UserSettingsModal
+        open={userSettingsModalOpen}
+        onClose={handleUserSettingsModalClose}
+      />
     </header>
   )
 }
