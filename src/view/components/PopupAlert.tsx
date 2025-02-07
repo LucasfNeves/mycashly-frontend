@@ -5,11 +5,11 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+} from '@radix-ui/react-alert-dialog'
 
 interface PopupAlertProps {
   triggerText?: string
@@ -38,20 +38,30 @@ export function PopupAlert({
       >
         {triggerText} {triggerIcon}
       </AlertDialogTrigger>
-      <AlertDialogContent className="w-[90%] rounded-md border-none bg-darkBlue-500 text-neutral-200 lg:w-full">
-        <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
+
+      <AlertDialogPortal>
+        <AlertDialogOverlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <AlertDialogContent className="w-[90%] rounded-md border-none bg-darkBlue-500 text-neutral-200 lg:w-full">
+          <header>
+            <AlertDialogTitle>{title}</AlertDialogTitle>
+          </header>
+
           <AlertDialogDescription>{description}</AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel className="border-none bg-green-700 text-white transition-all hover:bg-green-800 hover:duration-300">
+
+          <AlertDialogCancel
+            asChild
+            className="border-none bg-green-700 text-white transition-all hover:bg-green-800 hover:duration-300"
+          >
             Cancelar
           </AlertDialogCancel>
-          <AlertDialogAction className="border-none bg-red-600 text-white transition-all hover:bg-red-700 hover:duration-300">
+          <AlertDialogAction
+            asChild
+            className="border-none bg-red-600 text-white transition-all hover:bg-red-700 hover:duration-300"
+          >
             {actionText}
           </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
+        </AlertDialogContent>
+      </AlertDialogPortal>
     </AlertDialog>
   )
 }
