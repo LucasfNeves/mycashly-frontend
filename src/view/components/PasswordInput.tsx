@@ -20,7 +20,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
       id,
       className,
       error,
-      placeholderColor,
+      placeholderColor = 'light',
       ...props
     }: InputProps,
     ref,

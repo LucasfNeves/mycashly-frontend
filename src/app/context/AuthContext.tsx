@@ -1,10 +1,19 @@
-import { createContext, useCallback, useLayoutEffect, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react'
 import { signInService } from '../services/authService/signIn'
 import { storageKeys } from '@/app/config/storageKeys'
 import { httpClient } from '@/app/services/httpClient'
 import { refreshTokenService } from '@/app/services/authService/refreshToken'
 import { signUpService } from '@/app/services/authService/signUp'
 import { useMutation } from '@tanstack/react-query'
+import { useGetUserById } from '../hooks/services/useUserService'
+import { LaunchScreen } from '@/view/components/LaunchScreen'
+import { toast } from 'react-toastify'
 
 interface AuthContextType {
   signedIn: boolean
@@ -13,6 +22,7 @@ interface AuthContextType {
   signOut: () => void
   isPendingSignIn: boolean
   isPendingSignUp: boolean
+  data?: User
 }
 
 interface AuthProviderProps {
@@ -25,6 +35,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [signedIn, setSignedIn] = useState(() => {
     return !!localStorage.getItem(storageKeys.acessToken)
   })
+
+  const { data, isError, isFetching, isSuccess } = useGetUserById(signedIn)
 
   const { isPending: isPendingSignIn, mutateAsync: signInMutation } =
     useMutation({
@@ -56,7 +68,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       },
     })
 
-  // Interceptor for access token in headers
+  // Interceptor for access token in headers, usamos o useLayoutEffect para garantir que o interceptor seja adicionado antes de qualquer requisição
   useLayoutEffect(() => {
     const interceptorId = httpClient.interceptors.request.use((config) => {
       const accessToken = localStorage.getItem(storageKeys.acessToken)
@@ -110,6 +122,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, [])
 
+  const signOut = useCallback(() => {
+    setSignedIn(false)
+    localStorage.clear()
+  }, [])
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Sua sessão expirou, faça login novamente')
+      setSignedIn(false)
+      signOut()
+    }
+  }, [isError, signOut, setSignedIn])
+
   const signIn = useCallback(
     async (email: string, password: string) => {
       const { accessToken, refreshTokenId } = await signInMutation({
@@ -124,11 +149,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     },
     [signInMutation],
   )
-
-  const signOut = useCallback(() => {
-    setSignedIn(false)
-    localStorage.clear()
-  }, [])
 
   const signUp = useCallback(
     async (email: string, password: string, name: string) => {
@@ -149,7 +169,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   return (
     <AuthContext.Provider
       value={{
-        signedIn,
+        signedIn: signedIn && isSuccess,
+        data,
         signIn,
         signOut,
         signUp,
@@ -157,8 +178,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         isPendingSignUp,
       }}
     >
-      {children}
-      {/*<LaunchScreen isLoading={isPendingSignIn || isPendingSignUp} />*/}
+      <LaunchScreen isLoading={isFetching} />
+      {!isFetching && children}
     </AuthContext.Provider>
   )
 }
