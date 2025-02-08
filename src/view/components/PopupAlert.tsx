@@ -5,6 +5,8 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
@@ -36,26 +38,21 @@ export function PopupAlert({
       >
         {triggerText} {triggerIcon}
       </AlertDialogTrigger>
-
       <AlertDialogContent className="w-[90%] rounded-md border-none bg-darkBlue-500 text-neutral-200 lg:w-full">
-        <header>
+        <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
-        </header>
-
-        <AlertDialogDescription>{description}</AlertDialogDescription>
-
-        <AlertDialogCancel
-          asChild
-          className="border-none bg-green-700 text-white transition-all hover:bg-green-800 hover:duration-300"
-        >
-          Cancelar
-        </AlertDialogCancel>
-        <AlertDialogAction
-          asChild
-          className="border-none bg-red-600 text-white transition-all hover:bg-red-700 hover:duration-300"
-        >
-          {actionText}
-        </AlertDialogAction>
+          <AlertDialogDescription className="text-neutral-300">
+            {description}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel className="border-none bg-green-700 text-neutral-200 transition-all hover:bg-green-800 hover:text-neutral-200 hover:duration-300">
+            Cancelar
+          </AlertDialogCancel>
+          <AlertDialogAction className="border-none bg-red-600 text-neutral-200 transition-all hover:bg-red-700 hover:duration-300">
+            {actionText}
+          </AlertDialogAction>
+        </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   )
