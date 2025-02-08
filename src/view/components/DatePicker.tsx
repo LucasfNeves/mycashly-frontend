@@ -1,5 +1,5 @@
+import { Calendar } from '@/components/ui/calendar'
 import { ptBR } from 'date-fns/locale'
-import { DayPicker } from 'react-day-picker'
 
 interface CalendarModalProps {
   value: Date
@@ -9,25 +9,25 @@ interface CalendarModalProps {
 export function DatePicker({ value, onChange }: CalendarModalProps) {
   return (
     <>
-      <DayPicker
+      <Calendar
         mode="single"
         selected={value}
         onSelect={(date) => onChange && onChange(date ?? new Date())}
-        className="rounded-md p-2"
+        className="rounded-md border"
         locale={ptBR}
         classNames={{
           caption: 'flex items-center justify-between',
           nav: 'flex gap-1',
           nav_button_previous:
-            'text-neutral-900 flex items-center justify-center !bg-transparent',
+            'text-neutral-800 flex items-center justify-center !bg-transparent border-none',
           nav_button_next:
-            'text-neutral-900  flex items-center justify-center !bg-transparent',
-          head_cell: 'uppercase text-xs text-neutral-900 font-medium pt-1 pb-2',
-          button:
-            'text-neutral-900 cursor-pointer w-10 h-10 hover:bg-neutral-300 rounded-full',
-          day_today: 'bg-primaryBlue-200 font-bold text-gray-900',
+            'text-neutral-800 flex items-center justify-center !bg-transparent border-none',
+          head_cell:
+            'uppercase text-xs text-neutral-400 font-medium pt-1 pb-2 w-full',
+          button: ' cursor-pointer w-10 h-10  hover:bg-neutral-100',
+          day_today: 'bg-primaryBlue-100 font-bold hover:bg-primaryBlue-200',
           day_selected:
-            '!bg-primaryBlue-500 text-white font-medium text-neutral-100',
+            'bg-primaryBlue-500 text-white hover:bg-primaryBlue-600 hover:text-white',
         }}
       />
     </>

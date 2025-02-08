@@ -30,7 +30,7 @@ export function Transactions() {
           </Button>
         </div>
 
-        <div className="w-full">
+        <div className="z-0 w-full">
           <SliderMonths />
         </div>
       </header>

@@ -5,7 +5,7 @@ import { ExitButton } from './ExitButton'
 
 export function Sidebar() {
   return (
-    <aside className="flex h-full flex-col items-center justify-start bg-darkBlue-700 p-6">
+    <aside className="fixed left-0 top-0 flex h-full flex-col items-center justify-start bg-darkBlue-700 p-6">
       <Logo className="w-36" />
       <div className="flex h-full flex-col justify-between">
         <div className="mt-8 flex w-full flex-col gap-4">

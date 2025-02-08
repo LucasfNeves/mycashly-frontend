@@ -1,4 +1,6 @@
 import { NumericFormat } from 'react-number-format'
+import React, { forwardRef } from 'react'
+import { InputMensagerError } from './inputMensagerError'
 
 interface InputCurrencyProps {
   value: number | undefined
@@ -13,9 +15,6 @@ interface InputCurrencyProps {
 
   error?: string
 }
-
-import React, { forwardRef } from 'react'
-import { InputMensagerError } from './inputMensagerError'
 
 export const InputCurrency = forwardRef<HTMLInputElement, InputCurrencyProps>(
   ({ value, name, onChange, error }, ref) => {

@@ -1,7 +1,7 @@
 import { ComponentProps, forwardRef, useState } from 'react'
 import { cn } from '../../app/utils/cn'
 import { Eye, EyeClosed } from 'lucide-react'
-import { RxCrossCircled } from 'react-icons/rx'
+import { InputMensagerError } from './inputMensagerError'
 
 interface InputProps extends ComponentProps<'input'> {
   name: string
@@ -79,12 +79,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
           )}
         </button>
 
-        {error && (
-          <span className="flex items-center justify-start gap-2 text-xs text-red-400">
-            <RxCrossCircled className="inline h-4 w-4" />
-            <p>{error}</p>
-          </span>
-        )}
+        {error && <InputMensagerError error={error} />}
       </div>
     )
   },

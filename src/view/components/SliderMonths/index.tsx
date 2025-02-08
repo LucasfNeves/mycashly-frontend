@@ -14,6 +14,7 @@ export function SliderMonths() {
       centeredSlides={true}
       slidesPerView={isMobile ? 1 : 4}
       navigation
+      className="relative z-0"
     >
       <SliderNavigation />
       {MONTHS.map((month, index) => (

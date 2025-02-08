@@ -1,8 +1,9 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from './Input'
 import { Button } from './Button'
 import { PasswordInput } from './PasswordInput'
 import { Modal } from './Modal'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import { Trash2 } from 'lucide-react'
 
 interface UserSettingsModalProps {
   open: boolean
@@ -18,21 +19,22 @@ export function UserSettingsModal({ open, onClose }: UserSettingsModalProps) {
           'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá seus dados de nossos servidores.',
 
         title: 'Tem certeza que deseja deletar sua conta?',
-        triggerText: 'Deletar conta',
+        triggerIcon: <Trash2 className="h-6 w-6" />,
       }}
       open={open}
       onClose={onClose}
+      className="space-y-4"
     >
       <Tabs defaultValue="account" className="flex w-full flex-col">
-        <TabsList className="mb-6 flex w-full bg-darkBlue-500">
+        <TabsList className="mb-6 flex w-full gap-4 rounded-md bg-darkBlue-500 p-1">
           <TabsTrigger
-            className="w-full text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
+            className="w-full rounded-md text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
             value="account"
           >
             Conta
           </TabsTrigger>
           <TabsTrigger
-            className="w-full text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
+            className="w-full rounded-md text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
             value="password"
           >
             Senha

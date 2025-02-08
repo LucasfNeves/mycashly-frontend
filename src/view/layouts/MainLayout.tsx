@@ -6,8 +6,8 @@ import { Outlet } from 'react-router-dom'
 export function MainLayout() {
   const isMobile = useIsMobile()
   return (
-    <div className="grid grid-cols-1 bg-darkBlue-900 lg:grid-cols-[13rem_auto]">
-      <div className="sticky top-0 overflow-hidden lg:h-screen">
+    <div className="grid grid-cols-1 bg-darkBlue-900 pt-[4.5rem] lg:grid-cols-[13rem_auto] lg:pt-0">
+      <div className="overflow-hidden lg:h-screen">
         {isMobile ? <ToggleMenu /> : <Sidebar />}
       </div>
 

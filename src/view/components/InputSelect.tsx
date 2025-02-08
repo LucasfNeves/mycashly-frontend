@@ -1,8 +1,13 @@
-import { ChevronDownIcon } from 'lucide-react'
-import * as RdxSelect from '@radix-ui/react-select'
 import { cn } from '@/app/lib/utils'
 import { forwardRef } from 'react'
 import { InputMensagerError } from './inputMensagerError'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 interface InputSelectProps {
   className?: string
@@ -31,60 +36,44 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
     ref,
   ) => {
     return (
-      <div className="relative flex w-full flex-col gap-2">
-        <label
-          className={cn(
-            'pointer-events-none absolute left-4 top-1/2 z-[50] -translate-y-1/2 text-gray-700',
-            value && 'left-[13px] top-2 translate-y-0 text-xs transition-all',
-            placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
-          )}
-        >
-          {placeholder}
-        </label>
-
-        <RdxSelect.Root value={value} onValueChange={onChange}>
-          <RdxSelect.Trigger
-            ref={ref}
+      <div className="flex w-full flex-col gap-2">
+        <div className="relative w-full">
+          <label
             className={cn(
-              'relative h-[3.25rem] w-full overflow-hidden rounded-lg border border-gray-300 bg-white px-2.5 py-5 text-left text-gray-700 outline-none transition-all focus:border-gray-500',
-              className || '',
+              'pointer-events-none absolute left-4 top-1/2 z-[50] -translate-y-1/2 text-gray-700',
+              value && 'left-[13px] top-2 translate-y-0 text-xs transition-all',
+              placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
             )}
           >
-            <RdxSelect.Value>
-              {options.find((option) => option.value === value)?.label || ''}
-            </RdxSelect.Value>
-            <RdxSelect.Icon className="absolute right-3 top-1/2 -translate-y-1/2">
-              <ChevronDownIcon
-                className={cn(
-                  'h-6 w-6 text-gray-800',
-                  placeholderColor === 'light'
-                    ? 'text-gray-700'
-                    : 'text-gray-200',
-                )}
-              />
-            </RdxSelect.Icon>
-          </RdxSelect.Trigger>
+            {placeholder}
+          </label>
 
-          <RdxSelect.Portal>
-            <RdxSelect.Content
-              className="z-[999] w-[var(--radix-select-trigger-width)] rounded-2xl border border-gray-100 bg-white shadow-lg"
-              position="popper"
+          <Select value={value} onValueChange={onChange}>
+            <SelectTrigger
+              ref={ref}
+              className={cn(
+                'relative h-[3.25rem] w-full overflow-hidden rounded-lg border border-gray-300 bg-white px-2.5 py-5 text-left text-gray-700 outline-none transition-all focus:border-gray-500',
+                className || '',
+              )}
             >
-              <RdxSelect.Viewport className="p-2">
-                {options.map((option) => (
-                  <RdxSelect.Item
-                    key={option.value}
-                    value={option.value}
-                    className="rounded-lg p-2 text-sm text-gray-800 outline-none transition-colors data-[highlighted]:bg-gray-100 data-[state=checked]:font-bold"
-                  >
-                    <RdxSelect.ItemText>{option.label}</RdxSelect.ItemText>
-                  </RdxSelect.Item>
-                ))}
-              </RdxSelect.Viewport>
-            </RdxSelect.Content>
-          </RdxSelect.Portal>
-        </RdxSelect.Root>
+              <SelectValue>
+                {options.find((option) => option.value === value)?.label || ''}
+              </SelectValue>
+            </SelectTrigger>
 
+            <SelectContent className="rounded-2xl border border-gray-100 bg-white shadow-lg">
+              {options.map((option) => (
+                <SelectItem
+                  key={option.value}
+                  value={option.value}
+                  className="rounded-lg p-2 text-sm text-gray-800 outline-none transition-colors data-[highlighted]:bg-gray-100 data-[state=checked]:font-bold"
+                >
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         {error && <InputMensagerError error={error} />}
       </div>
     )

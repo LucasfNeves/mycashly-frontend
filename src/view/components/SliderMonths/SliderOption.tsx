@@ -10,7 +10,7 @@ interface SliderOptionProps {
 export function SliderOption({ month, isActive, index }: SliderOptionProps) {
   const swiper = useSwiper()
   return (
-    <div className="flex w-full justify-center">
+    <div className="z-0 flex w-full justify-center">
       <button
         onClick={() => swiper.slideTo(index)}
         className={cn(

@@ -1,4 +1,4 @@
-import { RxCrossCircled } from 'react-icons/rx'
+import { CircleX } from 'lucide-react'
 
 interface InputMensagerErrorProps {
   error: string | undefined
@@ -7,7 +7,7 @@ interface InputMensagerErrorProps {
 export function InputMensagerError({ error }: InputMensagerErrorProps) {
   return (
     <span className="flex items-center justify-start gap-2 text-xs text-red-400">
-      <RxCrossCircled className="inline h-4 w-4" />
+      <CircleX className="inline h-4 w-4" />
       <p>{error}</p>
     </span>
   )

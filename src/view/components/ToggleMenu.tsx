@@ -1,11 +1,11 @@
-import * as Collapsible from '@radix-ui/react-collapsible'
 import { User2Icon } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Logo } from './Logo'
 import { ButtonNavigate } from './ButtonNavigate'
 import { cn } from '@/app/lib/utils'
 import { ExitButton } from './ExitButton'
 import { ButtonMenu } from './ButtonMenu'
+import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 
 export function ToggleMenu() {
   const [open, setOpen] = useState(false)
@@ -14,11 +14,19 @@ export function ToggleMenu() {
     setOpen((prevOpen) => !prevOpen)
   }
 
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [open])
+
   return (
-    <Collapsible.Root
+    <Collapsible
       open={open}
       onOpenChange={setOpen}
-      className="items-between z-40 flex h-16 flex-col justify-center bg-darkBlue-800 p-4"
+      className="items-between fixed left-0 right-0 top-0 z-[50] flex h-16 w-full flex-col justify-center bg-darkBlue-800 p-4"
     >
       <header className="relative flex h-full w-full items-center justify-between">
         <figure>
@@ -28,20 +36,18 @@ export function ToggleMenu() {
         <div className="flex items-center justify-end gap-4">
           <User2Icon className="h-8 text-white" />
 
-          <Collapsible.Trigger asChild>
-            <ButtonMenu
-              title={!open ? 'Abrir Menu' : 'Fechar Menu'}
-              open={open}
-              setOpen={setOpen}
-            />
-          </Collapsible.Trigger>
+          <ButtonMenu
+            title={!open ? 'Abrir Menu' : 'Fechar Menu'}
+            open={open}
+            setOpen={setOpen}
+          />
         </div>
       </header>
 
-      <Collapsible.Content
+      <CollapsibleContent
         forceMount
         className={cn(
-          'fixed inset-0 z-20 flex h-full w-full bg-darkBlue-600/90 backdrop-blur-lg transition-all duration-300 ease-in-out data-[state=closed]:hidden',
+          'fixed inset-0 flex h-full w-full bg-darkBlue-600/90 backdrop-blur-lg transition-all duration-300 ease-in-out data-[state=closed]:hidden',
           !open ? 'animate-slideOutRight' : 'animate-slideInRightToLeft',
         )}
       >
@@ -59,7 +65,7 @@ export function ToggleMenu() {
             <ExitButton />
           </div>
         </div>
-      </Collapsible.Content>
-    </Collapsible.Root>
+      </CollapsibleContent>
+    </Collapsible>
   )
 }
