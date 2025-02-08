@@ -1,19 +1,11 @@
 import { useAuth } from '@/app/hooks/useAuth'
+import { createUserSchema } from '@/app/schemas/createUserSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { z } from 'zod'
 
-const schema = z.object({
-  name: z.string().min(1, 'Nome é obrigatório'),
-  email: z
-    .string()
-    .email('Informe um email válido')
-    .min(1, 'E-mail é obrigatório'),
-  password: z.string().min(6, 'Senha deve ter no mínimo 6 dígitos'),
-})
-
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<typeof createUserSchema>
 
 interface RegisterParams {
   name: string
@@ -29,7 +21,7 @@ export function useRegisterController() {
     register,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(createUserSchema),
   })
 
   const handleFormSubmit = handleSubmit(

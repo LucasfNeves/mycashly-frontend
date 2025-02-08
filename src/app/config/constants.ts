@@ -55,3 +55,10 @@ export const transactionsMocked = [
     value: 110,
   } as TransactionDetailsProps,
 ]
+
+export const USER = {
+  id: '1',
+  name: 'John Doe',
+  email: 'teste@teste.com',
+  password: '123456',
+}

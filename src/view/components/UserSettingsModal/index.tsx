@@ -1,9 +1,8 @@
-import { Input } from './Input'
-import { Button } from './Button'
-import { PasswordInput } from './PasswordInput'
-import { Modal } from './Modal'
+import { Modal } from '../Modal'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Trash2 } from 'lucide-react'
+import { ChangePasswordForm } from './components/ChangePasswordForm'
+import { ChangeUserDetailsForm } from './components/ChangeUserDetailsForm'
 
 interface UserSettingsModalProps {
   open: boolean
@@ -41,44 +40,12 @@ export function UserSettingsModal({ open, onClose }: UserSettingsModalProps) {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent
-          className="mt-0 flex w-full flex-col gap-4"
-          value="account"
-        >
-          <Input
-            placeholderColor="dark"
-            name={''}
-            type={''}
-            placeholder={'Nome'}
-          />
-
-          <Input
-            placeholderColor="dark"
-            name={''}
-            type={''}
-            placeholder={'Email'}
-          />
-
-          <Button className="w-full">Salvar</Button>
+        <TabsContent value="account">
+          <ChangeUserDetailsForm />
         </TabsContent>
 
-        <TabsContent
-          className="mt-0 flex w-full flex-col gap-4"
-          value="password"
-        >
-          <PasswordInput
-            placeholderColor="dark"
-            name={''}
-            placeholder={'Senha atual'}
-          />
-
-          <PasswordInput
-            placeholderColor="dark"
-            name={''}
-            placeholder={'Nova senha'}
-          />
-
-          <Button className="w-full">Salvar</Button>
+        <TabsContent value="password">
+          <ChangePasswordForm />
         </TabsContent>
       </Tabs>
     </Modal>
