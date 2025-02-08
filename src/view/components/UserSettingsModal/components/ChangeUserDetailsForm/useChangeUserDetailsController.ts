@@ -1,12 +1,17 @@
-import { USER } from '@/app/config/constants'
 import { changeUserDetailsSchema } from '@/app/schemas/updateUserSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+interface UseChangeUserDetailsController {
+  userDetails?: User
+}
+
 type FormData = z.infer<typeof changeUserDetailsSchema>
 
-export function useChangeUserDetailsController() {
+export function useChangeUserDetailsController({
+  userDetails,
+}: UseChangeUserDetailsController) {
   const {
     register,
     handleSubmit,
@@ -14,8 +19,8 @@ export function useChangeUserDetailsController() {
   } = useForm<FormData>({
     resolver: zodResolver(changeUserDetailsSchema),
     defaultValues: {
-      name: USER.name,
-      email: USER.email,
+      name: userDetails?.name,
+      email: userDetails?.email,
     },
   })
 

@@ -7,9 +7,14 @@ import { ChangeUserDetailsForm } from './components/ChangeUserDetailsForm'
 interface UserSettingsModalProps {
   open: boolean
   onClose: () => void
+  userDetails?: User
 }
 
-export function UserSettingsModal({ open, onClose }: UserSettingsModalProps) {
+export function UserSettingsModal({
+  open,
+  onClose,
+  userDetails,
+}: UserSettingsModalProps) {
   return (
     <Modal
       rigthAction={{
@@ -41,7 +46,7 @@ export function UserSettingsModal({ open, onClose }: UserSettingsModalProps) {
         </TabsList>
 
         <TabsContent value="account">
-          <ChangeUserDetailsForm />
+          <ChangeUserDetailsForm userDetails={userDetails} />
         </TabsContent>
 
         <TabsContent value="password">

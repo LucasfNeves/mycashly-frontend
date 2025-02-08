@@ -2,9 +2,17 @@ import { Button } from '@/view/components/Button'
 import { Input } from '@/view/components/Input'
 import { useChangeUserDetailsController } from './useChangeUserDetailsController'
 
-export function ChangeUserDetailsForm() {
-  const { errors, handleFormSubmit, register } =
-    useChangeUserDetailsController()
+interface ChangeUserDetailsFormProps {
+  userDetails?: User
+}
+
+export function ChangeUserDetailsForm({
+  userDetails,
+}: ChangeUserDetailsFormProps) {
+  const { errors, handleFormSubmit, register } = useChangeUserDetailsController(
+    { userDetails },
+  )
+
   return (
     <form
       onSubmit={handleFormSubmit}
