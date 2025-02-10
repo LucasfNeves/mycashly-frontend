@@ -1,7 +1,7 @@
 import { useDashboard } from '@/app/hooks/contexts/useDashboard'
 import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/lib/utils'
-import { EyeIcon } from '@/view/components/icons/EyeIcon'
+import { Eye, EyeClosed } from 'lucide-react'
 
 export function BalanceCard() {
   const { userBalanceData, showValues, handleShowValues } = useDashboard()
@@ -21,8 +21,8 @@ export function BalanceCard() {
           </span>
         </div>
 
-        <button onClick={handleShowValues}>
-          <EyeIcon open={showValues} />
+        <button className="text-neutral-200" onClick={handleShowValues}>
+          {!showValues ? <EyeClosed size={24} /> : <Eye size={24} />}
         </button>
       </header>
 
