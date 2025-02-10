@@ -11,9 +11,10 @@ import { httpClient } from '@/app/services/httpClient'
 import { refreshTokenService } from '@/app/services/authService/refreshToken'
 import { signUpService } from '@/app/services/authService/signUp'
 import { useMutation } from '@tanstack/react-query'
-import { useGetUserById } from '../hooks/services/useUserService'
+import { useGetUserById } from '../hooks/services/useGetUserByIdService'
 import { LaunchScreen } from '@/view/components/LaunchScreen'
 import { toast } from 'react-toastify'
+import { User } from '../types/user'
 
 interface AuthContextType {
   signedIn: boolean
