@@ -13,8 +13,8 @@ import {
 
 interface DatePickerInputProps {
   className?: string
-  value: string
-  onChange: (date: string) => void
+  value: Date
+  onChange: (date: Date) => void
   error?: string
 }
 

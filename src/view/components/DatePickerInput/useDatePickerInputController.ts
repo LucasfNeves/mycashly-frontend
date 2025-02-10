@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
 
 interface DatePickerInputController {
-  value: string
-  onChange: (date: string) => void
+  value: Date
+  onChange: (date: Date) => void
 }
 
 export function useDataPickerInputController({
   value,
   onChange,
 }: DatePickerInputController) {
-  const [selectedDate, setSelectedDate] = useState<string>(
-    value || new Date().toISOString(),
-  )
+  const [selectedDate, setSelectedDate] = useState(value ?? new Date())
 
   useEffect(() => {
     if (value !== selectedDate) {
@@ -20,7 +18,7 @@ export function useDataPickerInputController({
   }, [value, selectedDate])
 
   const handleDateChange = (date: Date) => {
-    const dateString = date.toISOString()
+    const dateString = date
     setSelectedDate(dateString)
     onChange(dateString)
   }

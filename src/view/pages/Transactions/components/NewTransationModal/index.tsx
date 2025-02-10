@@ -90,7 +90,7 @@ export function NewTransactionModal({
           <Controller
             name="date"
             control={control}
-            defaultValue={new Date().toISOString()}
+            defaultValue={new Date()}
             render={({ field }) => (
               <DatePickerInput {...field} error={errors.date?.message} />
             )}
