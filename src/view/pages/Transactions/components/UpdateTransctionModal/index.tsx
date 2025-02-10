@@ -113,11 +113,7 @@ export function UpdateTransactionModal({
             render={({ field }) => (
               <DatePickerInput
                 {...field}
-                value={
-                  field.value
-                    ? new Date(field.value).toISOString()
-                    : new Date().toISOString()
-                }
+                value={field.value ? new Date(field.value) : new Date()}
                 error={errors.date?.message}
               />
             )}
