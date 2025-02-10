@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { useGetUserBalance } from '../hooks/services/useGetUserBalanceServer'
 import { UserBalanceResponse } from '../types/user-balance'
@@ -9,8 +9,8 @@ interface DashboardContextType {
   getFirstName: (userName: string) => string
   userBalanceData?: UserBalanceResponse
   getBalanceisError: boolean
-  getBalanceIsFetching: boolean
-  getBalanceIsSucess: boolean
+  showValues: boolean
+  handleShowValues: () => void
 }
 
 interface DashboardProviderProps {
@@ -20,13 +20,15 @@ interface DashboardProviderProps {
 export const DashboardContext = createContext({} as DashboardContextType)
 
 export const DashboardProvider = ({ children }: DashboardProviderProps) => {
+  const [showValues, setShowValues] = useState(false)
+
+  const handleShowValues = () => {
+    setShowValues(!showValues)
+  }
+
   const { data, signedIn } = useAuth()
-  const {
-    data: userBalanceData,
-    isError: getBalanceisError,
-    isFetching: getBalanceIsFetching,
-    isSuccess: getBalanceIsSucess,
-  } = useGetUserBalance(signedIn)
+  const { data: userBalanceData, isError: getBalanceisError } =
+    useGetUserBalance(signedIn)
 
   function getFirstName(userName: string) {
     const [firstName] = userName.split(' ')
@@ -41,8 +43,8 @@ export const DashboardProvider = ({ children }: DashboardProviderProps) => {
         getFirstName,
         userBalanceData,
         getBalanceisError,
-        getBalanceIsFetching,
-        getBalanceIsSucess,
+        showValues,
+        handleShowValues,
       }}
     >
       {children}

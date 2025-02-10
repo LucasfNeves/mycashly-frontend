@@ -2,7 +2,7 @@ import { getUserBalance } from '@/app/services/userService/getUserBalance'
 import { useQuery } from '@tanstack/react-query'
 
 export function useGetUserBalance(signedIn: boolean) {
-  const { isError, isFetching, isSuccess, data } = useQuery({
+  const { isError, data } = useQuery({
     queryKey: ['users', 'balance'],
     queryFn: async () => getUserBalance(),
     enabled: signedIn,
@@ -12,7 +12,5 @@ export function useGetUserBalance(signedIn: boolean) {
   return {
     data,
     isError,
-    isFetching,
-    isSuccess,
   }
 }
