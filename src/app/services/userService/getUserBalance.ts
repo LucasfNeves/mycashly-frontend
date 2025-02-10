@@ -1,4 +1,4 @@
-import { UserBalanceResponse } from '@/app/types/user-balance'
+import { UserBalanceResponse } from '@/app/entities/UserBalanceResponse'
 import { httpClient } from '../httpClient'
 
 export async function getUserBalance() {

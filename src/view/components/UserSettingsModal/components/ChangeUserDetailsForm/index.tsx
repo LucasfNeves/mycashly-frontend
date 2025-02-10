@@ -1,7 +1,7 @@
 import { Button } from '@/view/components/Button'
 import { Input } from '@/view/components/Input'
 import { useChangeUserDetailsController } from './useChangeUserDetailsController'
-import { User } from '@/app/types/user'
+import { User } from '@/app/entities/User'
 
 interface ChangeUserDetailsFormProps {
   userDetails?: User

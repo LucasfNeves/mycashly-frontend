@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { useGetUserBalance } from '../hooks/services/useGetUserBalanceServer'
-import { UserBalanceResponse } from '../types/user-balance'
-import { User } from '../types/user'
+import { useGetUserBalance } from '../hooks/services/useGetUserBalance'
+import { UserBalanceResponse } from '../entities/UserBalanceResponse'
+import { User } from '../entities/User'
 import { toast } from 'react-toastify'
 
 interface DashboardContextType {

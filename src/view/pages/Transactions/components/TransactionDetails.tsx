@@ -1,9 +1,13 @@
 import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/app/lib/utils'
-import { TransactionDetailsProps } from '@/app/types/transaction-details'
+import { TransactionDetails } from '@/app/entities/TransactionDetails'
 import { formatDate } from '@/app/utils/formatDate'
 
-export function TransactionDetails({
+interface TransactionDetailsProps extends TransactionDetails {
+  onClick: () => void
+}
+
+export function TransactionItem({
   category,
   name,
   date,

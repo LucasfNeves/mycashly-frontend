@@ -3,14 +3,14 @@ import { SliderMonths } from '@/view/components/SliderMonths'
 import { PlusCircleIcon } from 'lucide-react'
 import { NewTransactionModal } from './components/NewTransationModal'
 import { useTransactionController } from './useTransactionController'
-import { TransactionDetails } from './components/TransactionDetails'
+import { TransactionItem } from './components/TransactionDetails'
 import { transactionsMocked } from '@/app/config/constants'
 import { UpdateTransactionModal } from './components/UpdateTransctionModal'
 
 export function Transactions() {
   const {
-    handleCreateTransactionClose,
-    handleCreateTransactionOpen,
+    handleCloseNewTransactionModal,
+    handleOpenNewTransactionModal,
     handleEditTransationModalOpen,
     handleEditTransationModalClose,
     newTransactionModalOpen,
@@ -23,7 +23,7 @@ export function Transactions() {
       <header className="flex flex-col items-center justify-between gap-8 lg:gap-16">
         <div className="flex w-full items-center justify-end">
           <Button
-            onClick={handleCreateTransactionOpen}
+            onClick={handleOpenNewTransactionModal}
             className="flex w-fit gap-2 px-6"
           >
             Adicionar Transação <PlusCircleIcon />
@@ -41,7 +41,7 @@ export function Transactions() {
         </header>
         <main className="flex w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
           {transactionsMocked.map((transaction) => (
-            <TransactionDetails
+            <TransactionItem
               onClick={() => handleEditTransationModalOpen(transaction)}
               key={transaction.id}
               name={transaction.name}
@@ -57,7 +57,7 @@ export function Transactions() {
 
       <NewTransactionModal
         open={newTransactionModalOpen}
-        onClose={handleCreateTransactionClose}
+        onClose={handleCloseNewTransactionModal}
       />
       <UpdateTransactionModal
         transactionId={selectedTransaction?.id}

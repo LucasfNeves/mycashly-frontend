@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Spinner } from './Spinner'
 
 interface InputSelectProps {
   className?: string
@@ -20,6 +21,7 @@ interface InputSelectProps {
   }[]
   value: string
   onChange: (value: string) => void
+  isLoading?: boolean
 }
 
 export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
@@ -32,6 +34,7 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
       onChange,
       className,
       error,
+      isLoading,
     }: InputSelectProps,
     ref,
   ) => {
@@ -43,17 +46,26 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
               'pointer-events-none absolute left-4 top-1/2 z-[50] -translate-y-1/2 text-gray-700',
               value && 'left-[13px] top-2 translate-y-0 text-xs transition-all',
               placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
+              isLoading && 'flex w-full items-center justify-center',
             )}
           >
-            {placeholder}
+            {isLoading ? (
+              <div className="absolute inset-0 right-4 flex items-center justify-center">
+                <Spinner className="h-6 w-6" />
+              </div>
+            ) : (
+              placeholder
+            )}
           </label>
 
           <Select value={value} onValueChange={onChange}>
             <SelectTrigger
+              disabled={isLoading}
               ref={ref}
               className={cn(
                 'relative h-[3.25rem] w-full overflow-hidden rounded-lg border border-gray-300 bg-white px-2.5 py-5 text-left text-gray-700 outline-none transition-all focus:border-gray-500',
                 className || '',
+                isLoading && 'cursor-not-allowed',
               )}
             >
               <SelectValue>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TransactionDetailsProps } from '@/app/types/transaction-details'
+import { TransactionDetails } from '@/app/entities/TransactionDetails'
 
 export function useTransactionController() {
   const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false)
@@ -7,19 +7,17 @@ export function useTransactionController() {
     useState(false)
 
   const [selectedTransaction, setSelectedTransaction] =
-    useState<TransactionDetailsProps | null>(null)
+    useState<TransactionDetails | null>(null)
 
-  const handleCreateTransactionClose = () => {
+  const handleCloseNewTransactionModal = () => {
     setNewTransactionModalOpen(false)
   }
 
-  const handleCreateTransactionOpen = () => {
+  const handleOpenNewTransactionModal = () => {
     setNewTransactionModalOpen(true)
   }
 
-  const handleEditTransationModalOpen = (
-    transaction: TransactionDetailsProps,
-  ) => {
+  const handleEditTransationModalOpen = (transaction: TransactionDetails) => {
     setSelectedTransaction(transaction)
     setEditTransactionModalOpen(true)
   }
@@ -30,8 +28,8 @@ export function useTransactionController() {
   }
 
   return {
-    handleCreateTransactionClose,
-    handleCreateTransactionOpen,
+    handleCloseNewTransactionModal,
+    handleOpenNewTransactionModal,
     handleEditTransationModalOpen,
     handleEditTransationModalClose,
     editTransactionModalOpen,

@@ -1,4 +1,4 @@
-import { TransactionDetailsProps } from '../types/transaction-details'
+import { TransactionDetails } from '../entities/TransactionDetails'
 
 export const MONTHS = [
   'Jan',
@@ -29,7 +29,7 @@ export const transactionsMocked = [
     date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
     value: 110,
-  } as TransactionDetailsProps,
+  } as TransactionDetails,
   {
     id: '2',
     name: 'Salário',
@@ -37,7 +37,7 @@ export const transactionsMocked = [
     date: '2025-01-04T23:11:01.677Z',
     type: 'income',
     value: 1.5,
-  } as TransactionDetailsProps,
+  } as TransactionDetails,
   {
     id: '3',
     name: 'Investimento',
@@ -45,7 +45,7 @@ export const transactionsMocked = [
     date: '2025-01-04T23:11:01.677Z',
     type: 'investment',
     value: 500,
-  } as TransactionDetailsProps,
+  } as TransactionDetails,
   {
     id: '4',
     name: 'investment',
@@ -53,12 +53,5 @@ export const transactionsMocked = [
     date: '2025-01-04T23:11:01.677Z',
     type: 'expense',
     value: 110,
-  } as TransactionDetailsProps,
+  } as TransactionDetails,
 ]
-
-export const USER = {
-  id: '1',
-  name: 'John Doe',
-  email: 'teste@teste.com',
-  password: '123456',
-}

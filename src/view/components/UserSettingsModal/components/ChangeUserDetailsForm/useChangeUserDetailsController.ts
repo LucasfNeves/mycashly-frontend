@@ -1,5 +1,5 @@
 import { changeUserDetailsSchema } from '@/app/schemas/updateUserSchemas'
-import { User } from '@/app/types/user'
+import { User } from '@/app/entities/User'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

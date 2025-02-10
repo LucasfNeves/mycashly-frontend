@@ -17,8 +17,14 @@ export function NewTransactionModal({
   open,
   onClose,
 }: NewTransactionModalProps) {
-  const { control, errors, handleFormSubmit, register } =
-    useNewTransactionModalController()
+  const {
+    control,
+    errors,
+    handleFormSubmit,
+    register,
+    categories,
+    isFetchingAllCategories,
+  } = useNewTransactionModalController({ onClose })
 
   return (
     <Modal open={open} onClose={onClose} title="Nova Transação">
@@ -49,12 +55,17 @@ export function NewTransactionModal({
               <InputSelect
                 className="border-2 border-neutral-200 bg-transparent text-neutral-200"
                 placeholder="Categoria"
+                isLoading={isFetchingAllCategories}
                 placeholderColor="dark"
-                options={[
-                  { value: 'income', label: 'Receita' },
-                  { value: 'expense', label: 'Despesa' },
-                  { value: 'investment', label: 'Investimento' },
-                ]}
+                options={
+                  //TODO: Refatorar retorno de categorias no backend
+                  (Array.isArray(categories) ? [] : categories.categories)?.map(
+                    (category) => ({
+                      label: category.name,
+                      value: category.id,
+                    }),
+                  ) || []
+                }
                 {...field}
                 error={errors.categoryId?.message}
               />
