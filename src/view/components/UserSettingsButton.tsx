@@ -1,14 +1,13 @@
+import { useDashboard } from '@/app/hooks/useDashboard'
 import { Settings2 } from 'lucide-react'
 
 interface UserSettingsButtonProps {
   onClick: () => void
-  userDetails?: User
 }
 
-export function UserSettingsButton({
-  onClick,
-  userDetails,
-}: UserSettingsButtonProps) {
+export function UserSettingsButton({ onClick }: UserSettingsButtonProps) {
+  const { data, getFirstName } = useDashboard()
+
   return (
     <button
       onClick={onClick}
@@ -20,10 +19,10 @@ export function UserSettingsButton({
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <span className="w-full truncate text-start text-sm font-medium">
-          {userDetails?.name}
+          {getFirstName(data?.name ?? '')}
         </span>
         <small className="w-full truncate text-start text-xs text-gray-400">
-          {userDetails?.email}
+          {data?.email}
         </small>
       </div>
       <Settings2 className="h-6 flex-shrink-0 text-primaryBlue-500" />
