@@ -1,11 +1,11 @@
 import { Button } from '@/view/components/Button'
 import { SliderMonths } from '@/view/components/SliderMonths'
 import { PlusCircleIcon } from 'lucide-react'
-import { NewTransactionModal } from './components/NewTransationModal'
+import { NewTransactionModal } from './components/Modals/NewTransationModal'
 import { useTransactionController } from './useTransactionController'
 import { TransactionItem } from './components/TransactionDetails'
 import { transactionsMocked } from '@/app/config/constants'
-import { UpdateTransactionModal } from './components/UpdateTransctionModal'
+import { UpdateTransactionModal } from './components/Modals/UpdateTransctionModal'
 
 export function Transactions() {
   const {

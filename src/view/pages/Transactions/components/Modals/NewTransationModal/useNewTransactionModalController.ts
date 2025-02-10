@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { newTransactionModalSchema } from './../../../../../app/schemas/newTransactionModalSchema'
+import { newTransactionModalSchema } from '../../../../../../app/schemas/newTransactionModalSchema'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'

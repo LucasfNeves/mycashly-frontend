@@ -27,9 +27,9 @@ export const DashboardProvider = ({ children }: DashboardProviderProps) => {
     setShowValues(!showValues)
   }
 
-  const { data, signedIn } = useAuth()
+  const { data } = useAuth()
   const { data: userBalanceData, isError: getBalanceisError } =
-    useGetUserBalance(signedIn)
+    useGetUserBalance()
 
   function getFirstName(userName: string) {
     const [firstName] = userName.split(' ')
@@ -37,7 +37,7 @@ export const DashboardProvider = ({ children }: DashboardProviderProps) => {
     return firstName
   }
 
-  if (getBalanceisError && signedIn) {
+  if (getBalanceisError) {
     toast.error('Erro ao buscar saldo do usuário')
   }
 
