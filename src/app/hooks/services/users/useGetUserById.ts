@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getUserById } from '../../services/userService/getUserById'
+import { getUserById } from '@/app/services/userService/getUserById'
 
 export function useGetUserById(signedIn: boolean) {
   const { isError, isFetching, isSuccess, data } = useQuery({

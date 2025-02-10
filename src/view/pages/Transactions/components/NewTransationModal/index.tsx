@@ -24,6 +24,7 @@ export function NewTransactionModal({
     register,
     categories,
     isFetchingAllCategories,
+    isPendingCreateTransaction,
   } = useNewTransactionModalController({ onClose })
 
   return (
@@ -91,7 +92,7 @@ export function NewTransactionModal({
                 placeholderColor="dark"
                 options={TYPES}
                 {...field}
-                value={field.value || ''} // 👈 Garante um valor inicial válido
+                value={field.value || ''}
                 onChange={field.onChange}
                 error={errors.type?.message}
               />
@@ -109,7 +110,7 @@ export function NewTransactionModal({
         </div>
 
         <div className="mt-8 flex w-full justify-center">
-          <Button>Adicionar</Button>
+          <Button isLoading={isPendingCreateTransaction}>Adicionar</Button>
         </div>
       </form>
     </Modal>

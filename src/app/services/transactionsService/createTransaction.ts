@@ -1,7 +1,6 @@
 import { httpClient } from '../httpClient'
 
 interface CreateTransationParams {
-  id: string
   categoryId: string
   name: string
   value: number

@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { z } from 'zod'
-import { useAuth } from '../../../app/hooks/useAuth'
+import { useAuth } from '../../../app/hooks/contexts/useAuth'
 import { toast } from 'react-toastify'
 
 const schema = z.object({

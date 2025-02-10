@@ -3,7 +3,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Trash2 } from 'lucide-react'
 import { ChangePasswordForm } from './components/ChangePasswordForm'
 import { ChangeUserDetailsForm } from './components/ChangeUserDetailsForm'
-import { useDashboard } from '@/app/hooks/useDashboard'
+import { useDashboard } from '@/app/hooks/contexts/useDashboard'
 
 interface UserSettingsModalProps {
   open: boolean

@@ -3,7 +3,7 @@ import { ThemeToggleButton } from '../../../../components/ThemeToggleButton'
 import { UserSettingsButton } from '../../../../components/UserSettingsButton'
 import { UserSettingsModal } from '@/view/components/UserSettingsModal'
 import { useHeaderController } from './useHeaderController'
-import { useDashboard } from '@/app/hooks/useDashboard'
+import { useDashboard } from '@/app/hooks/contexts/useDashboard'
 
 export function Header() {
   const { data, getFirstName } = useDashboard()

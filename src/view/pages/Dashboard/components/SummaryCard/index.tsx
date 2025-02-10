@@ -1,4 +1,4 @@
-import { useDashboard } from '@/app/hooks/useDashboard'
+import { useDashboard } from '@/app/hooks/contexts/useDashboard'
 import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/lib/utils'
 

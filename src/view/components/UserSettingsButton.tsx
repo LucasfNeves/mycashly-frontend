@@ -1,4 +1,4 @@
-import { useDashboard } from '@/app/hooks/useDashboard'
+import { useDashboard } from '@/app/hooks/contexts/useDashboard'
 import { Settings2 } from 'lucide-react'
 
 interface UserSettingsButtonProps {

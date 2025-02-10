@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
-import { useGetUserBalance } from '../hooks/services/useGetUserBalance'
+import { useAuth } from '../hooks/contexts/useAuth'
+import { useGetUserBalance } from '../hooks/services/users/useGetUserBalance'
 import { UserBalanceResponse } from '../entities/UserBalanceResponse'
 import { User } from '../entities/User'
 import { toast } from 'react-toastify'

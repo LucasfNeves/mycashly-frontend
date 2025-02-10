@@ -6,7 +6,7 @@ import { BalanceCard } from './components/BalanceCard'
 import { SliderMonths } from '../../components/SliderMonths'
 import { ExpenseChart } from './components/ExpenseChart'
 import { DashboardProvider } from '@/app/context/DashBoardContext'
-import { useDashboard } from '@/app/hooks/useDashboard'
+import { useDashboard } from '@/app/hooks/contexts/useDashboard'
 
 export function Dashboard() {
   const { userBalanceData } = useDashboard()

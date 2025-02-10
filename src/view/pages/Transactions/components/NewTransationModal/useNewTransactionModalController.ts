@@ -3,9 +3,9 @@ import { newTransactionModalSchema } from './../../../../../app/schemas/newTrans
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
-import { useGetAllCategories } from '@/app/hooks/services/useGetAllCategories'
-import { createTransaction } from '@/app/services/transactionsService/createTransaction'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
+import { useQueryClient } from '@tanstack/react-query'
+import { useCreateTransaction } from '@/app/hooks/services/transactions/useCreateTransaction'
 
 type FormData = z.infer<typeof newTransactionModalSchema>
 
@@ -20,6 +20,9 @@ export function useNewTransactionModalController({
 
   const { categories, isFetchingAllCategories } = useGetAllCategories()
 
+  const { isPendingCreateTransaction, createTransactionMutation } =
+    useCreateTransaction()
+
   const {
     control,
     register,
@@ -33,22 +36,11 @@ export function useNewTransactionModalController({
     },
   })
 
-  const {
-    isPending: isPendingCreateTransaction,
-    mutateAsync: createTransactionMutation,
-  } = useMutation({
-    mutationKey: ['create-transaction'],
-    mutationFn: createTransaction,
-  })
-
   const handleFormSubmit = handleSubmit(async (data) => {
     try {
       await createTransactionMutation({
         ...data,
-        value: Number(data.value),
         date: data.date.toISOString(),
-        type: data.type,
-        id: data.categoryId,
       })
 
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
