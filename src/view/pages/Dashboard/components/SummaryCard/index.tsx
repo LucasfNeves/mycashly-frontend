@@ -21,7 +21,7 @@ export function SummaryCard({ icon, value, description }: SummaryCardProps) {
 
       <p
         className={cn(
-          'w-full overflow-hidden truncate whitespace-nowrap text-2xl font-bold text-white',
+          'text-2xl font-bold text-white',
           !showValues && 'blur-md',
         )}
       >
