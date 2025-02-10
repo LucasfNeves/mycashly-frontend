@@ -6,8 +6,11 @@ import { BalanceCard } from './components/BalanceCard'
 import { SliderMonths } from '../../components/SliderMonths'
 import { ExpenseChart } from './components/ExpenseChart'
 import { DashboardProvider } from '@/app/context/DashBoardContext'
+import { useDashboard } from '@/app/hooks/useDashboard'
 
 export function Dashboard() {
+  const { userBalanceData } = useDashboard()
+
   return (
     <DashboardProvider>
       <div className="flex flex-col gap-y-4">
@@ -24,13 +27,13 @@ export function Dashboard() {
 
               <SummaryCard
                 icon={<IncomeIcon className="h-10" />}
-                value="R$ 500,00"
+                value={userBalanceData?.incomes ?? 0}
                 description="Total de Receitas"
               />
 
               <SummaryCard
                 icon={<ExpenseIcon className="h-10" />}
-                value="R$ 500,00"
+                value={userBalanceData?.expenses ?? 0}
                 description="Total de Despesas"
               />
             </div>

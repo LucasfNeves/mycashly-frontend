@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/useAuth'
 import { useGetUserBalance } from '../hooks/services/useGetUserBalanceServer'
 import { UserBalanceResponse } from '../types/user-balance'
 import { User } from '../types/user'
+import { toast } from 'react-toastify'
 
 interface DashboardContextType {
   data?: User
@@ -34,6 +35,10 @@ export const DashboardProvider = ({ children }: DashboardProviderProps) => {
     const [firstName] = userName.split(' ')
 
     return firstName
+  }
+
+  if (getBalanceisError && signedIn) {
+    toast.error('Erro ao buscar saldo do usuário')
   }
 
   return (
