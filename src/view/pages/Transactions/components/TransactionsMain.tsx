@@ -17,9 +17,11 @@ export function TransactionsMain() {
     isInitialLoadingTransactions,
   } = useTransactions()
 
+  const hasTransactions = transactions.length > 0
+
   return (
     <>
-      {isInitialLoadingTransactions ? (
+      {!hasTransactions && isInitialLoadingTransactions ? (
         <div className="flex h-full w-full items-center justify-center">
           <Spinner className="h-8 w-8" />
         </div>
@@ -47,7 +49,7 @@ export function TransactionsMain() {
               </h1>
             </header>
             <main className="flex w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
-              {isLoadingTransactions ? (
+              {!hasTransactions && isLoadingTransactions ? (
                 <div className="flex min-h-80 w-full items-center justify-center">
                   <Spinner className="h-8 w-8" />
                 </div>
