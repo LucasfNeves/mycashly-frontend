@@ -20,6 +20,8 @@ export function TransactionsMain() {
 
   const hasTransactions = transactions.length > 0
 
+  console.log('transactions', transactions)
+
   return (
     <>
       {!hasTransactions && isInitialLoadingTransactions ? (
@@ -49,8 +51,8 @@ export function TransactionsMain() {
                 Transações
               </h1>
             </header>
-            <main className="flex w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
-              {!hasTransactions && (
+            <main className="flex min-h-80 w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
+              {!hasTransactions && !isLoadingTransactions && (
                 <div className="flex w-full flex-col items-center justify-center gap-4 p-4">
                   <figure>
                     <img
@@ -59,14 +61,14 @@ export function TransactionsMain() {
                       className="h-64"
                     />
                   </figure>
-                  <span className="text-md text-neutral-300">
+                  <span className="text-md text-center text-neutral-300">
                     Nenhuma transação encontrada
                   </span>
                 </div>
               )}
 
               {!hasTransactions && isLoadingTransactions ? (
-                <div className="flex min-h-80 w-full items-center justify-center">
+                <div className="flex h-80 w-full items-center justify-center">
                   <Spinner className="h-8 w-8" />
                 </div>
               ) : (
