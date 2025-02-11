@@ -17,8 +17,16 @@ export function UpdateTransactionModal() {
     selectedTransaction,
   } = useTransactions()
 
-  const { register, errors, handleFormSubmit, control } =
-    useUpdateTransactionModalController(selectedTransaction)
+  const {
+    register,
+    errors,
+    handleFormSubmit,
+    control,
+    isPendingUpdateTransaction,
+  } = useUpdateTransactionModalController({
+    selectedTransaction,
+    handleEditTransationModalClose,
+  })
 
   const { categories, isFetchingAllCategories } = useTransactions()
 
@@ -62,7 +70,7 @@ export function UpdateTransactionModal() {
 
         <div className="mt-10 flex flex-col gap-4">
           <Controller
-            name="category"
+            name="categoryId"
             control={control}
             render={({ field }) => (
               <InputSelect
@@ -76,7 +84,7 @@ export function UpdateTransactionModal() {
                 }))}
                 {...field}
                 value={field.value || ''}
-                error={errors.category?.message}
+                error={errors.categoryId?.message}
               />
             )}
           />
@@ -120,7 +128,7 @@ export function UpdateTransactionModal() {
         </div>
 
         <div className="mt-8 flex w-full justify-center">
-          <Button>Salvar</Button>
+          <Button isLoading={isPendingUpdateTransaction}>Salvar</Button>
         </div>
       </form>
     </Modal>

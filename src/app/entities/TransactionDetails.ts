@@ -4,7 +4,7 @@ export interface TransactionDetails {
   id: string
   categoryId: string
   name: string
-  date: string
+  date: Date
   value: number
-  type: TransactionType
+  type: TransactionType | null
 }

@@ -4,24 +4,31 @@ import { z } from 'zod'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { updateTransactionSchema } from '@/app/schemas/updateTransactionSchema'
 import { toast } from 'react-toastify'
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
-import { useTransactions } from '@/app/hooks/contexts/useTransactions'
+import { useUpdateTransaction } from '@/app/hooks/services/transactions/useUpdateTransaction'
+import { useQueryClient } from '@tanstack/react-query'
+import { TransactionType } from '@/app/types/transaction-type'
 
 type FormData = z.infer<typeof updateTransactionSchema>
 
-export function useUpdateTransactionModalController(
-  selectedTransaction: TransactionDetails | null,
-) {
-  const { categories, isFetchingAllCategories } = useTransactions()
+interface UpdateTransactionModalController {
+  handleEditTransationModalClose: () => void
+  selectedTransaction: TransactionDetails | null
+}
 
-  const categoryId = selectedTransaction?.categoryId
-
-  const category = useMemo(() => {
-    return categories?.find((category) => category.id === categoryId)
-  }, [categories, categoryId])
+export function useUpdateTransactionModalController({
+  handleEditTransationModalClose,
+  selectedTransaction,
+}: UpdateTransactionModalController) {
+  const queryClient = useQueryClient()
+  const {
+    isPendingUpdateTransaction,
+    updateTransactionMutation,
+    updatedTransaction,
+  } = useUpdateTransaction()
 
   const {
     register,
@@ -32,9 +39,11 @@ export function useUpdateTransactionModalController(
   } = useForm<FormData>({
     resolver: zodResolver(updateTransactionSchema),
     defaultValues: {
-      category: category?.id,
+      categoryId: selectedTransaction?.categoryId,
       name: selectedTransaction?.name,
-      date: selectedTransaction?.date,
+      date: selectedTransaction
+        ? new Date(selectedTransaction.date)
+        : new Date(),
       type: selectedTransaction?.type?.toUpperCase() as
         | 'INCOME'
         | 'EXPENSE'
@@ -47,24 +56,35 @@ export function useUpdateTransactionModalController(
   useEffect(() => {
     if (selectedTransaction) {
       reset({
-        category: category?.id,
-        name: selectedTransaction.name,
-        date: selectedTransaction.date,
-        type: selectedTransaction.type?.toUpperCase() as
+        categoryId: selectedTransaction?.categoryId,
+        name: selectedTransaction?.name,
+        date: selectedTransaction
+          ? new Date(selectedTransaction.date)
+          : new Date(),
+        type: selectedTransaction?.type?.toUpperCase() as
           | 'INCOME'
           | 'EXPENSE'
           | 'INVESTMENT',
-        value: selectedTransaction.value,
+        value: selectedTransaction?.value,
       })
     }
   }, [selectedTransaction, reset])
 
-  const handleFormSubmit = handleSubmit((data) => {
+  const handleFormSubmit = handleSubmit(async (data) => {
     try {
-      console.log(data)
-      toast.success('Transação atualizada com sucesso')
+      await updateTransactionMutation({
+        ...data,
+        id: selectedTransaction!.id,
+        type: selectedTransaction?.type as TransactionType,
+        date: data.date?.toISOString(),
+      })
+
+      queryClient.invalidateQueries({ queryKey: ['transactions'] })
+      toast.success('Transação criada com sucesso')
+      reset()
+      handleEditTransationModalClose()
     } catch {
-      toast.error('Erro ao atualizar transação')
+      toast.error('Erro ao criar transação')
     }
   })
 
@@ -73,8 +93,8 @@ export function useUpdateTransactionModalController(
     errors,
     handleFormSubmit,
     control,
-    isFetchingAllCategories,
-    categories,
     reset,
+    isPendingUpdateTransaction,
+    updatedTransaction,
   }
 }
