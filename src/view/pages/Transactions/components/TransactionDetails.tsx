@@ -2,13 +2,15 @@ import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/app/lib/utils'
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
 import { formatDate } from '@/app/utils/formatDate'
+import { useTransactions } from '@/app/hooks/contexts/useTransactions'
+import { useMemo } from 'react'
 
 interface TransactionDetailsProps extends TransactionDetails {
   onClick: () => void
 }
 
 export function TransactionItem({
-  category,
+  categoryId,
   name,
   date,
   type,
@@ -16,6 +18,12 @@ export function TransactionItem({
   id,
   onClick,
 }: TransactionDetailsProps) {
+  const { categories } = useTransactions()
+
+  const category = useMemo(() => {
+    return categories?.find((category) => category.id === categoryId)
+  }, [categories, categoryId])
+
   return (
     <button
       onClick={onClick}
@@ -24,14 +32,17 @@ export function TransactionItem({
     >
       <div className="flex flex-col items-start gap-2 overflow-x-auto whitespace-nowrap">
         <div className="flex flex-col gap-1">
-          <small className="text-start text-[12px] text-neutral-200">
-            {name}
+          <small
+            className="text-start text-[12px] text-neutral-200"
+            aria-label={category?.name}
+          >
+            {category?.name}
           </small>
           <p
             className="text-start text-sm font-bold text-white"
-            aria-label="Salário"
+            aria-label={name}
           >
-            {category}
+            {name}
           </p>
         </div>
 
@@ -47,9 +58,10 @@ export function TransactionItem({
         <p
           className={cn(
             'text-base',
-            type === 'expense' ? 'text-red-500' : 'text-green-500',
+            type === 'EXPENSE' ? 'text-red-500' : 'text-green-500',
           )}
         >
+          {type === 'EXPENSE' ? '- ' : '+ '}
           {formatCurrency(Number(value))}
         </p>
       </div>

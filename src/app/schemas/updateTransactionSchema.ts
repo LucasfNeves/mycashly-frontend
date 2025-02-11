@@ -3,7 +3,7 @@ import validator from 'validator'
 
 export const updateTransactionSchema = z
   .object({
-    categoryId: z
+    category: z
       .string()
       // .uuid({
       //   message: 'Category ID must be a valid UUID',

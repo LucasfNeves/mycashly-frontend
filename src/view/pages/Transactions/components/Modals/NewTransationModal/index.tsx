@@ -7,28 +7,30 @@ import { InputSelect } from '@/view/components/InputSelect'
 import { InputCurrency } from '@/view/components/InputCurrency'
 import { DatePickerInput } from '@/view/components/DatePickerInput'
 import { TYPES } from '@/app/config/constants'
+import { useTransactions } from '@/app/hooks/contexts/useTransactions'
 
-interface NewTransactionModalProps {
-  open: boolean
-  onClose: () => void
-}
+export function NewTransactionModal() {
+  const {
+    categories,
+    isFetchingAllCategories,
+    handleCloseNewTransactionModal,
+    newTransactionModalOpen,
+  } = useTransactions()
 
-export function NewTransactionModal({
-  open,
-  onClose,
-}: NewTransactionModalProps) {
   const {
     control,
     errors,
     handleFormSubmit,
     register,
-    categories,
-    isFetchingAllCategories,
     isPendingCreateTransaction,
-  } = useNewTransactionModalController({ onClose })
+  } = useNewTransactionModalController({ handleCloseNewTransactionModal })
 
   return (
-    <Modal open={open} onClose={onClose} title="Nova Transação">
+    <Modal
+      open={newTransactionModalOpen}
+      onClose={handleCloseNewTransactionModal}
+      title="Nova Transação"
+    >
       <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col items-center gap-2">
           <span className="w-full text-base font-medium tracking-[-0.5px] text-neutral-200">
@@ -58,21 +60,15 @@ export function NewTransactionModal({
                 placeholder="Categoria"
                 isLoading={isFetchingAllCategories}
                 placeholderColor="dark"
-                options={
-                  //TODO: Refatorar retorno de categorias no backend
-                  (Array.isArray(categories) ? [] : categories.categories)?.map(
-                    (category) => ({
-                      label: category.name,
-                      value: category.id,
-                    }),
-                  ) || []
-                }
+                options={categories.map((category) => ({
+                  label: category.name,
+                  value: category.id,
+                }))}
                 {...field}
                 error={errors.categoryId?.message}
               />
             )}
           />
-
           <Input
             maxLength={20}
             placeholder="Nome"

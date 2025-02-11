@@ -3,22 +3,19 @@ import { newTransactionModalSchema } from '../../../../../../app/schemas/newTran
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
-import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCreateTransaction } from '@/app/hooks/services/transactions/useCreateTransaction'
 
 type FormData = z.infer<typeof newTransactionModalSchema>
 
 interface NewTransactionModalController {
-  onClose: () => void
+  handleCloseNewTransactionModal: () => void
 }
 
 export function useNewTransactionModalController({
-  onClose,
+  handleCloseNewTransactionModal,
 }: NewTransactionModalController) {
   const queryClient = useQueryClient()
-
-  const { categories, isFetchingAllCategories } = useGetAllCategories()
 
   const { isPendingCreateTransaction, createTransactionMutation } =
     useCreateTransaction()
@@ -45,7 +42,7 @@ export function useNewTransactionModalController({
 
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
       toast.success('Transação criada com sucesso')
-      onClose()
+      handleCloseNewTransactionModal()
       reset()
     } catch {
       toast.error('Erro ao criar transação')
@@ -57,8 +54,6 @@ export function useNewTransactionModalController({
     errors,
     handleFormSubmit,
     control,
-    categories,
-    isFetchingAllCategories,
     isPendingCreateTransaction,
     createTransactionMutation,
   }

@@ -8,25 +8,24 @@ import { Controller } from 'react-hook-form'
 import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
 import { TYPES } from '@/app/config/constants'
 import { Trash2Icon } from 'lucide-react'
+import { useTransactions } from '@/app/hooks/contexts/useTransactions'
 
-interface NewTransactionModalProps {
-  open: boolean
-  onClose: () => void
-  transactionId?: string
-}
+export function UpdateTransactionModal() {
+  const {
+    handleEditTransationModalClose,
+    editTransactionModalOpen,
+    selectedTransaction,
+  } = useTransactions()
 
-export function UpdateTransactionModal({
-  open,
-  onClose,
-  transactionId,
-}: NewTransactionModalProps) {
   const { register, errors, handleFormSubmit, control } =
-    useUpdateTransactionModalController(transactionId!)
+    useUpdateTransactionModalController(selectedTransaction)
+
+  const { categories, isFetchingAllCategories } = useTransactions()
 
   return (
     <Modal
-      open={open}
-      onClose={onClose}
+      open={editTransactionModalOpen}
+      onClose={handleEditTransationModalClose}
       rigthAction={{
         triggerIcon: <Trash2Icon className="h-6 w-6" />,
         actionText: 'Deletar transação',
@@ -63,21 +62,21 @@ export function UpdateTransactionModal({
 
         <div className="mt-10 flex flex-col gap-4">
           <Controller
-            name="categoryId"
+            name="category"
             control={control}
             render={({ field }) => (
               <InputSelect
                 className="border-2 border-neutral-200 bg-transparent text-neutral-200"
                 placeholder="Categoria"
+                isLoading={isFetchingAllCategories}
                 placeholderColor="dark"
-                options={[
-                  { value: 'income', label: 'Receita' },
-                  { value: 'expense', label: 'Despesa' },
-                  { value: 'investment', label: 'Investimento' },
-                ]}
+                options={categories.map((category) => ({
+                  label: category.name,
+                  value: category.id,
+                }))}
                 {...field}
                 value={field.value || ''}
-                error={errors.categoryId?.message}
+                error={errors.category?.message}
               />
             )}
           />

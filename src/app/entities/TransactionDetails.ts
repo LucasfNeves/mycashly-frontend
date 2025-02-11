@@ -1,8 +1,10 @@
+import { TransactionType } from '../types/transaction-type'
+
 export interface TransactionDetails {
   id: string
-  category: string
+  categoryId: string
   name: string
   date: string
   value: number
-  type: 'income' | 'investment' | 'expense'
+  type: TransactionType
 }

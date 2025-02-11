@@ -4,17 +4,24 @@ import { z } from 'zod'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
-import { transactionsMocked } from '@/app/config/constants'
+import { useEffect, useMemo } from 'react'
 import { updateTransactionSchema } from '@/app/schemas/updateTransactionSchema'
 import { toast } from 'react-toastify'
+import { TransactionDetails } from '@/app/entities/TransactionDetails'
+import { useTransactions } from '@/app/hooks/contexts/useTransactions'
 
 type FormData = z.infer<typeof updateTransactionSchema>
 
-export function useUpdateTransactionModalController(transactionId: string) {
-  const selectedTransaction = transactionsMocked.find(
-    (transaction) => transaction.id === transactionId,
-  )
+export function useUpdateTransactionModalController(
+  selectedTransaction: TransactionDetails | null,
+) {
+  const { categories, isFetchingAllCategories } = useTransactions()
+
+  const categoryId = selectedTransaction?.categoryId
+
+  const category = useMemo(() => {
+    return categories?.find((category) => category.id === categoryId)
+  }, [categories, categoryId])
 
   const {
     register,
@@ -25,7 +32,7 @@ export function useUpdateTransactionModalController(transactionId: string) {
   } = useForm<FormData>({
     resolver: zodResolver(updateTransactionSchema),
     defaultValues: {
-      categoryId: selectedTransaction?.category,
+      category: category?.id,
       name: selectedTransaction?.name,
       date: selectedTransaction?.date,
       type: selectedTransaction?.type?.toUpperCase() as
@@ -40,7 +47,7 @@ export function useUpdateTransactionModalController(transactionId: string) {
   useEffect(() => {
     if (selectedTransaction) {
       reset({
-        categoryId: selectedTransaction.category,
+        category: category?.id,
         name: selectedTransaction.name,
         date: selectedTransaction.date,
         type: selectedTransaction.type?.toUpperCase() as
@@ -62,10 +69,11 @@ export function useUpdateTransactionModalController(transactionId: string) {
   })
 
   return {
-    selectedTransaction,
     register,
     errors,
     handleFormSubmit,
     control,
+    isFetchingAllCategories,
+    categories,
   }
 }
