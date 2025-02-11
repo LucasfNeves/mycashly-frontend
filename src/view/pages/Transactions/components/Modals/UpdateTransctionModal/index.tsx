@@ -23,6 +23,8 @@ export function UpdateTransactionModal() {
     handleFormSubmit,
     control,
     isPendingUpdateTransaction,
+    isPendingDeleteTransaction,
+    handleDeleteTransaction,
   } = useUpdateTransactionModalController({
     selectedTransaction,
     handleEditTransationModalClose,
@@ -35,13 +37,15 @@ export function UpdateTransactionModal() {
       open={editTransactionModalOpen}
       onClose={handleEditTransationModalClose}
       rigthAction={{
+        handleAction: handleDeleteTransaction,
         triggerIcon: <Trash2Icon className="h-6 w-6" />,
         actionText: 'Deletar transação',
         description:
           'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua transação.',
         title: 'Tem certeza que deseja deletar esta transação?',
+        isLoading: isPendingDeleteTransaction,
       }}
-      title="Nova Transação"
+      title="Editar Transação"
     >
       <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col items-center gap-2">

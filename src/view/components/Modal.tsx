@@ -19,6 +19,8 @@ interface ModalProps {
     title: string
     triggerText?: string
     triggerIcon?: React.ReactNode
+    handleAction?: () => void
+    isLoading?: boolean
   }
   className?: string
 }
@@ -49,6 +51,8 @@ export function Modal({
 
           {rigthAction ? (
             <PopupAlert
+              isLoading={rigthAction.isLoading}
+              handleAction={rigthAction.handleAction}
               actionText={rigthAction.actionText}
               description={rigthAction.description}
               title={rigthAction.title}

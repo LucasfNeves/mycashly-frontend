@@ -11,6 +11,7 @@ import { TransactionDetails } from '@/app/entities/TransactionDetails'
 import { useUpdateTransaction } from '@/app/hooks/services/transactions/useUpdateTransaction'
 import { useQueryClient } from '@tanstack/react-query'
 import { TransactionType } from '@/app/types/transaction-type'
+import { useDeleteTransaction } from '@/app/hooks/services/transactions/useDeleteTransaction'
 
 type FormData = z.infer<typeof updateTransactionSchema>
 
@@ -24,11 +25,15 @@ export function useUpdateTransactionModalController({
   selectedTransaction,
 }: UpdateTransactionModalController) {
   const queryClient = useQueryClient()
+
   const {
     isPendingUpdateTransaction,
     updateTransactionMutation,
     updatedTransaction,
   } = useUpdateTransaction()
+
+  const { deleteTransactionMutation, isPendingDeleteTransaction } =
+    useDeleteTransaction()
 
   const {
     register,
@@ -70,6 +75,19 @@ export function useUpdateTransactionModalController({
     }
   }, [selectedTransaction, reset])
 
+  const handleDeleteTransaction = async () => {
+    try {
+      await deleteTransactionMutation(selectedTransaction!.id)
+
+      queryClient.invalidateQueries({ queryKey: ['transactions'] })
+      toast.success('Transação deletada com sucesso')
+      reset()
+      handleEditTransationModalClose()
+    } catch {
+      toast.error('Erro ao deletar transação')
+    }
+  }
+
   const handleFormSubmit = handleSubmit(async (data) => {
     try {
       await updateTransactionMutation({
@@ -80,11 +98,11 @@ export function useUpdateTransactionModalController({
       })
 
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
-      toast.success('Transação criada com sucesso')
+      toast.success('Transação editada com sucesso')
       reset()
       handleEditTransationModalClose()
     } catch {
-      toast.error('Erro ao criar transação')
+      toast.error('Erro ao editar transação')
     }
   })
 
@@ -96,5 +114,7 @@ export function useUpdateTransactionModalController({
     reset,
     isPendingUpdateTransaction,
     updatedTransaction,
+    handleDeleteTransaction,
+    isPendingDeleteTransaction,
   }
 }

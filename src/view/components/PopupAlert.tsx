@@ -10,6 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { Spinner } from './Spinner'
 
 interface PopupAlertProps {
   triggerText?: string
@@ -18,6 +19,8 @@ interface PopupAlertProps {
   description: string
   actionText: string
   className?: string
+  handleAction?: () => void
+  isLoading?: boolean
 }
 
 export function PopupAlert({
@@ -27,6 +30,8 @@ export function PopupAlert({
   triggerText,
   triggerIcon,
   className,
+  handleAction,
+  isLoading,
 }: PopupAlertProps) {
   return (
     <AlertDialog>
@@ -49,8 +54,11 @@ export function PopupAlert({
           <AlertDialogCancel className="border-none bg-green-700 text-neutral-200 transition-all hover:bg-green-800 hover:text-neutral-200 hover:duration-300">
             Cancelar
           </AlertDialogCancel>
-          <AlertDialogAction className="border-none bg-red-600 text-neutral-200 transition-all hover:bg-red-700 hover:duration-300">
-            {actionText}
+          <AlertDialogAction
+            onClick={handleAction}
+            className="flex w-1/3 items-center justify-center border-none bg-red-600 text-neutral-200 transition-all hover:bg-red-700 hover:duration-300"
+          >
+            {isLoading ? <Spinner className="h-4 w-4" /> : actionText}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
