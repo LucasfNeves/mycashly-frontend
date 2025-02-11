@@ -15,6 +15,8 @@ interface TransactionContextProps {
   handleOpenNewTransactionModal: () => void
   handleEditTransationModalOpen: (transaction: TransactionDetails) => void
   handleEditTransationModalClose: () => void
+  isLoadingTransactions: boolean
+  isInitialLoadingTransactions: boolean
 }
 
 interface TransactionsProvider {
@@ -26,7 +28,8 @@ export const TransactionContext = createContext<TransactionContextProps>(
 )
 
 export function TransactionProvider({ children }: TransactionsProvider) {
-  const { transactions } = useGetAllTransactions()
+  const { transactions, isLoadingTransactions, isInitialLoadingTransactions } =
+    useGetAllTransactions()
   const { categories, isFetchingAllCategories } = useGetAllCategories()
 
   const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false)
@@ -67,6 +70,8 @@ export function TransactionProvider({ children }: TransactionsProvider) {
         handleOpenNewTransactionModal,
         handleEditTransationModalOpen,
         handleEditTransationModalClose,
+        isLoadingTransactions,
+        isInitialLoadingTransactions,
       }}
     >
       {children}

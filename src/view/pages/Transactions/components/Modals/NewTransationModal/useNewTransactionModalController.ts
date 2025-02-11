@@ -30,6 +30,10 @@ export function useNewTransactionModalController({
     resolver: zodResolver(newTransactionModalSchema),
     defaultValues: {
       date: new Date(),
+      categoryId: '',
+      name: '',
+      type: undefined,
+      value: 0,
     },
   })
 
@@ -42,8 +46,8 @@ export function useNewTransactionModalController({
 
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
       toast.success('Transação criada com sucesso')
-      handleCloseNewTransactionModal()
       reset()
+      handleCloseNewTransactionModal()
     } catch {
       toast.error('Erro ao criar transação')
     }
