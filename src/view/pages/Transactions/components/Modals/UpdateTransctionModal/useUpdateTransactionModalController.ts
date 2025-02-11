@@ -75,5 +75,6 @@ export function useUpdateTransactionModalController(
     control,
     isFetchingAllCategories,
     categories,
+    reset,
   }
 }

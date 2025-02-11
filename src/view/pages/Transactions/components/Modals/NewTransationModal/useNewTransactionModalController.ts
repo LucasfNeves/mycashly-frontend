@@ -53,6 +53,11 @@ export function useNewTransactionModalController({
     }
   })
 
+  const closeModal = () => {
+    handleCloseNewTransactionModal()
+    reset()
+  }
+
   return {
     register,
     errors,
@@ -60,5 +65,7 @@ export function useNewTransactionModalController({
     control,
     isPendingCreateTransaction,
     createTransactionMutation,
+    reset,
+    closeModal,
   }
 }

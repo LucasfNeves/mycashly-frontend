@@ -23,12 +23,13 @@ export function NewTransactionModal() {
     handleFormSubmit,
     register,
     isPendingCreateTransaction,
+    closeModal,
   } = useNewTransactionModalController({ handleCloseNewTransactionModal })
 
   return (
     <Modal
       open={newTransactionModalOpen}
-      onClose={handleCloseNewTransactionModal}
+      onClose={closeModal}
       title="Nova Transação"
     >
       <form onSubmit={handleFormSubmit}>
