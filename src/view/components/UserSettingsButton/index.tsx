@@ -1,5 +1,6 @@
 import { User } from '@/app/entities/User'
 import { useUserSettingsButtonController } from './useUserSettingsButtonontroller'
+import { Settings2 } from 'lucide-react'
 
 interface UserSettingsButtonProps {
   onClick: () => void
@@ -33,6 +34,10 @@ export function UserSettingsButton({
           {getUserData?.email}
         </small>
       </div>
+
+      <span className="text-primaryBlue-500">
+        <Settings2 className="h-6 w-6" />
+      </span>
     </button>
   ) : (
     <button
