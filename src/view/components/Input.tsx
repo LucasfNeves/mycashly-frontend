@@ -34,7 +34,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           name={name}
           ref={ref}
-          autoComplete="off"
           placeholder=" "
           className={cn(
             'peer relative h-[3.25rem] w-full rounded-lg px-[12px] pb-[2px] pt-4 text-black outline-none placeholder-shown:pt-0',
