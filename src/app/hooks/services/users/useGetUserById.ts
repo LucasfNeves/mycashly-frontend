@@ -9,9 +9,9 @@ export function useGetUserById() {
   })
 
   return {
-    data,
-    isError,
-    isFetching,
-    isSuccess,
+    getUserData: data,
+    getUserIsError: isError,
+    getUserIsFetching: isFetching,
+    getUserIsSuccess: isSuccess,
   }
 }

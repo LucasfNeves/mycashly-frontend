@@ -8,7 +8,7 @@ export function useGetUserBalance() {
   })
 
   return {
-    data,
-    isError,
+    getBalanceData: data,
+    getBalanceIsError: isError,
   }
 }

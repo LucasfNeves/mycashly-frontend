@@ -3,16 +3,19 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Trash2 } from 'lucide-react'
 import { ChangePasswordForm } from './components/ChangePasswordForm'
 import { ChangeUserDetailsForm } from './components/ChangeUserDetailsForm'
-import { useDashboard } from '@/app/hooks/contexts/useDashboard'
+import { User } from '@/app/entities/User'
 
 interface UserSettingsModalProps {
   open: boolean
   onClose: () => void
+  getUserData: User | undefined
 }
 
-export function UserSettingsModal({ open, onClose }: UserSettingsModalProps) {
-  const { data } = useDashboard()
-
+export function UserSettingsModal({
+  open,
+  onClose,
+  getUserData,
+}: UserSettingsModalProps) {
   return (
     <Modal
       rigthAction={{
@@ -44,7 +47,7 @@ export function UserSettingsModal({ open, onClose }: UserSettingsModalProps) {
         </TabsList>
 
         <TabsContent value="account">
-          <ChangeUserDetailsForm userDetails={data} />
+          <ChangeUserDetailsForm userDetails={getUserData} />
         </TabsContent>
 
         <TabsContent value="password">

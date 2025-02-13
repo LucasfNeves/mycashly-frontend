@@ -1,11 +1,19 @@
-import { useDashboard } from '@/app/hooks/contexts/useDashboard'
+import { UserBalanceResponse } from '@/app/entities/UserBalanceResponse'
 import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/lib/utils'
 import { Eye, EyeClosed } from 'lucide-react'
 
-export function BalanceCard() {
-  const { userBalanceData, showValues, handleShowValues } = useDashboard()
+interface BalanceCardProps {
+  getBalanceData: UserBalanceResponse | undefined
+  showValues: boolean
+  handleShowValues: () => void
+}
 
+export function BalanceCard({
+  getBalanceData,
+  showValues,
+  handleShowValues,
+}: BalanceCardProps) {
   return (
     <section className="lb:py-5 flex min-h-48 w-full min-w-56 flex-1 flex-col justify-between gap-4 rounded-md bg-darkBlue-700 p-5 lg:px-9">
       <header className="flex justify-between">
@@ -17,7 +25,7 @@ export function BalanceCard() {
               !showValues && 'blur-md',
             )}
           >
-            {formatCurrency(userBalanceData?.balance ?? 0)}
+            {formatCurrency(getBalanceData?.balance ?? 0)}
           </span>
         </div>
 
@@ -34,7 +42,7 @@ export function BalanceCard() {
             !showValues && 'blur-md',
           )}
         >
-          {formatCurrency(userBalanceData?.investments ?? 0)}
+          {formatCurrency(getBalanceData?.investments ?? 0)}
         </span>
       </div>
     </section>

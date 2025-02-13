@@ -3,10 +3,14 @@ import { ThemeToggleButton } from '../../../../components/ThemeToggleButton'
 import { UserSettingsButton } from '../../../../components/UserSettingsButton'
 import { UserSettingsModal } from '@/view/components/UserSettingsModal'
 import { useHeaderController } from './useHeaderController'
-import { useDashboard } from '@/app/hooks/contexts/useDashboard'
+import { User } from '@/app/entities/User'
 
-export function Header() {
-  const { data, getFirstName } = useDashboard()
+interface HeaderProps {
+  getUserData: User | undefined
+  getFirstName: (name: string) => string
+}
+
+export function Header({ getUserData, getFirstName }: HeaderProps) {
   const {
     handleUserSettingsModalClose,
     handleUserSettingsModalOpen,
@@ -18,7 +22,7 @@ export function Header() {
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2 text-white">
           <h1 className="text-xl lg:text-2xl">
-            Olá, {getFirstName(data?.name ?? '')}
+            Olá, {getFirstName(getUserData?.name ?? '')}
           </h1>
           <span>
             <Hand className="h-4 text-orange-300 lg:h-6" />
@@ -31,10 +35,15 @@ export function Header() {
 
       <div className="hidden items-center gap-6 lg:flex">
         <ThemeToggleButton />
-        <UserSettingsButton onClick={handleUserSettingsModalOpen} />
+        <UserSettingsButton
+          getFirstName={getFirstName}
+          getUserData={getUserData}
+          onClick={handleUserSettingsModalOpen}
+        />
       </div>
 
       <UserSettingsModal
+        getUserData={getUserData}
         open={userSettingsModalOpen}
         onClose={handleUserSettingsModalClose}
       />

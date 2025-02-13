@@ -23,7 +23,7 @@ interface AuthContextType {
   signOut: () => void
   isPendingSignIn: boolean
   isPendingSignUp: boolean
-  data?: User
+  getUserData?: User
 }
 
 interface AuthProviderProps {
@@ -37,7 +37,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return !!localStorage.getItem(storageKeys.acessToken)
   })
 
-  const { data, isError, isFetching, isSuccess } = useGetUserById()
+  const { getUserData, getUserIsError, getUserIsFetching, getUserIsSuccess } =
+    useGetUserById()
 
   const { isPending: isPendingSignIn, mutateAsync: signInMutation } =
     useMutation({
@@ -129,12 +130,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [])
 
   useEffect(() => {
-    if (isError) {
+    if (getUserIsError) {
       toast.error('Sua sessão expirou, faça login novamente')
       setSignedIn(false)
       signOut()
     }
-  }, [isError, signOut, setSignedIn])
+  }, [getUserIsError, signOut, setSignedIn])
 
   const signIn = useCallback(
     async (email: string, password: string) => {
@@ -170,8 +171,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   return (
     <AuthContext.Provider
       value={{
-        signedIn: signedIn && isSuccess,
-        data,
+        signedIn: signedIn && getUserIsSuccess,
+        getUserData,
         signIn,
         signOut,
         signUp,
@@ -179,8 +180,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         isPendingSignUp,
       }}
     >
-      <LaunchScreen isLoading={isFetching} />
-      {!isFetching && children}
+      <LaunchScreen isLoading={getUserIsFetching} />
+      {!getUserIsFetching && children}
     </AuthContext.Provider>
   )
 }
