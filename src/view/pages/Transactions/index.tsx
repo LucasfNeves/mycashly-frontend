@@ -33,8 +33,8 @@ export function Transactions() {
           <Spinner className="h-8 w-8" />
         </div>
       ) : (
-        <div className="flex min-h-screen flex-col gap-8 lg:gap-16">
-          <header className="flex flex-col items-center justify-between gap-8 lg:gap-16">
+        <div className="flex min-h-screen flex-col gap-8">
+          <header className="flex flex-col items-center justify-between gap-8">
             <div className="flex w-full items-center justify-end">
               <Button
                 onClick={handleOpenNewTransactionModal}
@@ -49,15 +49,16 @@ export function Transactions() {
             </div>
           </header>
 
-          <section className="flex flex-col gap-8">
+          <section className="flex flex-1 flex-col gap-8 overflow-hidden">
             <header className="flex items-center justify-between gap-4">
               <h1 className="text:base text-neutral-300 lg:text-xl">
                 Transações
               </h1>
             </header>
-            <main className="flex min-h-80 w-full flex-col items-start justify-start gap-4 rounded-md bg-darkBlue-700 p-4">
+
+            <main className="relative flex w-full flex-1 flex-col items-start justify-start gap-4 overflow-y-auto rounded-md bg-darkBlue-700 p-4">
               {!hasTransactions && !isLoadingTransactions && (
-                <div className="flex w-full flex-col items-center justify-center gap-4 p-4">
+                <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center gap-4">
                   <figure>
                     <img
                       src={EmptyStateIlustrator}
@@ -72,7 +73,7 @@ export function Transactions() {
               )}
 
               {!hasTransactions && isLoadingTransactions ? (
-                <div className="flex h-80 w-full items-center justify-center">
+                <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center gap-4">
                   <Spinner className="h-8 w-8" />
                 </div>
               ) : (
