@@ -15,7 +15,7 @@ export function SummaryCard({
   showValues,
 }: SummaryCardProps) {
   return (
-    <section className="flex min-h-48 w-full min-w-56 flex-1 flex-col justify-between rounded-md bg-darkBlue-700 p-5 lg:px-9 lg:py-5">
+    <section className="flex min-h-48 w-full min-w-56 flex-1 flex-col justify-between overflow-x-auto rounded-md bg-darkBlue-700 p-5 lg:px-9 lg:py-5">
       <header className="flex flex-col gap-4">
         <div>{icon}</div>
 
