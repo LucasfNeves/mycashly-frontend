@@ -52,7 +52,12 @@ export function Modal({
           {rigthAction ? (
             <PopupAlert
               isLoading={rigthAction.isLoading}
-              handleAction={rigthAction.handleAction}
+              handleAction={() => {
+                onClose() // Fecha o modal de edição antes de abrir o alerta
+                setTimeout(() => {
+                  rigthAction.handleAction?.() // Executa a ação de deletar após um pequeno delay
+                }, 300)
+              }}
               actionText={rigthAction.actionText}
               description={rigthAction.description}
               title={rigthAction.title}

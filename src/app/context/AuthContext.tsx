@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return !!localStorage.getItem(storageKeys.acessToken)
   })
 
-  const { data, isError, isFetching, isSuccess } = useGetUserById(signedIn)
+  const { data, isError, isFetching, isSuccess } = useGetUserById()
 
   const { isPending: isPendingSignIn, mutateAsync: signInMutation } =
     useMutation({

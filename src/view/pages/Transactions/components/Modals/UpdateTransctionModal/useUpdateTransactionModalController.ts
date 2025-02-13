@@ -79,10 +79,10 @@ export function useUpdateTransactionModalController({
     try {
       await deleteTransactionMutation(selectedTransaction!.id)
 
+      handleEditTransationModalClose()
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
       toast.success('Transação deletada com sucesso')
       reset()
-      handleEditTransationModalClose()
     } catch {
       toast.error('Erro ao deletar transação')
     }

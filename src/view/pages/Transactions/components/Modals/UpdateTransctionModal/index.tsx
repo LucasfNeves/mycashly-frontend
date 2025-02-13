@@ -8,15 +8,24 @@ import { Controller } from 'react-hook-form'
 import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
 import { TYPES } from '@/app/config/constants'
 import { Trash2Icon } from 'lucide-react'
-import { useTransactions } from '@/app/hooks/contexts/useTransactions'
+import { TransactionDetails } from '@/app/entities/TransactionDetails'
+import { Category } from '@/app/entities/Category'
 
-export function UpdateTransactionModal() {
-  const {
-    handleEditTransationModalClose,
-    editTransactionModalOpen,
-    selectedTransaction,
-  } = useTransactions()
+interface UpdateTransactionModalProps {
+  editTransactionModalOpen: boolean
+  handleEditTransationModalClose: () => void
+  selectedTransaction: TransactionDetails | null
+  isFetchingAllCategories: boolean
+  categories: Category[]
+}
 
+export function UpdateTransactionModal({
+  editTransactionModalOpen,
+  handleEditTransationModalClose,
+  selectedTransaction,
+  categories,
+  isFetchingAllCategories,
+}: UpdateTransactionModalProps) {
   const {
     register,
     errors,
@@ -29,8 +38,6 @@ export function UpdateTransactionModal() {
     selectedTransaction,
     handleEditTransationModalClose,
   })
-
-  const { categories, isFetchingAllCategories } = useTransactions()
 
   return (
     <Modal

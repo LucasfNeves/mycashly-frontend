@@ -7,16 +7,21 @@ import { InputSelect } from '@/view/components/InputSelect'
 import { InputCurrency } from '@/view/components/InputCurrency'
 import { DatePickerInput } from '@/view/components/DatePickerInput'
 import { TYPES } from '@/app/config/constants'
-import { useTransactions } from '@/app/hooks/contexts/useTransactions'
+import { Category } from '@/app/entities/Category'
 
-export function NewTransactionModal() {
-  const {
-    categories,
-    isFetchingAllCategories,
-    handleCloseNewTransactionModal,
-    newTransactionModalOpen,
-  } = useTransactions()
+interface NewTransactionModalProps {
+  newTransactionModalOpen: boolean
+  handleCloseNewTransactionModal: () => void
+  categories: Category[]
+  isFetchingAllCategories: boolean
+}
 
+export function NewTransactionModal({
+  newTransactionModalOpen,
+  handleCloseNewTransactionModal,
+  categories,
+  isFetchingAllCategories,
+}: NewTransactionModalProps) {
   const {
     control,
     errors,
