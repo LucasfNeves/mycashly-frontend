@@ -61,7 +61,7 @@ export function PopupAlert({
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleAction}
-            className="flex w-1/3 items-center justify-center border-none bg-green-700 text-neutral-200 transition-all hover:bg-green-800 hover:text-neutral-200"
+            className="flex items-center justify-center border-none bg-green-700 text-neutral-200 transition-all hover:bg-green-800 hover:text-neutral-200 lg:w-1/3"
           >
             {isLoading ? <Spinner className="h-4 w-4" /> : actionText}
           </AlertDialogAction>
