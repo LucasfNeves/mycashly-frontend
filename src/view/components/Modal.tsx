@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useState } from 'react'
 
 interface ModalProps {
   title?: string
@@ -33,8 +34,10 @@ export function Modal({
   rigthAction,
   className,
 }: ModalProps) {
+  const [isRightActionOpen, setIsRightActionOpen] = useState(false)
+
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog open={open && !isRightActionOpen} onOpenChange={onClose}>
       <DialogContent
         aria-describedby=""
         className={cn(
@@ -54,16 +57,15 @@ export function Modal({
             <PopupAlert
               isLoading={rigthAction.isLoading}
               handleAction={() => {
-                onClose() // Fecha o modal de edição antes de abrir o alerta
-                setTimeout(() => {
-                  rigthAction.handleAction?.() // Executa a ação de deletar após um pequeno delay
-                }, 300)
+                setIsRightActionOpen(true)
+                rigthAction.handleAction?.()
               }}
               actionText={rigthAction.actionText}
               description={rigthAction.description}
               title={rigthAction.title}
               triggerText={rigthAction.triggerText}
               triggerIcon={rigthAction.triggerIcon}
+              onCloseModalMain={onClose}
             />
           ) : (
             <div className="w-12" />
@@ -72,6 +74,19 @@ export function Modal({
 
         <main>{children}</main>
       </DialogContent>
+
+      {rigthAction && isRightActionOpen && (
+        <PopupAlert
+          isLoading={rigthAction.isLoading}
+          handleAction={() => setIsRightActionOpen(false)}
+          actionText={rigthAction.actionText}
+          description={rigthAction.description}
+          title={rigthAction.title}
+          triggerText={rigthAction.triggerText}
+          triggerIcon={rigthAction.triggerIcon}
+          onCloseModalMain={onClose}
+        />
+      )}
     </Dialog>
   )
 }

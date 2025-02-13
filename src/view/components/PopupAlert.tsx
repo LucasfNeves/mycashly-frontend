@@ -21,6 +21,7 @@ interface PopupAlertProps {
   className?: string
   handleAction?: () => void
   isLoading?: boolean
+  onCloseModalMain: () => void
 }
 
 export function PopupAlert({
@@ -32,6 +33,7 @@ export function PopupAlert({
   className,
   handleAction,
   isLoading,
+  onCloseModalMain,
 }: PopupAlertProps) {
   return (
     <AlertDialog>
@@ -51,7 +53,10 @@ export function PopupAlert({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="border-none bg-red-600 text-neutral-200 transition-all hover:bg-red-700 hover:text-neutral-200 hover:duration-300">
+          <AlertDialogCancel
+            onClick={onCloseModalMain}
+            className="border-none bg-red-600 text-neutral-200 transition-all hover:bg-red-700 hover:text-neutral-200 hover:duration-300"
+          >
             Cancelar
           </AlertDialogCancel>
           <AlertDialogAction
