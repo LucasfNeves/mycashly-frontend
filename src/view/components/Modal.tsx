@@ -36,6 +36,7 @@ export function Modal({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent
+        aria-describedby=""
         className={cn(
           'w-[90%] max-w-[400px] space-y-6 overflow-y-auto rounded-md border-none bg-darkBlue-600 p-6 shadow-[0px_11px_20px_0px_rgba(0,0,0,0.10)] lg:w-full',
           className,
