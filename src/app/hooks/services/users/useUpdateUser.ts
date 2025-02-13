@@ -2,7 +2,7 @@ import { updateUser } from '@/app/services/userService/updateUser'
 import { useMutation } from '@tanstack/react-query'
 
 export function useUpdateUser() {
-  const { data, isPending, mutateAsync } = useMutation({
+  const { data, isPending, mutateAsync, isError } = useMutation({
     mutationKey: ['update-user'],
     mutationFn: updateUser,
   })
@@ -11,5 +11,6 @@ export function useUpdateUser() {
     isPendingUpdateUser: isPending,
     updateUserMutation: mutateAsync,
     updatedUser: data,
+    isUpdateUserError: isError,
   }
 }

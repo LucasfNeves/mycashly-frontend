@@ -4,6 +4,7 @@ import { Trash2 } from 'lucide-react'
 import { ChangePasswordForm } from './components/ChangePasswordForm'
 import { ChangeUserDetailsForm } from './components/ChangeUserDetailsForm'
 import { User } from '@/app/entities/User'
+import { useUserSettingsModalController } from './useUserSettingsModalController'
 
 interface UserSettingsModalProps {
   open: boolean
@@ -16,6 +17,8 @@ export function UserSettingsModal({
   onClose,
   getUserData,
 }: UserSettingsModalProps) {
+  const { handleDeleteUser } = useUserSettingsModalController({ onClose })
+
   return (
     <Modal
       rigthAction={{
@@ -25,6 +28,7 @@ export function UserSettingsModal({
 
         title: 'Tem certeza que deseja deletar sua conta?',
         triggerIcon: <Trash2 className="h-6 w-6" />,
+        handleAction: handleDeleteUser,
       }}
       open={open}
       onClose={onClose}

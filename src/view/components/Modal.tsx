@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { useState } from 'react'
 
 interface ModalProps {
   title?: string
@@ -34,10 +33,8 @@ export function Modal({
   rigthAction,
   className,
 }: ModalProps) {
-  const [isRightActionOpen, setIsRightActionOpen] = useState(false)
-
   return (
-    <Dialog open={open && !isRightActionOpen} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={onClose}>
       <DialogContent
         aria-describedby=""
         className={cn(
@@ -56,10 +53,7 @@ export function Modal({
           {rigthAction ? (
             <PopupAlert
               isLoading={rigthAction.isLoading}
-              handleAction={() => {
-                setIsRightActionOpen(true)
-                rigthAction.handleAction?.()
-              }}
+              handleAction={rigthAction.handleAction}
               actionText={rigthAction.actionText}
               description={rigthAction.description}
               title={rigthAction.title}
@@ -74,19 +68,6 @@ export function Modal({
 
         <main>{children}</main>
       </DialogContent>
-
-      {rigthAction && isRightActionOpen && (
-        <PopupAlert
-          isLoading={rigthAction.isLoading}
-          handleAction={() => setIsRightActionOpen(false)}
-          actionText={rigthAction.actionText}
-          description={rigthAction.description}
-          title={rigthAction.title}
-          triggerText={rigthAction.triggerText}
-          triggerIcon={rigthAction.triggerIcon}
-          onCloseModalMain={onClose}
-        />
-      )}
     </Dialog>
   )
 }

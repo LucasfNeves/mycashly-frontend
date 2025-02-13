@@ -10,7 +10,7 @@ import { storageKeys } from '@/app/config/storageKeys'
 import { httpClient } from '@/app/services/httpClient'
 import { refreshTokenService } from '@/app/services/authService/refreshToken'
 import { signUpService } from '@/app/services/authService/signUp'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useGetUserById } from '@/app/hooks/services/users/useGetUserById'
 import { LaunchScreen } from '@/view/components/LaunchScreen'
 import { toast } from 'react-toastify'
@@ -36,6 +36,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [signedIn, setSignedIn] = useState(() => {
     return !!localStorage.getItem(storageKeys.acessToken)
   })
+
+  const queryClient = useQueryClient()
 
   const { getUserData, getUserIsError, getUserIsFetching, getUserIsSuccess } =
     useGetUserById()
@@ -144,6 +146,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         password,
       })
 
+      queryClient.invalidateQueries({ queryKey: ['users', 'me'] })
+
       localStorage.setItem(storageKeys.acessToken, accessToken)
       localStorage.setItem(storageKeys.refreshTokenId, refreshTokenId)
 
@@ -159,6 +163,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         password,
         name,
       })
+
+      queryClient.invalidateQueries({ queryKey: ['users', 'me'] })
 
       localStorage.setItem(storageKeys.acessToken, accessToken)
       localStorage.setItem(storageKeys.refreshTokenId, refreshTokenId)
