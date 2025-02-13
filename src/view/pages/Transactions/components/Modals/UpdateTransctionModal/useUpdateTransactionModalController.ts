@@ -81,6 +81,7 @@ export function useUpdateTransactionModalController({
 
       handleEditTransationModalClose()
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
+      queryClient.invalidateQueries({ queryKey: ['users', 'balance'] })
       toast.success('Transação deletada com sucesso')
       reset()
     } catch {

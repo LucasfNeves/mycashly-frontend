@@ -3,9 +3,14 @@ import { BalanceCard } from './components/BalanceCard'
 import { Header } from './components/header'
 import { SummaryCard } from './components/SummaryCard'
 import { ExpenseIcon } from '@/view/components/icons/ExpenseIcon'
-import { SliderMonths } from '@/view/components/SliderMonths'
 import { ExpenseChart } from './components/ExpenseChart'
 import { useDashboardController } from './useDashboardController'
+import { Swiper } from 'swiper/react'
+import { SliderNavigation } from '@/view/components/SliderMonths/SliderNavigation'
+import { SwiperSlide } from 'swiper/react'
+import { SliderOption } from '@/view/components/SliderMonths/SliderOption'
+import { MONTHS } from '@/app/config/constants'
+import { useIsMobile } from '@/app/hooks/useIsMobile'
 
 export function Dashboard() {
   const {
@@ -15,6 +20,8 @@ export function Dashboard() {
     getUserData,
     handleShowValues,
   } = useDashboardController()
+
+  const isMobile = useIsMobile()
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -50,7 +57,27 @@ export function Dashboard() {
 
       <section className="flex flex-col gap-8">
         <div className="relative mt-8 w-full">
-          <SliderMonths />
+          {/* <SliderMonths /> */}
+          <Swiper
+            spaceBetween={40}
+            centeredSlides={true}
+            navigation
+            className="relative z-0"
+            slidesPerView={isMobile ? 1 : 4}
+          >
+            <SliderNavigation />
+            {MONTHS.map((month, index) => (
+              <SwiperSlide key={month}>
+                {({ isActive }) => (
+                  <SliderOption
+                    month={month}
+                    isActive={isActive}
+                    index={index}
+                  />
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-4 lg:p-6">

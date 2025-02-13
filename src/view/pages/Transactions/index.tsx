@@ -22,6 +22,8 @@ export function Transactions() {
     newTransactionModalOpen,
     handleCloseNewTransactionModal,
     isFetchingAllCategories,
+    handleChangeMonth,
+    filters,
   } = useTransactionsController()
 
   const hasTransactions = transactions.length > 0
@@ -45,7 +47,10 @@ export function Transactions() {
             </div>
 
             <div className="z-0 w-full">
-              <SliderMonths />
+              <SliderMonths
+                filters={filters}
+                handleChangeMonth={handleChangeMonth}
+              />
             </div>
           </header>
 

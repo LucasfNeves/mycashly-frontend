@@ -4,8 +4,17 @@ import { MONTHS } from '@/app/config/constants'
 import { SliderOption } from './SliderOption'
 import { SliderNavigation } from './SliderNavigation'
 import { useIsMobile } from '@/app/hooks/useIsMobile'
+import { TransacttionsFilters } from '@/app/services/transactionsService/getAllTransations'
 
-export function SliderMonths() {
+interface SliderMonthsProps {
+  handleChangeMonth: (month: number) => void
+  filters: TransacttionsFilters
+}
+
+export function SliderMonths({
+  handleChangeMonth,
+  filters,
+}: SliderMonthsProps) {
   const isMobile = useIsMobile()
 
   return (
@@ -15,6 +24,10 @@ export function SliderMonths() {
       slidesPerView={isMobile ? 1 : 4}
       navigation
       className="relative z-0"
+      initialSlide={filters.month}
+      onSlideChange={(swiper) => {
+        handleChangeMonth(swiper.realIndex)
+      }}
     >
       <SliderNavigation />
       {MONTHS.map((month, index) => (

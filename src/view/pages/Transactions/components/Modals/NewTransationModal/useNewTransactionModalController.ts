@@ -45,6 +45,7 @@ export function useNewTransactionModalController({
       })
 
       queryClient.invalidateQueries({ queryKey: ['transactions'] })
+      queryClient.invalidateQueries({ queryKey: ['users', 'balance'] })
       toast.success('Transação criada com sucesso')
       reset()
       handleCloseNewTransactionModal()

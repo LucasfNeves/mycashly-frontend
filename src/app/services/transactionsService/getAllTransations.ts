@@ -3,9 +3,9 @@ import { httpClient } from '../httpClient'
 
 type TransactionResponse = Array<TransactionDetails>
 
-type TransacttionsFilters = {
-  month: string
-  year: string
+export type TransacttionsFilters = {
+  month: number
+  year: number
   type?: TransactionDetails['type']
 }
 
