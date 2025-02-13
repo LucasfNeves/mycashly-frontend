@@ -1,5 +1,5 @@
 import { Hand } from 'lucide-react'
-import { ThemeToggleButton } from '../../../../components/ThemeToggleButton'
+// import { ThemeToggleButton } from '../../../../components/ThemeToggleButton'
 import { UserSettingsButton } from '../../../../components/UserSettingsButton'
 import { UserSettingsModal } from '@/view/components/UserSettingsModal'
 import { useHeaderController } from './useHeaderController'
@@ -34,7 +34,7 @@ export function Header({ getUserData, getFirstName }: HeaderProps) {
       </div>
 
       <div className="hidden items-center gap-6 lg:flex">
-        <ThemeToggleButton />
+        {/* <ThemeToggleButton /> */}
         <UserSettingsButton
           getFirstName={getFirstName}
           getUserData={getUserData}

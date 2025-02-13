@@ -17,10 +17,10 @@ export function useUserSettingsModalController({
     try {
       await deleteUserMutation()
 
+      toast.success('Usuário deletado com sucesso')
       localStorage.clear()
       onClose()
       queryClient.invalidateQueries({ queryKey: ['users', 'me'] })
-      toast.success('Usuário deletado com sucesso')
     } catch {
       toast.error('Erro ao deletar usuário')
     }

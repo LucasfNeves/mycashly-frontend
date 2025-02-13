@@ -37,13 +37,10 @@ export function useChangeUserDetailsController({
 
   const handleFormSubmit = handleSubmit(async (data: FormData) => {
     try {
-      await updateUserMutation({
-        ...data,
-      })
-
-      onClose()
+      await updateUserMutation(data)
       queryClient.invalidateQueries({ queryKey: ['users', 'me'] })
-      toast.success('Usuário atualizado com sucesso')
+      toast.success('Usuário atualizado com sucesso!')
+      onClose()
     } catch {
       toast.error('Erro ao atualizar usuário')
     }

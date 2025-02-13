@@ -1,26 +1,24 @@
-import { User2Icon } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { Logo } from './Logo'
-import { ButtonNavigate } from './ButtonNavigate'
+import { Logo } from '../Logo'
+import { ButtonNavigate } from '../ButtonNavigate'
 import { cn } from '@/app/lib/utils'
-import { ExitButton } from './ExitButton'
-import { ButtonMenu } from './ButtonMenu'
+import { ExitButton } from '../ExitButton'
+import { ButtonMenu } from '../ButtonMenu'
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
+import { UserSettingsButton } from '../UserSettingsButton'
+import { useToggleMenuController } from './useToggleMenuController'
+import { UserSettingsModal } from '../UserSettingsModal'
+import { Link } from 'react-router-dom'
 
 export function ToggleMenu() {
-  const [open, setOpen] = useState(false)
-
-  const toggleMenu = () => {
-    setOpen((prevOpen) => !prevOpen)
-  }
-
-  useEffect(() => {
-    if (open) {
-      document.body.classList.add('overflow-hidden')
-    } else {
-      document.body.classList.remove('overflow-hidden')
-    }
-  }, [open])
+  const {
+    getUserData,
+    handleUserSettingsModalOpen,
+    userSettingsModalOpen,
+    handleUserSettingsModalClose,
+    open,
+    setOpen,
+    toggleMenu,
+  } = useToggleMenuController()
 
   return (
     <Collapsible
@@ -29,12 +27,17 @@ export function ToggleMenu() {
       className="items-between fixed left-0 right-0 top-0 z-[50] flex h-16 w-full flex-col justify-center bg-darkBlue-800 p-4"
     >
       <header className="relative flex h-full w-full items-center justify-between">
-        <figure>
-          <Logo className="w-36" />
-        </figure>
+        <Link to="/">
+          <figure>
+            <Logo className="w-36" />
+          </figure>
+        </Link>
 
         <div className="flex items-center justify-end gap-4">
-          <User2Icon className="h-8 text-white" />
+          <UserSettingsButton
+            getUserData={getUserData}
+            onClick={handleUserSettingsModalOpen}
+          />
 
           <ButtonMenu
             title={!open ? 'Abrir Menu' : 'Fechar Menu'}
@@ -65,6 +68,12 @@ export function ToggleMenu() {
             <ExitButton />
           </div>
         </div>
+
+        <UserSettingsModal
+          getUserData={getUserData}
+          open={userSettingsModalOpen}
+          onClose={handleUserSettingsModalClose}
+        />
       </CollapsibleContent>
     </Collapsible>
   )
