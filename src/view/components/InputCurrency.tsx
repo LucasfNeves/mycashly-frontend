@@ -21,6 +21,7 @@ export const InputCurrency = forwardRef<HTMLInputElement, InputCurrencyProps>(
     return (
       <div className="relative flex w-full flex-col gap-2">
         <NumericFormat
+          maxLength={16}
           value={value ?? 0}
           onValueChange={({ floatValue }) => onChange(floatValue ?? 0)}
           name={name}
