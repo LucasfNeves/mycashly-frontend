@@ -5,14 +5,15 @@ import { User } from '@/app/entities/User'
 
 interface ChangeUserDetailsFormProps {
   userDetails?: User
+  onClose: () => void
 }
 
 export function ChangeUserDetailsForm({
   userDetails,
+  onClose,
 }: ChangeUserDetailsFormProps) {
-  const { errors, handleFormSubmit, register } = useChangeUserDetailsController(
-    { userDetails },
-  )
+  const { errors, handleFormSubmit, register, isPendingUpdateUser } =
+    useChangeUserDetailsController({ userDetails, onClose })
 
   return (
     <form
@@ -35,7 +36,9 @@ export function ChangeUserDetailsForm({
         {...register('email')}
       />
 
-      <Button className="w-full">Salvar</Button>
+      <Button isLoading={isPendingUpdateUser} className="w-full">
+        Salvar
+      </Button>
     </form>
   )
 }

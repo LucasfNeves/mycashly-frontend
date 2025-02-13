@@ -47,7 +47,7 @@ export function UserSettingsModal({
         </TabsList>
 
         <TabsContent value="account">
-          <ChangeUserDetailsForm userDetails={getUserData} />
+          <ChangeUserDetailsForm onClose={onClose} userDetails={getUserData} />
         </TabsContent>
 
         <TabsContent value="password">

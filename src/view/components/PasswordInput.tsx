@@ -38,48 +38,53 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
     const inputId = id ?? name
 
     return (
-      <div className="relative flex flex-col gap-2">
-        <input
-          id={inputId}
-          name={name}
-          ref={ref}
-          placeholder=" "
-          className={cn(
-            'peer relative h-[3.25rem] w-full rounded-lg border px-[12px] pb-[2px] pt-4 text-black outline-none placeholder-shown:pt-0',
-            className,
-            placeholderColor === 'dark' &&
-              'border-2 border-neutral-200 bg-transparent text-neutral-200',
-          )}
-          type={showPassword}
-          {...props}
-        />
+      <div className="flex flex-col gap-2">
+        <div className="relative">
+          <input
+            id={inputId}
+            name={name}
+            ref={ref}
+            placeholder=" "
+            className={cn(
+              'peer relative h-[3.25rem] w-full rounded-lg border px-[12px] pb-[2px] pt-4 text-black outline-none placeholder-shown:pt-0',
+              className,
+              placeholderColor === 'dark' &&
+                'border-2 border-neutral-200 bg-transparent text-neutral-200',
+            )}
+            type={showPassword}
+            {...props}
+          />
 
-        <label
-          htmlFor="email"
-          className={cn(
-            'pointer-events-none absolute left-4 top-2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base',
-            placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
-          )}
-        >
-          {placeholder}
-        </label>
+          <label
+            htmlFor="email"
+            className={cn(
+              'pointer-events-none absolute left-4 top-2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base',
+              placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
+            )}
+          >
+            {placeholder}
+          </label>
 
-        <button
-          type="button"
-          className={cn(
-            'absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-700 transition-all',
-            placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
-          )}
-          onClick={handleShowPassword}
-        >
-          {showPassword === 'password' ? (
-            <EyeClosed size={24} />
-          ) : (
-            <Eye size={24} />
-          )}
-        </button>
-
-        {error && <InputMensagerError error={error} />}
+          <button
+            type="button"
+            className={cn(
+              'absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-700 transition-all',
+              placeholderColor === 'light' ? 'text-gray-700' : 'text-gray-200',
+            )}
+            onClick={handleShowPassword}
+          >
+            {showPassword === 'password' ? (
+              <EyeClosed size={24} />
+            ) : (
+              <Eye size={24} />
+            )}
+          </button>
+        </div>
+        {error ? (
+          <span>
+            <InputMensagerError error={error} />
+          </span>
+        ) : null}
       </div>
     )
   },
