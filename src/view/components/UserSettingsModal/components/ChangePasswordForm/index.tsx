@@ -2,8 +2,13 @@ import { PasswordInput } from '@/view/components/PasswordInput'
 import { useChangePasswordController } from './useChangePasswordController'
 import { Button } from '@/view/components/Button'
 
-export function ChangePasswordForm() {
-  const { errors, handleFormSubmit, register } = useChangePasswordController()
+interface ChangePasswordFormProps {
+  onClose: () => void
+}
+
+export function ChangePasswordForm({ onClose }: ChangePasswordFormProps) {
+  const { errors, handleFormSubmit, register, isPendingUpdatePassword } =
+    useChangePasswordController({ onClose })
   return (
     <form
       onSubmit={handleFormSubmit}
@@ -12,8 +17,8 @@ export function ChangePasswordForm() {
       <PasswordInput
         placeholderColor="dark"
         placeholder={'Senha atual'}
-        error={errors.password?.message}
-        {...register('password')}
+        error={errors.currentPassword?.message}
+        {...register('currentPassword')}
       />
 
       <PasswordInput
@@ -23,7 +28,9 @@ export function ChangePasswordForm() {
         {...register('newPassword')}
       />
 
-      <Button className="w-full">Salvar</Button>
+      <Button isLoading={isPendingUpdatePassword} className="w-full">
+        Salvar
+      </Button>
     </form>
   )
 }

@@ -9,6 +9,6 @@ export const changeUserDetailsSchema = z.object({
 })
 
 export const changePasswordSchema = z.object({
-  password: z.string().min(6, 'Senha deve ter no mínimo 6 dígitos'),
+  currentPassword: z.string().min(6, 'Senha deve ter no mínimo 6 dígitos'),
   newPassword: z.string().min(6, 'Senha deve ter no mínimo 6 dígitos'),
 })

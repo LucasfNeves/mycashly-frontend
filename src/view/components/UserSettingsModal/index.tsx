@@ -55,7 +55,7 @@ export function UserSettingsModal({
         </TabsContent>
 
         <TabsContent value="password">
-          <ChangePasswordForm />
+          <ChangePasswordForm onClose={onClose} />
         </TabsContent>
       </Tabs>
     </Modal>
