@@ -5,12 +5,9 @@ import { SummaryCard } from './components/SummaryCard'
 import { ExpenseIcon } from '@/view/components/icons/ExpenseIcon'
 import { ExpenseChart } from './components/ExpenseChart'
 import { useDashboardController } from './useDashboardController'
-import { Swiper } from 'swiper/react'
-import { SliderNavigation } from '@/view/components/SliderMonths/SliderNavigation'
-import { SwiperSlide } from 'swiper/react'
-import { SliderOption } from '@/view/components/SliderMonths/SliderOption'
-import { MONTHS } from '@/app/config/constants'
-import { useIsMobile } from '@/app/hooks/useIsMobile'
+import { SliderMonths } from '@/view/components/SliderMonths'
+import { Spinner } from '@/view/components/Spinner'
+import EmptyStateIlustrator from '@/view/assets/images/empty-state.svg'
 
 export function Dashboard() {
   const {
@@ -19,9 +16,14 @@ export function Dashboard() {
     getFirstName,
     getUserData,
     handleShowValues,
+    filters,
+    handleMonthChange,
+    isFetchingTopFiveExpenses,
+    topFiveExpenses,
+    isInitialLoadingTopFiveExpenses,
   } = useDashboardController()
 
-  const isMobile = useIsMobile()
+  const hasExpenses = topFiveExpenses.length >= 3
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -55,38 +57,50 @@ export function Dashboard() {
         </section>
       </main>
 
-      <section className="flex flex-col gap-8">
-        <div className="relative mt-8 w-full">
-          {/* <SliderMonths /> */}
-          <Swiper
-            spaceBetween={40}
-            centeredSlides={true}
-            navigation
-            className="relative z-0"
-            slidesPerView={isMobile ? 1 : 4}
-          >
-            <SliderNavigation />
-            {MONTHS.map((month, index) => (
-              <SwiperSlide key={month}>
-                {({ isActive }) => (
-                  <SliderOption
-                    month={month}
-                    isActive={isActive}
-                    index={index}
-                  />
-                )}
-              </SwiperSlide>
-            ))}
-          </Swiper>
+      {!hasExpenses && isInitialLoadingTopFiveExpenses ? (
+        <div className="flex h-96 w-full items-center justify-center rounded-md">
+          <Spinner className="h-8 w-8" />
         </div>
+      ) : (
+        <section className="flex flex-col gap-8">
+          <div className="relative mt-8 w-full">
+            <SliderMonths
+              filters={filters}
+              handleChangeMonth={handleMonthChange}
+            />
+          </div>
+          <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-4 lg:p-6">
+            {!hasExpenses && isFetchingTopFiveExpenses && (
+              <Spinner className="h-8 w-8" />
+            )}
 
-        <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-4 lg:p-6">
-          <h2 className="w-full text-start text-xl text-neutral-300">
-            Top 5 Gastos do Mês
-          </h2>
-          <ExpenseChart />
-        </div>
-      </section>
+            {!hasExpenses && !isFetchingTopFiveExpenses && (
+              <div className="flex flex-col items-center justify-center gap-4">
+                <figure>
+                  <img
+                    src={EmptyStateIlustrator}
+                    alt=" Nenhuma transação encontrada"
+                    className="h-64"
+                  />
+                </figure>
+                <span className="text-md text-center text-neutral-300">
+                  Despesas insuficientes para gerar o gráfico. Tente selecionar
+                  outro mês ou ano ou adicione pelo menos três despesas.
+                </span>
+              </div>
+            )}
+
+            {hasExpenses && !isFetchingTopFiveExpenses && (
+              <>
+                <h2 className="w-full text-start text-xl text-neutral-300">
+                  Top gastos do mês
+                </h2>
+                <ExpenseChart topFiveExpenses={topFiveExpenses} />
+              </>
+            )}
+          </div>
+        </section>
+      )}
     </div>
   )
 }

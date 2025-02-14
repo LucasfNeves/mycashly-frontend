@@ -50,6 +50,7 @@ export function useTransactionsController() {
     setSelectedTransaction(null)
     setEditTransactionModalOpen(false)
   }
+
   return {
     categories,
     isFetchingAllCategories,

@@ -1,74 +1,68 @@
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart'
 
-import { Bar, BarChart, XAxis, YAxis, LabelList } from 'recharts'
+import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+import { useExpenseChartController } from './useExpenseChartController'
+import { TransactionDetails } from '@/app/entities/TransactionDetails'
+import { formatCurrency } from '@/app/utils/formatCurrency'
 
-export const chartData = [
-  { browser: 'Aluguel', valor: 275, fill: 'var(--color-Aluguel)' },
-  { browser: 'Carro', valor: 200, fill: 'var(--color-Carro)' },
-  { browser: 'Financiamento', valor: 187, fill: 'var(--color-Financiamento)' },
-  { browser: 'Alimentação', valor: 173, fill: 'var(--color-Alimentação)' },
-  { browser: 'Passeio', valor: 90, fill: 'var(--color-Passeio)' },
-]
+interface ExpenseChartProps {
+  topFiveExpenses: TransactionDetails[]
+}
 
-export const chartConfig = {
-  valor: {
-    label: 'Total em R$',
-  },
-  Aluguel: {
-    label: 'Aluguel',
-    color: 'hsl(var(--chart-1))',
-  },
-  Carro: {
-    label: 'Carro',
-    color: 'hsl(var(--chart-2))',
-  },
-  Financiamento: {
-    label: 'Financ.',
-    color: 'hsl(var(--chart-3))',
-  },
-  Alimentação: {
-    label: 'Alim.',
-    color: 'hsl(var(--chart-4))',
-  },
-  Passeio: {
-    label: 'Passeio',
-    color: 'hsl(var(--chart-5))',
-  },
-} satisfies ChartConfig
+export function ExpenseChart({ topFiveExpenses }: ExpenseChartProps) {
+  const { chartConfig, chartData } = useExpenseChartController({
+    topFiveExpenses,
+  })
 
-export function ExpenseChart() {
   const truncateLabel = (label: string, maxLength: number) => {
     return label.length > maxLength ? `${label.slice(0, maxLength)}...` : label
   }
+
   return (
     <ChartContainer config={chartConfig} className="h-[90%] w-full">
-      <BarChart accessibilityLayer data={chartData} layout="vertical">
-        <YAxis dataKey="browser" type="category" hide />
+      <BarChart
+        accessibilityLayer
+        data={chartData}
+        layout="vertical"
+        margin={{
+          left: 10,
+          right: 10,
+        }}
+      >
+        <YAxis
+          dataKey="browser"
+          type="category"
+          orientation="left"
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={(value: unknown) =>
+            String(
+              truncateLabel(
+                String(
+                  chartConfig[value as keyof typeof chartConfig]?.label || '',
+                ),
+                8,
+              ) || '',
+            )
+          }
+        />
         <XAxis dataKey="valor" type="number" hide />
         <ChartTooltip
           cursor={false}
           content={
             <ChartTooltipContent
               hideLabel
+              formatter={(value: unknown) => formatCurrency(Number(value))}
               className="border border-gray-300 bg-white text-black shadow-lg"
             />
           }
         />
-        <Bar dataKey="valor" layout="vertical" radius={5}>
-          <LabelList
-            dataKey="browser"
-            position="insideLeft"
-            offset={8}
-            fill="white"
-            fontSize={12}
-            formatter={(value: string) => truncateLabel(value, 8)}
-          />
-        </Bar>
+
+        <Bar dataKey="valor" layout="vertical" radius={5} />
       </BarChart>
     </ChartContainer>
   )
