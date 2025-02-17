@@ -8,8 +8,6 @@ interface useExpenseChartControllerProps {
 export function useExpenseChartController({
   topFiveExpenses = [],
 }: useExpenseChartControllerProps) {
-  console.log(topFiveExpenses)
-
   // Definição de valores padrão caso topFiveExpenses ainda não esteja carregado
   const defaultExpense = { name: 'Desconhecido', value: 0 }
 
