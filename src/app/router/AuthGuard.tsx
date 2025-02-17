@@ -6,7 +6,6 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ isPrivate }: AuthGuardProps) {
-  // Essa informação deverá ser dinâmica vindo de um context, esse exemplo é apenas para exemplificação
   const { signedIn } = useAuth()
 
   if (!signedIn && isPrivate) {

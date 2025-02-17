@@ -57,7 +57,6 @@ export function useUpdateTransactionModalController({
     },
   })
 
-  // Atualiza o formulário com os novos dados sempre que selectedTransaction mudar
   useEffect(() => {
     if (selectedTransaction) {
       reset({
