@@ -52,7 +52,6 @@ export function UpdateTransactionModal({
         title: 'Tem certeza que deseja deletar esta transação?',
         isLoading: isPendingDeleteTransaction,
       }}
-      title="Editar Transação"
     >
       <form onSubmit={handleFormSubmit}>
         <div className="flex flex-col items-center gap-2">

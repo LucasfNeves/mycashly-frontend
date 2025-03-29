@@ -1,19 +1,14 @@
-import { UserBalanceResponse } from '@/app/entities/UserBalanceResponse'
 import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/lib/utils'
 import { Eye, EyeClosed } from 'lucide-react'
+import { useBalanceCardController } from './useBalanceCardController'
 
-interface BalanceCardProps {
-  getBalanceData: UserBalanceResponse | undefined
-  showValues: boolean
-  handleShowValues: () => void
-}
+export function BalanceCard() {
+  console.log('balance card render')
 
-export function BalanceCard({
-  getBalanceData,
-  showValues,
-  handleShowValues,
-}: BalanceCardProps) {
+  const { getBalanceData, handleShowValues, showValues } =
+    useBalanceCardController()
+
   return (
     <section className="lb:py-5 flex min-h-48 w-full min-w-56 flex-1 flex-col justify-between gap-4 overflow-x-auto rounded-md bg-darkBlue-700 p-5 lg:px-9">
       <header className="flex justify-between">

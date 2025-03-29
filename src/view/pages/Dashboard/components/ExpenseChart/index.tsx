@@ -1,69 +1,42 @@
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart'
+import { ExpenseChart } from './ExpenseChart'
+import EmptyStateIlustrator from '@/view/assets/images/empty-state.svg'
+import { Spinner } from '@/view/components/Spinner'
+import { useExpenseChartContainerController } from './useExpenseChartContainerController'
 
-import { Bar, BarChart, XAxis, YAxis } from 'recharts'
-import { useExpenseChartController } from './useExpenseChartController'
-import { TransactionDetails } from '@/app/entities/TransactionDetails'
-import { formatCurrency } from '@/app/utils/formatCurrency'
-
-interface ExpenseChartProps {
-  topFiveExpenses: TransactionDetails[]
-}
-
-export function ExpenseChart({ topFiveExpenses }: ExpenseChartProps) {
-  const { chartConfig, chartData } = useExpenseChartController({
-    topFiveExpenses,
-  })
-
-  const truncateLabel = (label: string, maxLength: number) => {
-    return label.length > maxLength ? `${label.slice(0, maxLength)}...` : label
-  }
+export function ExpenseChartContainer() {
+  const { topFiveExpenses, isFetchingTopFiveExpenses, hasExpenses } =
+    useExpenseChartContainerController()
 
   return (
-    <ChartContainer config={chartConfig} className="h-[90%] w-full">
-      <BarChart
-        accessibilityLayer
-        data={chartData}
-        layout="vertical"
-        margin={{
-          left: 10,
-          right: 10,
-        }}
-      >
-        <YAxis
-          dataKey="browser"
-          type="category"
-          orientation="left"
-          tickLine={false}
-          axisLine={false}
-          tickFormatter={(value: unknown) =>
-            String(
-              truncateLabel(
-                String(
-                  chartConfig[value as keyof typeof chartConfig]?.label || '',
-                ),
-                8,
-              ) || '',
-            )
-          }
-        />
-        <XAxis dataKey="valor" type="number" hide />
-        <ChartTooltip
-          cursor={false}
-          content={
-            <ChartTooltipContent
-              hideLabel
-              formatter={(value: unknown) => formatCurrency(Number(value))}
-              className="border border-gray-300 bg-white text-black shadow-lg"
-            />
-          }
-        />
+    <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-4 lg:p-6">
+      {!hasExpenses && isFetchingTopFiveExpenses && (
+        <Spinner className="h-8 w-8" />
+      )}
 
-        <Bar dataKey="valor" layout="vertical" radius={5} />
-      </BarChart>
-    </ChartContainer>
+      {!hasExpenses && !isFetchingTopFiveExpenses && (
+        <div className="flex flex-col items-center justify-center gap-4">
+          <figure>
+            <img
+              src={EmptyStateIlustrator}
+              alt=" Nenhuma transação encontrada"
+              className="h-64"
+            />
+          </figure>
+          <span className="text-md text-center text-neutral-300">
+            Despesas insuficientes para gerar o gráfico. Tente selecionar outro
+            mês ou ano ou adicione pelo menos três despesas.
+          </span>
+        </div>
+      )}
+
+      {hasExpenses && !isFetchingTopFiveExpenses && (
+        <>
+          <h2 className="w-full text-start text-xl text-neutral-300">
+            Top gastos do mês
+          </h2>
+          <ExpenseChart topFiveExpenses={topFiveExpenses} />
+        </>
+      )}
+    </div>
   )
 }

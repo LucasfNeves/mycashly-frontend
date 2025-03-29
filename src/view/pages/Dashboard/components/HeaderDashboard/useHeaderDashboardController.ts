@@ -1,6 +1,11 @@
+import { useAuth } from '@/app/hooks/useAuth'
 import { useState } from 'react'
 
-export function useHeaderController() {
+export function useHeaderDashboardController() {
+  const { getUserData } = useAuth()
+
+  const getFirstName = getUserData?.name.split(' ')[0]
+
   const [userSettingsModalOpen, setUserSettingsModalOpen] = useState(false)
 
   function handleUserSettingsModalOpen() {
@@ -15,5 +20,7 @@ export function useHeaderController() {
     userSettingsModalOpen,
     handleUserSettingsModalOpen,
     handleUserSettingsModalClose,
+    getFirstName,
+    getUserData,
   }
 }

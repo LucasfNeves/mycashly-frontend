@@ -5,7 +5,7 @@ import { Settings2 } from 'lucide-react'
 interface UserSettingsButtonProps {
   onClick: () => void
   getUserData: User | undefined
-  getFirstName?: (name: string) => string
+  getFirstName?: string
 }
 
 export function UserSettingsButton({
@@ -28,7 +28,7 @@ export function UserSettingsButton({
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <span className="w-full truncate text-start text-sm font-medium">
-          {getFirstName?.(getUserData?.name ?? '')}
+          {getFirstName}
         </span>
         <small className="w-full truncate text-start text-xs text-gray-400">
           {getUserData?.email}
