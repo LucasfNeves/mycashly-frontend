@@ -9,22 +9,17 @@ import { useUpdateTransactionModalController } from './useUpdateTransactionModal
 import { TYPES } from '@/app/config/constants'
 import { Trash2Icon } from 'lucide-react'
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
-import { Category } from '@/app/entities/Category'
 
 interface UpdateTransactionModalProps {
   editTransactionModalOpen: boolean
   handleEditTransationModalClose: () => void
   selectedTransaction: TransactionDetails | null
-  isFetchingAllCategories: boolean
-  categories: Category[]
 }
 
 export function UpdateTransactionModal({
   editTransactionModalOpen,
   handleEditTransationModalClose,
   selectedTransaction,
-  categories,
-  isFetchingAllCategories,
 }: UpdateTransactionModalProps) {
   const {
     register,
@@ -34,6 +29,8 @@ export function UpdateTransactionModal({
     isPendingUpdateTransaction,
     isPendingDeleteTransaction,
     handleDeleteTransaction,
+    categories,
+    isFetchingAllCategories,
   } = useUpdateTransactionModalController({
     selectedTransaction,
     handleEditTransationModalClose,

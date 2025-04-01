@@ -9,8 +9,6 @@ interface SummaryCardProps {
 }
 
 export function SummaryCard({ icon, description, type }: SummaryCardProps) {
-  console.log('summary card render')
-
   const { getBalanceData, showValues } = useSummaryCardController()
 
   const typeForGetValue = getBalanceData?.[type as keyof typeof getBalanceData]

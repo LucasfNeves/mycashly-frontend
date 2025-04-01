@@ -12,8 +12,6 @@ export function HeaderDashboard() {
     getUserData,
   } = useHeaderDashboardController()
 
-  console.log('header render')
-
   return (
     <header className="flex items-center justify-start lg:justify-between">
       <div className="flex flex-col gap-1">

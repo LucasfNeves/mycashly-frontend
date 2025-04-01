@@ -22,8 +22,6 @@ export function ExpenseChart({ topFiveExpenses }: ExpenseChartProps) {
     return label.length > maxLength ? `${label.slice(0, maxLength)}...` : label
   }
 
-  console.log('expense chart render')
-
   return (
     <ChartContainer config={chartConfig} className="h-[90%] w-full">
       <BarChart

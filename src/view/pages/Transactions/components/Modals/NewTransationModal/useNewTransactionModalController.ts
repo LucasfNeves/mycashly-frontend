@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCreateTransaction } from '@/app/hooks/services/transactions/useCreateTransaction'
+import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
 
 type FormData = z.infer<typeof newTransactionModalSchema>
 
@@ -16,6 +17,8 @@ export function useNewTransactionModalController({
   handleCloseNewTransactionModal,
 }: NewTransactionModalController) {
   const queryClient = useQueryClient()
+
+  const { categories, isFetchingAllCategories } = useGetAllCategories()
 
   const { isPendingCreateTransaction, createTransactionMutation } =
     useCreateTransaction()
@@ -68,5 +71,7 @@ export function useNewTransactionModalController({
     createTransactionMutation,
     reset,
     closeModal,
+    categories,
+    isFetchingAllCategories,
   }
 }

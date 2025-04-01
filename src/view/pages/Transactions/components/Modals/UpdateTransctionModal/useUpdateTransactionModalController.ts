@@ -12,6 +12,7 @@ import { useUpdateTransaction } from '@/app/hooks/services/transactions/useUpdat
 import { useQueryClient } from '@tanstack/react-query'
 import { TransactionType } from '@/app/types/transaction-type'
 import { useDeleteTransaction } from '@/app/hooks/services/transactions/useDeleteTransaction'
+import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
 
 type FormData = z.infer<typeof updateTransactionSchema>
 
@@ -25,6 +26,8 @@ export function useUpdateTransactionModalController({
   selectedTransaction,
 }: UpdateTransactionModalController) {
   const queryClient = useQueryClient()
+
+  const { categories, isFetchingAllCategories } = useGetAllCategories()
 
   const {
     isPendingUpdateTransaction,
@@ -116,5 +119,7 @@ export function useUpdateTransactionModalController({
     updatedTransaction,
     handleDeleteTransaction,
     isPendingDeleteTransaction,
+    isFetchingAllCategories,
+    categories,
   }
 }

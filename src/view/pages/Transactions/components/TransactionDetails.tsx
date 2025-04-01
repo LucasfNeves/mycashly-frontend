@@ -3,11 +3,10 @@ import { cn } from '@/app/lib/utils'
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
 import { formatDate } from '@/app/utils/formatDate'
 import { useMemo } from 'react'
-import { Category } from '@/app/entities/Category'
+import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
 
 interface TransactionDetailsProps extends TransactionDetails {
   onClick: () => void
-  categories: Category[]
 }
 
 export function TransactionItem({
@@ -18,8 +17,9 @@ export function TransactionItem({
   value,
   id,
   onClick,
-  categories,
 }: TransactionDetailsProps) {
+  const { categories } = useGetAllCategories()
+
   const category = useMemo(() => {
     return categories?.find((category) => category.id === categoryId)
   }, [categories, categoryId])

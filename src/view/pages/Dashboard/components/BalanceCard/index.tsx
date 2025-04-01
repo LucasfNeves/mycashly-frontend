@@ -4,8 +4,6 @@ import { Eye, EyeClosed } from 'lucide-react'
 import { useBalanceCardController } from './useBalanceCardController'
 
 export function BalanceCard() {
-  console.log('balance card render')
-
   const { getBalanceData, handleShowValues, showValues } =
     useBalanceCardController()
 

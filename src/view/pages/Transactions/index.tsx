@@ -16,12 +16,10 @@ export function Transactions() {
     isLoadingTransactions,
     isInitialLoadingTransactions,
     transactions,
-    categories,
     editTransactionModalOpen,
     handleEditTransationModalClose,
     newTransactionModalOpen,
     handleCloseNewTransactionModal,
-    isFetchingAllCategories,
     handleChangeMonth,
     filters,
   } = useTransactionsController()
@@ -92,7 +90,6 @@ export function Transactions() {
                     type={transaction.type}
                     value={transaction.value}
                     id={transaction.id}
-                    categories={categories}
                   />
                 ))
               )}
@@ -102,16 +99,12 @@ export function Transactions() {
           <NewTransactionModal
             handleCloseNewTransactionModal={handleCloseNewTransactionModal}
             newTransactionModalOpen={newTransactionModalOpen}
-            categories={categories}
-            isFetchingAllCategories={isFetchingAllCategories}
           />
           {selectedTransaction && (
             <UpdateTransactionModal
               editTransactionModalOpen={editTransactionModalOpen}
               handleEditTransationModalClose={handleEditTransationModalClose}
               selectedTransaction={selectedTransaction}
-              categories={categories}
-              isFetchingAllCategories={isFetchingAllCategories}
             />
           )}
         </div>
