@@ -26,7 +26,7 @@ export const createDashboardSlice: StoreSlice<DashboardSlice> = (set) => ({
     })
   },
 
-  showValues: false,
+  showValues: true,
   setShowValues: (showValues) => {
     set((prevState) => {
       prevState.dashboard.showValues = showValues

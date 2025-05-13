@@ -4,7 +4,12 @@ import { toast } from 'react-toastify'
 import { useShallow } from 'zustand/react/shallow'
 
 export function useBalanceCardController() {
-  const { getBalanceData, getBalanceIsError } = useGetUserBalance()
+  const {
+    getBalanceData,
+    getBalanceIsError,
+    getBalanceIsFetching,
+    getBalanceIsLoading,
+  } = useGetUserBalance()
 
   const { setShowValues, showValues } = useStore(
     useShallow((state) => ({
@@ -25,5 +30,7 @@ export function useBalanceCardController() {
     getBalanceData,
     showValues,
     handleShowValues,
+    getBalanceIsLoading,
+    getBalanceIsFetching,
   }
 }

@@ -2,13 +2,27 @@ import { formatCurrency } from '@/app/utils/formatCurrency'
 import { cn } from '@/lib/utils'
 import { Eye, EyeClosed } from 'lucide-react'
 import { useBalanceCardController } from './useBalanceCardController'
+import { SkeletonCard } from '@/components/nativeComponents/SkeletonCard'
 
 export function BalanceCard() {
-  const { getBalanceData, handleShowValues, showValues } =
-    useBalanceCardController()
+  const {
+    getBalanceData,
+    handleShowValues,
+    showValues,
+    getBalanceIsFetching,
+    getBalanceIsLoading,
+  } = useBalanceCardController()
+
+  if (getBalanceIsFetching || getBalanceIsLoading) {
+    return (
+      <div className="min-h-48 w-full min-w-56 max-w-96">
+        <SkeletonCard />
+      </div>
+    )
+  }
 
   return (
-    <section className="lb:py-5 flex min-h-48 w-full min-w-56 flex-1 flex-col justify-between gap-4 overflow-x-auto rounded-md bg-darkBlue-700 p-5 lg:px-9">
+    <section className="lb:py-5 flex min-h-48 w-full min-w-56 max-w-96 flex-1 flex-col justify-between gap-4 overflow-x-auto rounded-md bg-darkBlue-700 p-5 lg:px-9">
       <header className="flex justify-between">
         <div className="flex flex-col gap-2">
           <h2 className="text-neutral-300">Balanço Total</h2>

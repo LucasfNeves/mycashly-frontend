@@ -1,11 +1,7 @@
-import { useGetUserBalance } from '@/app/hooks/services/users/useGetUserBalance'
 import { useStore } from '@/app/store'
-import { toast } from 'react-toastify'
 import { useShallow } from 'zustand/react/shallow'
 
 export function useSummaryCardController() {
-  const { getBalanceData, getBalanceIsError } = useGetUserBalance()
-
   const { setShowValues, showValues } = useStore(
     useShallow((state) => ({
       showValues: state.dashboard.showValues,
@@ -17,12 +13,7 @@ export function useSummaryCardController() {
     setShowValues(!showValues)
   }
 
-  if (getBalanceIsError) {
-    toast.error('Erro ao carregar o saldo. Tente novamente mais tarde.')
-  }
-
   return {
-    getBalanceData,
     showValues,
     handleShowValues,
   }
