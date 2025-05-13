@@ -13,11 +13,8 @@ export function useDashboardFiltersController() {
     })),
   )
 
-  const {
-    isInitialLoadingTopFiveExpenses,
-    refetchTopFiveExpenses,
-    topFiveExpenses,
-  } = useGetTopFiveExpenses(filters)
+  const { refetchTopFiveExpenses, topFiveExpenses } =
+    useGetTopFiveExpenses(filters)
 
   const {
     getBalanceDataFiltered,
@@ -45,14 +42,10 @@ export function useDashboardFiltersController() {
     getBalanceFilteredRefetch()
   }, [filters, refetchTopFiveExpenses, getBalanceFilteredRefetch])
 
-  const hasExpenses = topFiveExpenses.length >= 3
-
   return {
     filters,
     handleMonthChange,
-    isInitialLoadingTopFiveExpenses,
     topFiveExpenses,
-    hasExpenses,
     getBalanceDataFiltered,
     getBalanceIsLoading,
     getBalanceIsFetching,

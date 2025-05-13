@@ -1,7 +1,7 @@
 import { ExpenseChart } from './ExpenseChart'
 import EmptyStateIlustrator from '@/view/assets/images/empty-state.svg'
-import { Spinner } from '@/view/components/Spinner'
 import { useExpenseChartContainerController } from './useExpenseChartContainerController'
+import { SkeletonChart } from '@/components/nativeComponents/SkeletonChart'
 
 export function ExpenseChartContainer() {
   const { topFiveExpenses, isFetchingTopFiveExpenses, hasExpenses } =
@@ -9,9 +9,7 @@ export function ExpenseChartContainer() {
 
   return (
     <div className="flex h-96 w-full flex-col items-center justify-center gap-4 rounded-md bg-darkBlue-700 p-4 lg:p-6">
-      {!hasExpenses && isFetchingTopFiveExpenses && (
-        <Spinner className="h-8 w-8" />
-      )}
+      {isFetchingTopFiveExpenses && <SkeletonChart />}
 
       {!hasExpenses && !isFetchingTopFiveExpenses && (
         <div className="flex flex-col items-center justify-center gap-4">
