@@ -12,7 +12,7 @@ import { refreshTokenService } from '@/app/services/authService/refreshToken'
 import { signUpService } from '@/app/services/authService/signUp'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useGetUserById } from '@/app/hooks/services/users/useGetUserById'
-import { LaunchScreen } from '@/components/LaunchScreen'
+import { LaunchScreen } from '@/view/components/LaunchScreen'
 import { toast } from 'react-toastify'
 import { User } from '../entities/User'
 

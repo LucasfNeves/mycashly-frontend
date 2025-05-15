@@ -1,11 +1,11 @@
-import { Button } from '@/components/Button'
-import { Input } from '@/components/Input'
-import { Modal } from '@/components/Modal'
+import { Button } from '@/view/components/Button'
+import { Input } from '@/view/components/Input'
+import { Modal } from '@/view/components/Modal'
 import { useNewTransactionModalController } from './useNewTransactionModalController'
 import { Controller } from 'react-hook-form'
-import { InputSelect } from '@/components/InputSelect'
-import { InputCurrency } from '@/components/InputCurrency'
-import { DatePickerInput } from '@/components/DatePickerInput'
+import { InputSelect } from '@/view/components/InputSelect'
+import { InputCurrency } from '@/view/components/InputCurrency'
+import { DatePickerInput } from '@/view/components/DatePickerInput'
 import { TransactionType } from '@/app/types/transaction-type'
 
 interface NewTransactionModalProps {

@@ -2,7 +2,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/components/ui/chart'
+} from '@/view/components/ui/chart'
 
 import { Bar, BarChart, XAxis, YAxis } from 'recharts'
 import { useExpenseChartController } from './useExpenseChartController'

@@ -1,7 +1,7 @@
 import { ExpenseChart } from './ExpenseChart'
 import EmptyStateIlustrator from '@/view/assets/images/empty-state.svg'
 import { useExpenseChartContainerController } from './useExpenseChartContainerController'
-import { SkeletonChart } from '@/components/nativeComponents/SkeletonChart'
+import { SkeletonChart } from '@/view/components/nativeComponents/SkeletonChart'
 
 export function ExpenseChartContainer() {
   const { topFiveExpenses, isFetchingTopFiveExpenses, hasExpenses } =

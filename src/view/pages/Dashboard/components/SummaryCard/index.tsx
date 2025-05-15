@@ -1,7 +1,7 @@
 import { formatCurrency } from '@/app/utils/formatCurrency'
-import { cn } from '@/lib/utils'
+import { cn } from '@/app/lib/utils'
 import { useSummaryCardController } from './useSummaryCardController'
-import { SkeletonCard } from '@/components/nativeComponents/SkeletonCard'
+import { SkeletonCard } from '@/view/components/nativeComponents/SkeletonCard'
 
 interface SummaryCardProps {
   icon: React.ReactNode

@@ -1,4 +1,4 @@
-import { Calendar } from '@/components/ui/calendar'
+import { Calendar } from '@/view/components/ui/calendar'
 import { ptBR } from 'date-fns/locale'
 
 interface CalendarModalProps {

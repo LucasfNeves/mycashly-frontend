@@ -1,8 +1,8 @@
 import { formatCurrency } from '@/app/utils/formatCurrency'
-import { cn } from '@/lib/utils'
+import { cn } from '@/app/lib/utils'
 import { Eye, EyeClosed } from 'lucide-react'
 import { useBalanceCardController } from './useBalanceCardController'
-import { SkeletonCard } from '@/components/nativeComponents/SkeletonCard'
+import { SkeletonCard } from '@/view/components/nativeComponents/SkeletonCard'
 
 export function BalanceCard() {
   const {

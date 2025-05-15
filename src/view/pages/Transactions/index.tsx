@@ -1,6 +1,6 @@
 import { useTransactionsController } from './useTransactionsController'
-import { Spinner } from '@/components/Spinner'
-import { SliderMonths } from '@/components/SliderMonths'
+import { Spinner } from '@/view/components/Spinner'
+import { SliderMonths } from '@/view/components/SliderMonths'
 import { TransactionItem } from './components/TransactionDetails'
 import { NewTransactionModal } from './components/Modals/NewTransationModal'
 import { UpdateTransactionModal } from './components/Modals/UpdateTransctionModal'

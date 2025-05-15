@@ -1,6 +1,6 @@
 import { useIsMobile } from '@/app/hooks/useIsMobile'
-import { Sidebar } from '@/components/Sidebar'
-import { ToggleMenu } from '@/components/ToggleMenu'
+import { Sidebar } from '@/view/components/Sidebar'
+import { ToggleMenu } from '@/view/components/ToggleMenu'
 import { Outlet } from 'react-router-dom'
 
 export function MainLayout() {

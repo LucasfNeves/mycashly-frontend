@@ -1,5 +1,5 @@
-import { ButtonNavigate } from '@/components/ButtonNavigate'
-import { Logo } from '@/components/Logo'
+import { ButtonNavigate } from '@/view/components/ButtonNavigate'
+import { Logo } from '@/view/components/Logo'
 import { LayoutDashboard, Table } from 'lucide-react'
 import { ExitButton } from './ExitButton'
 

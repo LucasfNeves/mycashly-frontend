@@ -1,5 +1,5 @@
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
-import { ChartConfig } from '@/components/ui/chart'
+import { ChartConfig } from '@/view/components/ui/chart'
 
 interface useExpenseChartControllerProps {
   topFiveExpenses: TransactionDetails[]
