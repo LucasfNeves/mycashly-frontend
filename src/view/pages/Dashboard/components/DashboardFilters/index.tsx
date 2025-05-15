@@ -1,10 +1,10 @@
-import { SliderMonths } from '@/view/components/SliderMonths'
+import { SliderMonths } from '@/components/SliderMonths'
 import { useDashboardFiltersController } from './useDashboardFiltersController'
 import { ExpenseChartContainer } from '../ExpenseChart'
 import { SummaryCard } from '../SummaryCard'
-import { ExpenseIcon } from '@/view/components/icons/ExpenseIcon'
-import { IncomeIcon } from '@/view/components/icons/IncomeIcon'
-import { InvestmentIcon } from '@/view/components/icons/InvestmentIcon'
+import { ExpenseIcon } from '@/components/icons/ExpenseIcon'
+import { IncomeIcon } from '@/components/icons/IncomeIcon'
+import { InvestmentIcon } from '@/components/icons/InvestmentIcon'
 
 export function DashboardFilters() {
   const {

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Input } from '../../components/Input'
-import { Button } from '../../components/Button'
+import { Input } from '../../../components/Input'
+import { Button } from '../../../components/Button'
 import { useLoginController } from './useLoginController'
-import { PasswordInput } from '../../components/PasswordInput'
+import { PasswordInput } from '../../../components/PasswordInput'
 
 export function Login() {
   const { handleFormSubmit, register, errors, isPendingSignIn } =

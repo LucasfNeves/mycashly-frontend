@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef, useState } from 'react'
-import { cn } from '../../app/utils/cn'
+import { cn } from '../app/utils/cn'
 import { Eye, EyeClosed } from 'lucide-react'
 import { InputMensagerError } from './inputMensagerError'
 

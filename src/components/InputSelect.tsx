@@ -7,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@radix-ui/react-select'
 import { Spinner } from './Spinner'
 
 interface InputSelectProps {

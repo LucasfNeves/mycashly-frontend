@@ -7,9 +7,9 @@ import { InputMensagerError } from '../inputMensagerError'
 import { cn } from '@/app/utils/cn'
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover'
+  PopoverContent,
+} from '@radix-ui/react-popover'
 
 interface DatePickerInputProps {
   className?: string

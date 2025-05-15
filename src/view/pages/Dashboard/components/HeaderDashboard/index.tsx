@@ -1,6 +1,6 @@
 import { Hand } from 'lucide-react'
-import { UserSettingsButton } from '../../../../components/UserSettingsButton'
-import { UserSettingsModal } from '@/view/components/UserSettingsModal'
+import { UserSettingsButton } from '../../../../../components/UserSettingsButton'
+import { UserSettingsModal } from '@/components/UserSettingsModal'
 import { useHeaderDashboardController } from './useHeaderDashboardController'
 
 export function HeaderDashboard() {

@@ -20,11 +20,6 @@ export const newTransactionModalSchema = z.object({
   date: z.date({
     required_error: 'A data é obrigatória.',
   }),
-  type: z.enum(['INCOME', 'EXPENSE', 'INVESTMENT'], {
-    errorMap: () => ({
-      message: 'Tipo inválido.',
-    }),
-  }),
   value: z
     .number({
       required_error: 'O valor é obrigatório.',

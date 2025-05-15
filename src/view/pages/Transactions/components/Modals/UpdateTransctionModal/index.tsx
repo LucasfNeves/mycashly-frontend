@@ -1,12 +1,11 @@
-import { Button } from '@/view/components/Button'
-import { DatePickerInput } from '@/view/components/DatePickerInput'
-import { Input } from '@/view/components/Input'
-import { InputCurrency } from '@/view/components/InputCurrency'
-import { InputSelect } from '@/view/components/InputSelect'
-import { Modal } from '@/view/components/Modal'
+import { Button } from '@/components/Button'
+import { DatePickerInput } from '@/components/DatePickerInput'
+import { Input } from '@/components/Input'
+import { InputCurrency } from '@/components/InputCurrency'
+import { InputSelect } from '@/components/InputSelect'
+import { Modal } from '@/components/Modal'
 import { Controller } from 'react-hook-form'
 import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
-import { TYPES } from '@/app/config/constants'
 import { Trash2Icon } from 'lucide-react'
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
 
@@ -103,22 +102,6 @@ export function UpdateTransactionModal({
             placeholderColor="dark"
             {...register('name')}
             error={errors.name?.message}
-          />
-
-          <Controller
-            name="type"
-            control={control}
-            render={({ field }) => (
-              <InputSelect
-                className="border-2 border-neutral-200 bg-transparent text-neutral-200"
-                placeholder="Tipo"
-                placeholderColor="dark"
-                options={TYPES}
-                {...field}
-                value={field.value || ''}
-                error={errors.type?.message}
-              />
-            )}
           />
 
           <Controller

@@ -1,14 +1,16 @@
 import { useTransactionsController } from './useTransactionsController'
-import { Spinner } from '@/view/components/Spinner'
-import { Button } from '@/view/components/Button'
-import { PlusCircleIcon } from 'lucide-react'
-import { SliderMonths } from '@/view/components/SliderMonths'
+import { Spinner } from '@/components/Spinner'
+import { SliderMonths } from '@/components/SliderMonths'
 import { TransactionItem } from './components/TransactionDetails'
 import { NewTransactionModal } from './components/Modals/NewTransationModal'
 import { UpdateTransactionModal } from './components/Modals/UpdateTransctionModal'
 import EmptyStateIlustrator from '@/view/assets/images/empty-state.svg'
+import { useState } from 'react'
+import { TransactionDropdownMenu } from './components/TransactionDropDownMenu'
 
 export function Transactions() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   const {
     handleOpenNewTransactionModal,
     handleEditTransationModalOpen,
@@ -22,6 +24,7 @@ export function Transactions() {
     handleCloseNewTransactionModal,
     handleChangeMonth,
     filters,
+    transactionType,
   } = useTransactionsController()
 
   const hasTransactions = transactions.length > 0
@@ -36,12 +39,11 @@ export function Transactions() {
         <div className="flex min-h-screen flex-col gap-8">
           <header className="flex flex-col items-center justify-between gap-8">
             <div className="flex w-full items-center justify-end">
-              <Button
-                onClick={handleOpenNewTransactionModal}
-                className="flex w-fit gap-2 px-6"
-              >
-                Adicionar Transação <PlusCircleIcon />
-              </Button>
+              <TransactionDropdownMenu
+                onSelect={handleOpenNewTransactionModal}
+                open={menuOpen}
+                setMenuOpen={setMenuOpen}
+              />
             </div>
 
             <div className="z-0 w-full">
@@ -99,6 +101,7 @@ export function Transactions() {
           <NewTransactionModal
             handleCloseNewTransactionModal={handleCloseNewTransactionModal}
             newTransactionModalOpen={newTransactionModalOpen}
+            transactionType={transactionType}
           />
           {selectedTransaction && (
             <UpdateTransactionModal

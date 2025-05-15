@@ -1,5 +1,5 @@
-import { Logo } from '@/view/components/Logo'
-import { Spinner } from '@/view/components/Spinner'
+import { Logo } from '@/components/Logo'
+import { Spinner } from '@/components/Spinner'
 import { Transition } from '@headlessui/react'
 
 interface LaunchScreenProps {

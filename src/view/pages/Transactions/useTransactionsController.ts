@@ -2,6 +2,7 @@ import { TransactionDetails } from '@/app/entities/TransactionDetails'
 import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
 import { useGetAllTransactions } from '@/app/hooks/services/transactions/useGetAllTransactions'
 import { TransacttionsFilters } from '@/app/services/transactionsService/getAllTransations'
+import { TransactionType } from '@/app/types/transaction-type'
 import { useEffect, useState } from 'react'
 
 export function useTransactionsController() {
@@ -18,9 +19,16 @@ export function useTransactionsController() {
   } = useGetAllTransactions(filters)
   const { categories, isFetchingAllCategories } = useGetAllCategories()
 
-  const [newTransactionModalOpen, setNewTransactionModalOpen] = useState(false)
+  const [newTransactionModalOpen, setNewTransactionModalOpen] =
+    useState<boolean>(false)
   const [editTransactionModalOpen, setEditTransactionModalOpen] =
-    useState(false)
+    useState<boolean>(false)
+  const [transactionType, setTransactionType] = useState<
+    TransactionType | undefined
+  >(undefined)
+
+  const [dropdownMenuTransactionTypeOpen, setDropdownMenuTransactionTypeOpen] =
+    useState<boolean>(false)
 
   const [selectedTransaction, setSelectedTransaction] =
     useState<TransactionDetails | null>(null)
@@ -35,15 +43,18 @@ export function useTransactionsController() {
 
   const handleCloseNewTransactionModal = () => {
     setNewTransactionModalOpen(false)
+    setTransactionType(undefined)
   }
 
-  const handleOpenNewTransactionModal = () => {
+  const handleOpenNewTransactionModal = (type: TransactionType) => {
     setNewTransactionModalOpen(true)
+    setTransactionType(type)
   }
 
   const handleEditTransationModalOpen = (transaction: TransactionDetails) => {
     setSelectedTransaction(transaction)
     setEditTransactionModalOpen(true)
+    setDropdownMenuTransactionTypeOpen(true)
   }
 
   const handleEditTransationModalClose = () => {
@@ -66,5 +77,7 @@ export function useTransactionsController() {
     isInitialLoadingTransactions,
     handleChangeMonth,
     filters,
+    transactionType,
+    dropdownMenuTransactionTypeOpen,
   }
 }

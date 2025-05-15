@@ -18,3 +18,9 @@ export const TYPES = [
   { value: 'EXPENSE', label: 'Despesa' },
   { value: 'INVESTMENT', label: 'Investimento' },
 ]
+
+export const TRANSACTION_TYPES = [
+  { label: 'Receita', value: 'INCOME' },
+  { label: 'Investimento', value: 'INVESTMENT' },
+  { label: 'Despesa', value: 'EXPENSE' },
+] as const

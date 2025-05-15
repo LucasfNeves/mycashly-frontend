@@ -1,8 +1,9 @@
 interface LogoProps extends React.SVGProps<SVGSVGElement> {
   className?: string
+  noBackground?: boolean // Propriedade opcional para remover o fundo
 }
 
-export function InvestmentIcon({ className }: LogoProps) {
+export function InvestmentIcon({ className, noBackground }: LogoProps) {
   return (
     <svg
       viewBox="0 0 40 40"
@@ -10,7 +11,7 @@ export function InvestmentIcon({ className }: LogoProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <rect width="40" height="40" rx="20" fill="#BFDFF5" />
+      {!noBackground && <rect width="40" height="40" rx="20" fill="#BFDFF5" />}
       <path
         d="M12 24L17 19L22 23L28 16"
         stroke="#1A73E8"

@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Logo } from '../components/Logo'
+import { Logo } from '../../components/Logo'
 import authenticationBackgroundImage from './../assets/images/authentication-background.png'
 
 export function AuthLayout() {

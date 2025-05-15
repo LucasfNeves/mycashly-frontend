@@ -3,11 +3,12 @@ import { ButtonNavigate } from '../ButtonNavigate'
 import { cn } from '@/app/lib/utils'
 import { ExitButton } from '../ExitButton'
 import { ButtonMenu } from '../ButtonMenu'
-import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import { UserSettingsButton } from '../UserSettingsButton'
 import { useToggleMenuController } from './useToggleMenuController'
 import { UserSettingsModal } from '../UserSettingsModal'
 import { Link } from 'react-router-dom'
+
+import { Collapsible, CollapsibleContent } from '@radix-ui/react-collapsible'
 
 export function ToggleMenu() {
   const {

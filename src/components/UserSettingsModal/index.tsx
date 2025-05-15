@@ -1,10 +1,10 @@
-import { Modal } from '../Modal'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@radix-ui/react-tabs'
 import { Trash2 } from 'lucide-react'
 import { ChangePasswordForm } from './components/ChangePasswordForm'
 import { ChangeUserDetailsForm } from './components/ChangeUserDetailsForm'
 import { User } from '@/app/entities/User'
 import { useUserSettingsModalController } from './useUserSettingsModalController'
+import { Modal } from '../Modal'
 
 interface UserSettingsModalProps {
   open: boolean
@@ -37,13 +37,13 @@ export function UserSettingsModal({
       <Tabs defaultValue="account" className="flex w-full flex-col">
         <TabsList className="mb-6 flex w-full gap-4 rounded-md bg-darkBlue-500 p-1">
           <TabsTrigger
-            className="w-full rounded-md text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
+            className="w-full rounded-md p-1 text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
             value="account"
           >
             Conta
           </TabsTrigger>
           <TabsTrigger
-            className="w-full rounded-md text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
+            className="w-full rounded-md p-1 text-neutral-400 data-[state=active]:bg-primaryBlue-500 data-[state=active]:text-white"
             value="password"
           >
             Senha

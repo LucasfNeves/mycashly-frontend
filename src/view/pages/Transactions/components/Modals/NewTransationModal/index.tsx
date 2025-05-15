@@ -1,21 +1,23 @@
-import { Button } from '@/view/components/Button'
-import { Input } from '@/view/components/Input'
-import { Modal } from '@/view/components/Modal'
+import { Button } from '@/components/Button'
+import { Input } from '@/components/Input'
+import { Modal } from '@/components/Modal'
 import { useNewTransactionModalController } from './useNewTransactionModalController'
 import { Controller } from 'react-hook-form'
-import { InputSelect } from '@/view/components/InputSelect'
-import { InputCurrency } from '@/view/components/InputCurrency'
-import { DatePickerInput } from '@/view/components/DatePickerInput'
-import { TYPES } from '@/app/config/constants'
+import { InputSelect } from '@/components/InputSelect'
+import { InputCurrency } from '@/components/InputCurrency'
+import { DatePickerInput } from '@/components/DatePickerInput'
+import { TransactionType } from '@/app/types/transaction-type'
 
 interface NewTransactionModalProps {
   newTransactionModalOpen: boolean
   handleCloseNewTransactionModal: () => void
+  transactionType: TransactionType | undefined
 }
 
 export function NewTransactionModal({
   newTransactionModalOpen,
   handleCloseNewTransactionModal,
+  transactionType,
 }: NewTransactionModalProps) {
   const {
     control,
@@ -26,7 +28,10 @@ export function NewTransactionModal({
     closeModal,
     categories,
     isFetchingAllCategories,
-  } = useNewTransactionModalController({ handleCloseNewTransactionModal })
+  } = useNewTransactionModalController({
+    handleCloseNewTransactionModal,
+    transactionType,
+  })
 
   return (
     <Modal
@@ -79,23 +84,6 @@ export function NewTransactionModal({
             placeholderColor="dark"
             {...register('name')}
             error={errors.name?.message}
-          />
-
-          <Controller
-            name="type"
-            control={control}
-            render={({ field }) => (
-              <InputSelect
-                className="border-2 border-neutral-200 bg-transparent text-neutral-200"
-                placeholder="Tipo"
-                placeholderColor="dark"
-                options={TYPES}
-                {...field}
-                value={field.value || ''}
-                onChange={field.onChange}
-                error={errors.type?.message}
-              />
-            )}
           />
 
           <Controller

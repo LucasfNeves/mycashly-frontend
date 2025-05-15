@@ -1,6 +1,6 @@
-import { PasswordInput } from '@/view/components/PasswordInput'
+import { PasswordInput } from '@/components/PasswordInput'
 import { useChangePasswordController } from './useChangePasswordController'
-import { Button } from '@/view/components/Button'
+import { Button } from '@/components/Button'
 
 interface ChangePasswordFormProps {
   onClose: () => void

@@ -5,11 +5,9 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+} from '@radix-ui/react-alert-dialog'
 import { Spinner } from './Spinner'
 
 interface PopupAlertProps {
@@ -46,13 +44,13 @@ export function PopupAlert({
         {triggerText} {triggerIcon}
       </AlertDialogTrigger>
       <AlertDialogContent className="w-[90%] rounded-md border-none bg-darkBlue-500 text-neutral-200 lg:w-full">
-        <AlertDialogHeader>
+        <header>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription className="text-neutral-300">
             {description}
           </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
+        </header>
+        <footer>
           <AlertDialogCancel
             onClick={onCloseModalMain}
             className="border-none bg-red-600 text-neutral-200 transition-all hover:bg-red-700 hover:text-neutral-200 hover:duration-300"
@@ -65,7 +63,7 @@ export function PopupAlert({
           >
             {isLoading ? <Spinner className="h-4 w-4" /> : actionText}
           </AlertDialogAction>
-        </AlertDialogFooter>
+        </footer>
       </AlertDialogContent>
     </AlertDialog>
   )

@@ -6,15 +6,18 @@ import { toast } from 'react-toastify'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCreateTransaction } from '@/app/hooks/services/transactions/useCreateTransaction'
 import { useGetAllCategories } from '@/app/hooks/services/categories/useGetAllCategories'
+import { TransactionType } from '@/app/types/transaction-type'
 
 type FormData = z.infer<typeof newTransactionModalSchema>
 
 interface NewTransactionModalController {
   handleCloseNewTransactionModal: () => void
+  transactionType: TransactionType | undefined
 }
 
 export function useNewTransactionModalController({
   handleCloseNewTransactionModal,
+  transactionType,
 }: NewTransactionModalController) {
   const queryClient = useQueryClient()
 
@@ -31,19 +34,13 @@ export function useNewTransactionModalController({
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(newTransactionModalSchema),
-    defaultValues: {
-      date: new Date(),
-      categoryId: '',
-      name: '',
-      type: undefined,
-      value: 0,
-    },
   })
 
   const handleFormSubmit = handleSubmit(async (data) => {
     try {
       await createTransactionMutation({
         ...data,
+        type: transactionType ?? 'INCOME',
         date: data.date.toISOString(),
       })
 
@@ -59,7 +56,12 @@ export function useNewTransactionModalController({
 
   const closeModal = () => {
     handleCloseNewTransactionModal()
-    reset()
+    reset({
+      date: new Date(),
+      categoryId: '',
+      name: '',
+      value: undefined,
+    })
   }
 
   return {
