@@ -78,7 +78,7 @@ export const InputSelect = forwardRef<HTMLButtonElement, InputSelectProps>(
             </Select.Trigger>
             <Select.Portal>
               <Select.Content
-                className="left-0 w-[var(--radix-select-trigger-width)] rounded-md border border-gray-100 bg-white shadow-lg"
+                className="left-0 z-10 max-h-[200px] w-[var(--radix-select-trigger-width)] overflow-auto rounded-md border border-gray-100 bg-white shadow-lg"
                 position="popper"
                 side="bottom"
                 align="start"

@@ -16,7 +16,7 @@ export const SelectItem = React.forwardRef<
   return (
     <Select.Item
       className={classnames(
-        'relative flex h-[25px] cursor-pointer select-none items-center rounded-[3px] p-2 pl-[35px] pr-[25px] text-sm leading-none text-gray-800 outline-none transition-colors data-[highlighted]:bg-gray-100 data-[state=checked]:font-bold',
+        'relative flex h-[25px] cursor-pointer select-none items-center rounded-[3px] px-3 py-5 pl-[35px] pr-[25px] text-sm leading-none text-gray-800 outline-none transition-colors data-[highlighted]:bg-gray-100 data-[state=checked]:font-bold',
         className,
       )}
       {...props}
