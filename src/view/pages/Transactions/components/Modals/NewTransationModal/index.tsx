@@ -7,6 +7,7 @@ import { InputSelect } from '@/view/components/InputSelect'
 import { InputCurrency } from '@/view/components/InputCurrency'
 import { DatePickerInput } from '@/view/components/DatePickerInput'
 import { TransactionType } from '@/app/types/transaction-type'
+import { filterOptionsByTypeTransaction } from '@/app/utils/functions/filterOptionsByTypeTransaction'
 
 interface NewTransactionModalProps {
   newTransactionModalOpen: boolean
@@ -32,6 +33,11 @@ export function NewTransactionModal({
     handleCloseNewTransactionModal,
     transactionType,
   })
+
+  const OptionsFilteredesByType = filterOptionsByTypeTransaction(
+    categories,
+    transactionType,
+  )
 
   return (
     <Modal
@@ -68,10 +74,7 @@ export function NewTransactionModal({
                 placeholder="Categoria"
                 isLoading={isFetchingAllCategories}
                 placeholderColor="dark"
-                options={categories.map((category) => ({
-                  label: category.name,
-                  value: category.id,
-                }))}
+                options={OptionsFilteredesByType}
                 {...field}
                 error={errors.categoryId?.message}
               />

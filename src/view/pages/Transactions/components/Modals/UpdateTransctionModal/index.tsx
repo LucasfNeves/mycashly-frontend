@@ -8,6 +8,7 @@ import { Controller } from 'react-hook-form'
 import { useUpdateTransactionModalController } from './useUpdateTransactionModalController'
 import { Trash2Icon } from 'lucide-react'
 import { TransactionDetails } from '@/app/entities/TransactionDetails'
+import { filterOptionsByTypeTransaction } from '@/app/utils/functions/filterOptionsByTypeTransaction'
 
 interface UpdateTransactionModalProps {
   editTransactionModalOpen: boolean
@@ -34,6 +35,13 @@ export function UpdateTransactionModal({
     selectedTransaction,
     handleEditTransationModalClose,
   })
+
+  console.log('categories', categories)
+
+  const OptionsFilteredesByType = filterOptionsByTypeTransaction(
+    categories,
+    selectedTransaction?.type,
+  )
 
   return (
     <Modal
@@ -84,10 +92,7 @@ export function UpdateTransactionModal({
                 placeholder="Categoria"
                 isLoading={isFetchingAllCategories}
                 placeholderColor="dark"
-                options={categories.map((category) => ({
-                  label: category.name,
-                  value: category.id,
-                }))}
+                options={OptionsFilteredesByType}
                 {...field}
                 value={field.value || ''}
                 error={errors.categoryId?.message}
